@@ -2,40 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Management;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RfidEncoder
 {
-    class ComPortHelper
+    internal static class ComPortHelper
     {
         public static List<ComPortInfo> GetCOMPortsInfo()
         {
             List<ComPortInfo> comPortInfoList = new List<ComPortInfo>();
 
-            ConnectionOptions options = ProcessConnection.ProcessConnectionOptions();
-            ManagementScope connectionScope = ProcessConnection.ConnectionScope(Environment.MachineName, options, @"\root\CIMV2");
-
-            ObjectQuery objectQuery = new ObjectQuery("SELECT * FROM Win32_PnPEntity WHERE ConfigManagerErrorCode = 0");
-            ManagementObjectSearcher comPortSearcher = new ManagementObjectSearcher(connectionScope, objectQuery);
-
-            using (comPortSearcher)
+            //using (var searcher = new ManagementObjectSearcher(@"Select * From Win32_USBHub"))
+            using (var searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_PnPEntity WHERE ConfigManagerErrorCode = 0"))
             {
-                string caption = null;
-                foreach (ManagementObject obj in comPortSearcher.Get())
+                var collection = searcher.Get();
+                foreach (ManagementObject obj in collection)
                 {
                     if (obj != null)
                     {
                         object captionObj = obj["Caption"];
+                        object desc = obj["Description"];
+
                         if (captionObj != null)
                         {
-                            caption = captionObj.ToString();
-                            if (caption.Contains("(COM"))
+                            if (captionObj.ToString().Contains("COM"))
                             {
                                 var comPortInfo = new ComPortInfo();
-                                comPortInfo.Name = caption.Substring(caption.LastIndexOf("(COM")).Replace("(", string.Empty).Replace(")",
-                                                                     string.Empty);
-                                comPortInfo.Description = caption;
+                                comPortInfo.Name = captionObj.ToString();
+                                comPortInfo.Description = desc.ToString();
+
                                 comPortInfoList.Add(comPortInfo);
                             }
                         }
@@ -43,28 +40,6 @@ namespace RfidEncoder
                 }
             }
             return comPortInfoList;
-        }
-    }
-
-    internal class ProcessConnection
-    {
-
-        public static ConnectionOptions ProcessConnectionOptions()
-        {
-            ConnectionOptions options = new ConnectionOptions();
-            options.Impersonation = ImpersonationLevel.Impersonate;
-            options.Authentication = AuthenticationLevel.Default;
-            options.EnablePrivileges = true;
-            return options;
-        }
-
-        public static ManagementScope ConnectionScope(string machineName, ConnectionOptions options, string path)
-        {
-            ManagementScope connectScope = new ManagementScope();
-            connectScope.Path = new ManagementPath(@"\\" + machineName + path);
-            connectScope.Options = options;
-            connectScope.Connect();
-            return connectScope;
         }
     }
 

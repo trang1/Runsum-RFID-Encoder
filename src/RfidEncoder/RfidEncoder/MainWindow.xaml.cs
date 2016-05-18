@@ -23,8 +23,6 @@ namespace RfidEncoder
         public MainWindow()
         {
             InitializeComponent();
-            lb.ItemsSource = ComPortHelper.GetCOMPortsInfo();
-                
         }
     }
 }
