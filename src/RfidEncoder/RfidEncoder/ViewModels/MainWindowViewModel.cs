@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RfidEncoder.ViewModels
 {
@@ -15,7 +16,21 @@ namespace RfidEncoder.ViewModels
 
         private static readonly MainWindowViewModel _mainWindowViewModel = new MainWindowViewModel();
 
+        private void Connect()
+        {
+
+        }
+
         #endregion
+
+        #region Constructor
+        public MainWindowViewModel()
+        {
+            ConnectCommand = new DelegateCommand(Connect);
+        }
+
+        #endregion
+
 
         #region public members
 
@@ -23,6 +38,19 @@ namespace RfidEncoder.ViewModels
         {
             get { return _mainWindowViewModel; }
         }
+
+        public IList<ComPortInfo> ComPorts
+        {
+            get
+            {
+                return ComPortHelper.GetCOMPortsInfo();
+            }
+        }
+
+        public ComPortInfo SelectedComPort { get; set; }
+
+        public ICommand ConnectCommand { get; set; }
+
         #endregion
     }
 }

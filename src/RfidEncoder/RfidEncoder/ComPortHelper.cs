@@ -43,7 +43,7 @@ namespace RfidEncoder
         }
     }
 
-    internal class ComPortInfo
+    public class ComPortInfo
     {
         public string Name { get; set; }
         public string Description { get; set; }

@@ -5,7 +5,9 @@
         Title="Runsum RFID Encoder v0.1" Height="350" Width="525"
         MinWidth="500" MinHeight="600"
         DataContext="{x:Static viewModels:MainWindowViewModel.Instance}"
-        SizeToContent="WidthAndHeight">
+        SizeToContent="WidthAndHeight"
+        Icon="Resources/rfid.ico"
+        Background="DarkGray">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -19,9 +21,16 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-                <TextBlock Text="Port" />
-                <ComboBox Grid.Column="1" ItemsSource="{Binding ComPorts}" />
+                <TextBlock Text="Port" Margin="3"/>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding ComPorts}" 
+                          SelectedItem="{Binding SelectedComPort}" Margin="3" />
+
+                <Button Grid.Row="1" Content="Connect" Command="{Binding ConnectCommand}" Margin="3"/>
             </Grid>    
         </GroupBox>
 
@@ -32,7 +41,22 @@
         <GroupBox Header="Encoding" Grid.Row="2">
             <TabControl>
                 <TabItem Header="List">
-                    
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        
+                        <StackPanel Orientation="Horizontal" >
+                            <Button Content="Start encoding" />
+                        </StackPanel>
+
+                        <DataGrid Grid.Row="1" Margin="3">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Race #" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
                 </TabItem>
                 <TabItem Header="Single">
                     
