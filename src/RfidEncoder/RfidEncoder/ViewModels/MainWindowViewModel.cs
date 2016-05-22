@@ -27,6 +27,16 @@ namespace RfidEncoder.ViewModels
         public MainWindowViewModel()
         {
             ConnectCommand = new DelegateCommand(Connect);
+
+            Task.Factory.StartNew(() =>
+            {
+                var ports = ComPortHelper.GetCOMPortsInfo();
+                App.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    ComPorts = ports;
+                    OnPropertyChanged("ComPorts");
+                }));
+            });
         }
 
         #endregion
@@ -41,35 +51,25 @@ namespace RfidEncoder.ViewModels
 
         public IList<ComPortInfo> ComPorts
         {
-            get
-            {
-                return ComPortHelper.GetCOMPortsInfo();
-            }
+            get; set;
         }
 
         public ComPortInfo SelectedComPort { get; set; }
         public IList<string> Regions { get; set; }
 
         public string SelectedRegion { get; set; }
-        public IList<object> BaudRates {
+        public IList<string> BaudRates {
             get
             {
-                return new List<object>
+                return new List<string>
                 {
-                    new {ID = 0, Title = "Select"},
-                    new {ID = 1, Title = "9600"},
-                    new {ID = 2, Title = "19200"},
-                    new {ID = 3, Title = "38400"},
-                    new {ID = 4, Title = "115200"},
-                    new {ID = 5, Title = "230400"},
-                    new {ID = 6, Title = "460800"},
-                    new {ID = 7, Title = "921600"}
+                    "Select","9600", "19200", "38400", "115200", "230400", "460800","921600"
                 };
             }}
 
         public string SelectedBaudRate { get; set; }
         public ICommand ConnectCommand { get; set; }
-
+        public ICommand RefreshCommand { get; set; }
         public bool IsConnected { get; set; }
 
 

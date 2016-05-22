@@ -20,27 +20,40 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Port" Margin="3"/>
-                <ComboBox Grid.Column="1" ItemsSource="{Binding ComPorts}" 
-                          SelectedItem="{Binding SelectedComPort}" Margin="3" />
+                <ComboBox Grid.Column="1" ItemsSource="{Binding ComPorts}"  
+                          SelectedItem="{Binding SelectedComPort}" Margin="5" />
+                <Button Content="Refresh" Grid.Column="2" Command="{Binding RefreshCommand}" 
+                        Margin="5" MinWidth="120"/>
+                
+                <Grid Grid.Row="1" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Text="Region" Margin="3" />
+                    <ComboBox Grid.Column="1" ItemsSource="{Binding Regions}" 
+                          IsEnabled="{Binding IsConnected}"
+                          SelectedItem="{Binding SelectedRegion}" Margin="5" />
 
-                <TextBlock Text="Region" Margin="3" Grid.Row="1"/>
-                <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Regions}" IsEnabled="{Binding IsConnected}"
-                          SelectedItem="{Binding SelectedRegion}" Margin="3" />
-
-                <TextBlock Text="Baud rate" Margin="3" Grid.Row="2"/>
-                <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding BaudRates}" DisplayMemberPath="Title" SelectedValuePath="Id"
-                          SelectedItem="{Binding SelectedBaudRate}" Margin="3" />
-
-                <Button Grid.Row="3" Content="Connect" Command="{Binding ConnectCommand}" Margin="3"/>
+                    <TextBlock Text="Baud rate" Margin="3" Grid.Column="2"/>
+                    <ComboBox Grid.Row="1" ItemsSource="{Binding BaudRates}"
+                          SelectedItem="{Binding SelectedBaudRate}" Margin="5" Grid.Column="3" />
+                </Grid>
+                
+                <Button Grid.Row="2" Grid.Column="3" Content="Connect" Command="{Binding ConnectCommand}" Margin="5"
+                        MinWidth="120" />
             </Grid>    
         </GroupBox>
 
