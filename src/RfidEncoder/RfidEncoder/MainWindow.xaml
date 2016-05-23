@@ -2,12 +2,17 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:viewModels="clr-namespace:RfidEncoder.ViewModels"
+        xmlns:rfidEncoder="clr-namespace:RfidEncoder"
         Title="Runsum RFID Encoder v0.1" Height="350" Width="525"
         MinWidth="500" MinHeight="600"
         DataContext="{x:Static viewModels:MainWindowViewModel.Instance}"
         SizeToContent="WidthAndHeight"
         Icon="Resources/rfid.ico"
         Background="DarkGray">
+    
+    <Window.Resources>
+        <viewModels:InvertBoolConverter x:Key="InvertBoolConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -29,8 +34,9 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Port" Margin="3"/>
-                <ComboBox Grid.Column="1" ItemsSource="{Binding ComPorts}"  
-                          SelectedItem="{Binding SelectedComPort}" Margin="5" />
+                <ComboBox Grid.Column="1" ItemsSource="{Binding ComPorts}" 
+                          IsEnabled="{Binding IsRefreshing, Converter={StaticResource InvertBoolConverter}}"
+                          SelectedItem="{Binding SelectedComPort}" Margin="5" Width="400"/>
                 <Button Content="Refresh" Grid.Column="2" Command="{Binding RefreshCommand}" 
                         Margin="5" MinWidth="120"/>
                 
@@ -71,14 +77,14 @@
                         </Grid.RowDefinitions>
                         
                         <StackPanel Orientation="Horizontal" >
-                            <Button Content="Start encoding" />
+                            <Button Content="Start encoding" Margin="3"/>
                         </StackPanel>
 
-                        <DataGrid Grid.Row="1" Margin="3">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Race #" />
-                            </DataGrid.Columns>
-                        </DataGrid>
+                        <rfidEncoder:RaceGridView Grid.Row="1" Margin="3" ItemsSource="{Binding TotalRaceInfo}" AutoGenerateColumns="False"
+                                                  CanUserAddRows="False" IsReadOnly="True" Width="600" AlternatingRowBackground="LightCyan"
+                                                  SelectionUnit="Cell">
+                            
+                        </rfidEncoder:RaceGridView>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Single">
