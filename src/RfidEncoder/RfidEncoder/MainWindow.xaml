@@ -67,7 +67,7 @@
             
         </GroupBox>
 
-        <GroupBox Header="Encoding" Grid.Row="2">
+        <GroupBox Header="Encoding" Grid.Row="2" Width="600" >
             <TabControl>
                 <TabItem Header="List">
                     <Grid>
@@ -77,11 +77,11 @@
                         </Grid.RowDefinitions>
                         
                         <StackPanel Orientation="Horizontal" >
-                            <Button Content="Start encoding" Margin="3"/>
+                            <Button Content="Start encoding" Margin="3" Width="120"/>
                         </StackPanel>
 
                         <rfidEncoder:RaceGridView Grid.Row="1" Margin="3" ItemsSource="{Binding TotalRaceInfo}" AutoGenerateColumns="False"
-                                                  CanUserAddRows="False" IsReadOnly="True" Width="600" AlternatingRowBackground="LightCyan"
+                                                  CanUserAddRows="False" IsReadOnly="True" AlternatingRowBackground="LightCyan"
                                                   SelectionUnit="Cell">
                             
                         </rfidEncoder:RaceGridView>

@@ -425,7 +425,8 @@ namespace RfidEncoder.ViewModels
         #region Constructor
         public MainWindowViewModel()
         {
-            ConnectCommand = new DelegateCommand(Connect, () => SelectedComPort != null);
+            ConnectCommand = new DelegateCommand(Connect, 
+                () => SelectedComPort != null && !IsRefreshing);
             RefreshCommand = new DelegateCommand(Refresh, () => !IsRefreshing);
 
             Refresh();
