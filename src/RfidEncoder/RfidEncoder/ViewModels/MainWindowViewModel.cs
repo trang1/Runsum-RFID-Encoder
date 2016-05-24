@@ -29,9 +29,6 @@ namespace RfidEncoder.ViewModels
  
         private void Connect()
         {
-            var last = TotalRaceInfo.Last();
-            last.TagList.Add(new Random().Next());
-
             if(_reader != null)    
                 _reader.Destroy();
                 
@@ -428,11 +425,11 @@ namespace RfidEncoder.ViewModels
             ConnectCommand = new DelegateCommand(Connect, 
                 () => SelectedComPort != null && !IsRefreshing);
             RefreshCommand = new DelegateCommand(Refresh, () => !IsRefreshing);
+            ExitCommand = new DelegateCommand(() => Application.Current.Shutdown());
 
             Refresh();
 
-            TotalRaceInfo = new TotalRaceInfo();
-            TotalRaceInfo.TagsPerRaceCount = 5;
+            RacesViewModel = new RacesViewModel();
         }
         
         private void Refresh()
@@ -445,11 +442,6 @@ namespace RfidEncoder.ViewModels
                 {
                     ComPorts = ports;
                     IsRefreshing = false;
-                    TotalRaceInfo.Add(
-                        new RaceInfo { RaceNumber = new Random().Next(), 
-                            TagList = new ObservableCollection<int> { new Random().Next(), new Random().Next(), new Random().Next() } }
-                        );
-                
                     OnPropertyChanged("ComPorts");
                 });
             });
@@ -470,6 +462,7 @@ namespace RfidEncoder.ViewModels
             get; set;
         }
 
+        public RacesViewModel RacesViewModel { get; set; }
         public ComPortInfo SelectedComPort { get; set; }
         public List<string> Regions { get; set; }
 
@@ -497,9 +490,9 @@ namespace RfidEncoder.ViewModels
         public string SelectedBaudRate { get; set; }
         public ICommand ConnectCommand { get; set; }
         public ICommand RefreshCommand { get; set; }
+        public ICommand ExitCommand { get; set; }
         public bool IsConnected { get; set; }
 
-        public TotalRaceInfo TotalRaceInfo { get; set; }
         #endregion
     }
 }

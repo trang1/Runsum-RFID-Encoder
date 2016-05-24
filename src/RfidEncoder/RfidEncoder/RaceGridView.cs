@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
+using RfidEncoder.ViewModels;
 
 namespace RfidEncoder
 {
@@ -40,20 +41,5 @@ namespace RfidEncoder
                 Columns.Add(column);
             }
         }
-    }
-
-    public class RaceInfo
-    {
-        public int RaceNumber { get; set; }
-
-        public ObservableCollection<int> TagList { get; set; }
-    }
-
-    public class TotalRaceInfo : ObservableCollection<RaceInfo>
-    {
-        public int StartNumber { get; set; }
-        public int EndNumber { get; set; }
-
-        public int TagsPerRaceCount { get; set; }
     }
 }

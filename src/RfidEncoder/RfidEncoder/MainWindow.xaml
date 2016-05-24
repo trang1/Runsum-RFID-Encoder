@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:viewModels="clr-namespace:RfidEncoder.ViewModels"
         xmlns:rfidEncoder="clr-namespace:RfidEncoder"
+        xmlns:talex="http://schemas.talex-soft.com/2010/xaml/presentation"
         Title="Runsum RFID Encoder v0.1" Height="350" Width="525"
         MinWidth="500" MinHeight="600"
         DataContext="{x:Static viewModels:MainWindowViewModel.Instance}"
@@ -17,10 +18,20 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <GroupBox Header="Connection">
+        <Menu>
+            <MenuItem Header="File" >
+                <MenuItem Header="Exit" Command="{Binding ExitCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About"/>
+            </MenuItem>
+        </Menu>
+        
+        <GroupBox Grid.Row="1" Header="Connection">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -54,20 +65,50 @@
                           SelectedItem="{Binding SelectedRegion}" Margin="5" />
 
                     <TextBlock Text="Baud rate" Margin="3" Grid.Column="2"/>
-                    <ComboBox Grid.Row="1" ItemsSource="{Binding BaudRates}"
-                          SelectedItem="{Binding SelectedBaudRate}" Margin="5" Grid.Column="3" />
+                    <ComboBox ItemsSource="{Binding BaudRates}" SelectedItem="{Binding SelectedBaudRate}" 
+                              Margin="5" Grid.Column="3" />
                 </Grid>
                 
-                <Button Grid.Row="2" Grid.Column="3" Content="Connect" Command="{Binding ConnectCommand}" Margin="5"
+                <Button Grid.Row="2" Grid.Column="2" Content="Connect" Command="{Binding ConnectCommand}" Margin="5"
                         MinWidth="120" />
             </Grid>    
         </GroupBox>
 
-        <GroupBox Header="Race" Grid.Row="1">
-            
+        <GroupBox Header="Races" Grid.Row="2" DataContext="{Binding RacesViewModel}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Start new project" Command="{Binding NewProjectCommand}" Margin="5" 
+                        Grid.ColumnSpan="2" Width="120"/>
+
+                <TextBlock Text="Current file" Grid.Row="1" Grid.Column="0" Margin="3"/>
+                <TextBox Text="{Binding FileName}" Grid.Row="1" Grid.Column="1" Margin="3" IsReadOnly="True"/>
+                
+                <Grid Grid.Row="2" Grid.ColumnSpan="2" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Text="Next race #" FontSize="16" FontWeight="Bold" Margin="3"/>
+                    <talex:NumericUpDown Value="{Binding NextRaceNumber}" Grid.Column="1"  Margin="3" FontSize="16" FontWeight="Bold"/>
+
+                    <TextBlock Text="Next tag #" FontSize="16" FontWeight="Bold" Grid.Column="2" Margin="3"/>
+                    <talex:NumericUpDown Value="{Binding NextTagNumber}" Grid.Column="3" FontSize="16" FontWeight="Bold" Margin="3"/>
+                </Grid>
+            </Grid>
         </GroupBox>
 
-        <GroupBox Header="Encoding" Grid.Row="2" Width="600" >
+        <GroupBox Header="Encoding" Grid.Row="3" Width="600" DataContext="{Binding RacesViewModel}">
             <TabControl>
                 <TabItem Header="List">
                     <Grid>
@@ -77,14 +118,12 @@
                         </Grid.RowDefinitions>
                         
                         <StackPanel Orientation="Horizontal" >
-                            <Button Content="Start encoding" Margin="3" Width="120"/>
+                            <Button Content="Start encoding" Margin="3" Width="120"
+                                    Command="{Binding StartEncodingCommand}"/>
                         </StackPanel>
 
                         <rfidEncoder:RaceGridView Grid.Row="1" Margin="3" ItemsSource="{Binding TotalRaceInfo}" AutoGenerateColumns="False"
-                                                  CanUserAddRows="False" IsReadOnly="True" AlternatingRowBackground="LightCyan"
-                                                  SelectionUnit="Cell">
-                            
-                        </rfidEncoder:RaceGridView>
+                                                  CanUserAddRows="False" IsReadOnly="True" AlternatingRowBackground="LightCyan"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Single">
