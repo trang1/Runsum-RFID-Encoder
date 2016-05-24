@@ -24,14 +24,22 @@ namespace RfidEncoder.ViewModels
 
         private static readonly MainWindowViewModel _mainWindowViewModel = new MainWindowViewModel();
         private bool _isRefreshing;
+        private bool _isConnected;
         private Reader _reader;
         private Dictionary<string, string> _optimalReaderSettings;
  
         private void Connect()
         {
-            if(_reader != null)    
+            if(_reader != null || _isConnected)    
                 _reader.Destroy();
                 
+            if(IsConnected)
+            {
+                IsConnected = false;
+                OnPropertyChanged("ConnectButtonContent");
+                return;
+            }
+
             //ConfigureAntennaBoxes(null);
             //ConfigureProtocols(null);
             
@@ -181,6 +189,7 @@ namespace RfidEncoder.ViewModels
 
                 //// Clear firmware Update open file dialog status
                 //txtFirmwarePath.Text = "";
+                IsConnected = true;
             }
             catch (Exception ex)
             {
@@ -422,14 +431,15 @@ namespace RfidEncoder.ViewModels
         #region Constructor
         public MainWindowViewModel()
         {
-            ConnectCommand = new DelegateCommand(Connect, 
-                () => SelectedComPort != null && !IsRefreshing);
+            ConnectCommand = new DelegateCommand(Connect,
+                () => _isConnected ? !RacesViewModel.IsEncoding :
+                SelectedComPort != null && !IsRefreshing);
             RefreshCommand = new DelegateCommand(Refresh, () => !IsRefreshing);
             ExitCommand = new DelegateCommand(() => Application.Current.Shutdown());
 
             Refresh();
 
-            RacesViewModel = new RacesViewModel();
+            RacesViewModel = new RacesViewModel();            
         }
         
         private void Refresh()
@@ -487,12 +497,30 @@ namespace RfidEncoder.ViewModels
             }
         }
 
+        public string ConnectButtonContent
+        {
+            get
+            {
+                return _isConnected ? "Disconnect" : "Connect";
+            }
+        }
+        public bool IsConnected
+        {
+            get
+            {
+                return _isConnected;
+            }
+            set
+            {
+                _isConnected = value;
+                OnPropertyChanged("IsConnected");
+                OnPropertyChanged("ConnectButtonContent");
+            }
+        }
         public string SelectedBaudRate { get; set; }
         public ICommand ConnectCommand { get; set; }
         public ICommand RefreshCommand { get; set; }
         public ICommand ExitCommand { get; set; }
-        public bool IsConnected { get; set; }
-
         #endregion
     }
 }

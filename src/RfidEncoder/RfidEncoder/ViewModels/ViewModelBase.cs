@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows;
 
 namespace RfidEncoder.ViewModels
 {
@@ -18,5 +19,7 @@ namespace RfidEncoder.ViewModels
         }
 
         #endregion
+
+        public FrameworkElement FrameworkElement { get; set; }
     }
 }
