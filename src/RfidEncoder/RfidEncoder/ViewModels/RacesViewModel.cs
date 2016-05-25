@@ -13,7 +13,18 @@ namespace RfidEncoder.ViewModels
     {
         private int _nextRaceNumber;
         private int _nextTagNumber;
-        public TotalRaceInfo TotalRaceInfo { get; set; }
+        private TotalRaceInfo _totalRaceInfo;
+
+        public TotalRaceInfo TotalRaceInfo
+        {
+            get { return _totalRaceInfo; }
+            set
+            {
+                _totalRaceInfo = value;
+                OnPropertyChanged("TotalRaceInfo");
+            }
+        }
+
         public ICommand StartEncodingCommand { get; set; }
         public ICommand NewProjectCommand { get; set; }
         public bool IsEncoding { get; set; }
@@ -56,12 +67,13 @@ namespace RfidEncoder.ViewModels
 
             if (wnd.ShowDialog().GetValueOrDefault(false))
             {
-                TotalRaceInfo = model.TotalRaceInfo;
+                var info = model.TotalRaceInfo;
 
-                for (var i = TotalRaceInfo.StartNumber; i <= TotalRaceInfo.EndNumber; i++)
+                for (var i = info.StartNumber; i <= info.EndNumber; i++)
                 {
-                    TotalRaceInfo.Add(new RaceInfo { RaceNumber = i });
+                    info.Add(new RaceInfo { RaceNumber = i });
                 }
+                TotalRaceInfo = info;
             }
         }
 
@@ -80,11 +92,50 @@ namespace RfidEncoder.ViewModels
 
     public class TotalRaceInfo : ObservableCollection<RaceInfo>, INotifyPropertyChanged
     {
-        public int StartNumber { get; set; }
-        public int EndNumber { get; set; }
+        private int _startNumber;
+        private int _endNumber;
+        private int _tagsPerRaceCount;
+        private bool _isDigitInserting;
 
-        public int TagsPerRaceCount { get; set; }
-        public bool IsDigitInserting { get; set; }
+        public int StartNumber
+        {
+            get { return _startNumber; }
+            set
+            {
+                _startNumber = value;
+                OnPropertyChanged("StartNumber");
+            }
+        }
+
+        public int EndNumber
+        {
+            get { return _endNumber; }
+            set
+            {
+                _endNumber = value;
+                OnPropertyChanged("EndNumber");
+            }
+        }
+
+        public int TagsPerRaceCount
+        {
+            get { return _tagsPerRaceCount; }
+            set
+            {
+                _tagsPerRaceCount = value;
+                OnPropertyChanged("TagsPerRaceCount");
+            }
+        }
+
+        public bool IsDigitInserting
+        {
+            get { return _isDigitInserting; }
+            set
+            {
+                _isDigitInserting = value;
+                OnPropertyChanged("IsDigitInserting");
+            }
+        }
 
         #region INotifyPropertyChanged
 

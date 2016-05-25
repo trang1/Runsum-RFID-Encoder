@@ -27,20 +27,25 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
                 <TextBlock Text="From race number" Margin="3" />
                 <talex:NumericUpDown Grid.Column="1" Margin="5"
-                             Value="{Binding StartNumber}" />
+                             Value="{Binding StartNumber, Mode=TwoWay}" />
 
                 <TextBlock Text="To race number" Grid.Column="2" Margin="3"/>
-                <talex:NumericUpDown Value="{Binding EndNumber}" Margin="3"
+                <talex:NumericUpDown Value="{Binding EndNumber, Mode=TwoWay}" Margin="3"
                              Grid.Column="3"/>
 
                 <TextBlock Text="Tags per race number" Margin="3" Grid.Row="1" />
                 <talex:NumericUpDown Grid.Column="1" Margin="5" Grid.Row="1"
-                             Value="{Binding TagsPerRaceCount}" />
-
+                             Value="{Binding TagsPerRaceCount, Mode=TwoWay}" />
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="4" HorizontalAlignment="Stretch">
+                    <TextBox Text="{Binding FileName}" />
+                    <Button Content="Browse..." Command="{Binding ChooseFileCommand}" />
+                </StackPanel>
+                
                 <CheckBox Content="Insert a digit into tag" IsChecked="{Binding IsDigitInserting}" 
                           Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center"/>
 
