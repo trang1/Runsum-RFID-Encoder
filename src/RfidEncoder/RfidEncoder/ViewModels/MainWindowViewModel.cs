@@ -437,17 +437,20 @@ namespace RfidEncoder.ViewModels
             RefreshCommand = new DelegateCommand(Refresh, () => !IsRefreshing);
             ExitCommand = new DelegateCommand(() => Application.Current.Shutdown());
 
-            Refresh();
+            RacesViewModel = new RacesViewModel();
 
-            RacesViewModel = new RacesViewModel();            
+            Refresh();          
         }
         
         private void Refresh()
         {
-            IsRefreshing = true;
             Task.Factory.StartNew(() =>
             {
+                Thread.Sleep(200); // small delay for progress bar to be displayed
+                Application.Current.Dispatcher.Invoke(() => IsRefreshing = true);
                 var ports = ComPortHelper.GetCOMPortsInfo();
+
+                Thread.Sleep(3000);
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     ComPorts = ports;

@@ -5,7 +5,7 @@
         xmlns:rfidEncoder="clr-namespace:RfidEncoder"
         xmlns:talex="http://schemas.talex-soft.com/2010/xaml/presentation"
         Title="Runsum RFID Encoder v0.1" Height="350" Width="525"
-        MinWidth="500" MinHeight="600"
+        MinWidth="500" MinHeight="600" MaxHeight="700"
         DataContext="{x:Static viewModels:MainWindowViewModel.Instance}"
         SizeToContent="WidthAndHeight"
         Icon="Resources/rfid.ico"
@@ -13,6 +13,7 @@
     
     <Window.Resources>
         <viewModels:InvertBoolConverter x:Key="InvertBoolConverter" />
+        <viewModels:BooleanToVisibilityConverter x:Key="BoolToVisConverter" IsReversed="True" />
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -45,12 +46,12 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Port" Margin="3"/>
-                <talex:BusyIndicator Grid.Column="1"
-                                     IsBusy="{Binding IsRefreshing}" >
-                <ComboBox  ItemsSource="{Binding ComPorts}" 
+                <ProgressBar IsIndeterminate="True" Visibility="{Binding IsRefreshing, Converter={talex:BooleanToVisibilityConverter}}"
+                                     Grid.Column="1" Width="{Binding ElementName=cmbPorts, Path=ActualWidth}" Height="{Binding ElementName=cmbPorts, Path=ActualHeight}"/>
+                <ComboBox  ItemsSource="{Binding ComPorts}" Grid.Column="1" Name="cmbPorts"
+                           Visibility="{Binding IsRefreshing, Converter={StaticResource BoolToVisConverter}}"
                           IsEnabled="{Binding IsRefreshing, Converter={StaticResource InvertBoolConverter}}"
                           SelectedItem="{Binding SelectedComPort}" Margin="5" Width="400"/>
-                </talex:BusyIndicator>
                 <Button Content="Refresh" Grid.Column="2" Command="{Binding RefreshCommand}" 
                         Margin="5" MinWidth="120"/>
                 
@@ -92,7 +93,7 @@
                         Grid.ColumnSpan="2" Width="120"/>
 
                 <TextBlock Text="Current file" Grid.Row="1" Grid.Column="0" Margin="3"/>
-                <TextBox Text="{Binding FileName}" Grid.Row="1" Grid.Column="1" Margin="3" IsReadOnly="True"/>
+                <TextBox Text="{Binding TotalRaceInfo.FileName}" Grid.Row="1" Grid.Column="1" Margin="3" IsReadOnly="True"/>
                 
                 <Grid Grid.Row="2" Grid.ColumnSpan="2" >
                     <Grid.ColumnDefinitions>
@@ -103,10 +104,12 @@
                     </Grid.ColumnDefinitions>
                     
                     <TextBlock Text="Next race #" FontSize="16" FontWeight="Bold" Margin="3"/>
-                    <talex:NumericUpDown Value="{Binding NextRaceNumber}" Grid.Column="1"  Margin="3" FontSize="16" FontWeight="Bold"/>
+                    <talex:NumericUpDown Value="{Binding NextRaceNumber}" Grid.Column="1"  Margin="3" 
+                                         FontSize="16" FontWeight="Bold" Maximum="999999"/>
 
                     <TextBlock Text="Next tag #" FontSize="16" FontWeight="Bold" Grid.Column="2" Margin="3"/>
-                    <talex:NumericUpDown Value="{Binding NextTagNumber}" Grid.Column="3" FontSize="16" FontWeight="Bold" Margin="3"/>
+                    <talex:NumericUpDown Value="{Binding NextTagNumber}" Grid.Column="3" 
+                                         FontSize="16" FontWeight="Bold" Margin="3" Maximum="999999"/>
                 </Grid>
             </Grid>
         </GroupBox>
@@ -126,7 +129,8 @@
                         </StackPanel>
 
                         <rfidEncoder:RaceGridView Grid.Row="1" Margin="3" ItemsSource="{Binding TotalRaceInfo}" AutoGenerateColumns="False"
-                                                  CanUserAddRows="False" IsReadOnly="True" AlternatingRowBackground="LightCyan"/>
+                                                  CanUserAddRows="False" IsReadOnly="True" AlternatingRowBackground="#ece6d5"
+                                                  SelectedItem="{Binding SelectedRace}"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Single">

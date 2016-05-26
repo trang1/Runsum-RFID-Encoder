@@ -52,8 +52,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libs\TAlex.WPF.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="UIAutomationProvider" />
-    <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -67,6 +65,7 @@
     <Compile Include="RacesSettings.xaml.cs">
       <DependentUpon>RacesSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
     <Compile Include="ViewModels\INotifyPropertyChanged.cs" />
     <Compile Include="ViewModels\InvertBooleanConverter.cs" />

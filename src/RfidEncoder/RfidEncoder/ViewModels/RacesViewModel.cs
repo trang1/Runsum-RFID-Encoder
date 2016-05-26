@@ -14,6 +14,7 @@ namespace RfidEncoder.ViewModels
         private int _nextRaceNumber;
         private int _nextTagNumber;
         private TotalRaceInfo _totalRaceInfo;
+        private RaceInfo _selectedRace;
 
         public TotalRaceInfo TotalRaceInfo
         {
@@ -22,6 +23,16 @@ namespace RfidEncoder.ViewModels
             {
                 _totalRaceInfo = value;
                 OnPropertyChanged("TotalRaceInfo");
+            }
+        }
+
+        public RaceInfo SelectedRace
+        {
+            get { return _selectedRace; }
+            set
+            {
+                _selectedRace = value;
+                OnPropertyChanged("SelectedRace");
             }
         }
 
@@ -74,6 +85,8 @@ namespace RfidEncoder.ViewModels
                     info.Add(new RaceInfo { RaceNumber = i });
                 }
                 TotalRaceInfo = info;
+
+                NextRaceNumber = TotalRaceInfo.StartNumber;
             }
         }
 
@@ -96,6 +109,7 @@ namespace RfidEncoder.ViewModels
         private int _endNumber;
         private int _tagsPerRaceCount;
         private bool _isDigitInserting;
+        private string _fileName;
 
         public int StartNumber
         {
@@ -134,6 +148,16 @@ namespace RfidEncoder.ViewModels
             {
                 _isDigitInserting = value;
                 OnPropertyChanged("IsDigitInserting");
+            }
+        }
+
+        public string FileName
+        {
+            get { return _fileName; }
+            set
+            {
+                _fileName = value;
+                OnPropertyChanged("FileName");
             }
         }
 

@@ -28,6 +28,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
                 <TextBlock Text="From race number" Margin="3" />
@@ -35,26 +36,35 @@
                              Value="{Binding StartNumber, Mode=TwoWay}" />
 
                 <TextBlock Text="To race number" Grid.Column="2" Margin="3"/>
-                <talex:NumericUpDown Value="{Binding EndNumber, Mode=TwoWay}" Margin="3"
+                <talex:NumericUpDown Value="{Binding EndNumber, Mode=TwoWay}" Margin="5"
                              Grid.Column="3"/>
 
                 <TextBlock Text="Tags per race number" Margin="3" Grid.Row="1" />
                 <talex:NumericUpDown Grid.Column="1" Margin="5" Grid.Row="1"
                              Value="{Binding TagsPerRaceCount, Mode=TwoWay}" />
-                <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="4" HorizontalAlignment="Stretch">
-                    <TextBox Text="{Binding FileName}" />
-                    <Button Content="Browse..." Command="{Binding ChooseFileCommand}" />
-                </StackPanel>
                 
                 <CheckBox Content="Insert a digit into tag" IsChecked="{Binding IsDigitInserting}" 
                           Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center"/>
+
+                <DockPanel Grid.Row="2" Grid.ColumnSpan="4" >
+                    <TextBlock Text="File" Margin="3" />
+                    <Button Content="Browse..." Command="{Binding ElementName=OkButton, Path=DataContext.ChooseFileCommand}" 
+                            DockPanel.Dock="Right" Margin="3"/>
+                    <TextBox Text="{Binding FileName}" Margin="3"/>
+                </DockPanel>
+
+                <CheckBox Content="Add a prefix" Grid.Row="3" IsChecked="{Binding AddPrefix}" Name="PrefixCheckBox"
+                          VerticalAlignment="Center" Margin="3" HorizontalAlignment="Right"/>
+                <TextBox Text="{Binding Prefix}" Grid.Column="1" Grid.Row="3" Margin="3" IsEnabled="{Binding ElementName=PrefixCheckBox, Path=IsChecked}"/>
+                <TextBlock Text="Code length" Grid.Column="2" Grid.Row="3" Margin="3" />
+                <talex:NumericUpDown Value="{Binding CodeLength}" Grid.Column="3" Grid.Row="3" Margin="5"/>
 
             </Grid>
         </GroupBox>
         
                 <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="3" 
                     HorizontalAlignment="Right">
-                    <Button Content="OK" IsDefault="True" Width="80" Margin="5"
+                    <Button Content="OK" IsDefault="True" Width="80" Margin="5" Name="OkButton"
                             Command="{Binding SaveCommand}"/>
                     <Button Content="Cancel" IsCancel="True"  Width="80" Margin="5"/>
                 </StackPanel>
