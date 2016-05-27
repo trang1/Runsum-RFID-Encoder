@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RfidEncoder"
         xmlns:talex="http://schemas.talex-soft.com/2010/xaml/presentation"
         mc:Ignorable="d" SizeToContent="WidthAndHeight"
-        Title="RacesSettings" Height="300" Width="300"
+        Title="RacesSettings" Width="300"
         MinWidth="400" MinHeight="200"
         Background="DarkGray">
     <Grid >
@@ -53,11 +53,11 @@
                     <TextBox Text="{Binding FileName}" Margin="3"/>
                 </DockPanel>
 
-                <CheckBox Content="Add a prefix" Grid.Row="3" IsChecked="{Binding AddPrefix}" Name="PrefixCheckBox"
+                <CheckBox Content="Add a prefix" Grid.Row="3" IsChecked="{Binding AddPrefix, Mode=TwoWay}" Name="PrefixCheckBox"
                           VerticalAlignment="Center" Margin="3" HorizontalAlignment="Right"/>
-                <TextBox Text="{Binding Prefix}" Grid.Column="1" Grid.Row="3" Margin="3" IsEnabled="{Binding ElementName=PrefixCheckBox, Path=IsChecked}"/>
+                <TextBox Text="{Binding Prefix, Mode=TwoWay}" Grid.Column="1" Grid.Row="3" Margin="3" IsEnabled="{Binding ElementName=PrefixCheckBox, Path=IsChecked}"/>
                 <TextBlock Text="Code length" Grid.Column="2" Grid.Row="3" Margin="3" />
-                <talex:NumericUpDown Value="{Binding CodeLength}" Grid.Column="3" Grid.Row="3" Margin="5"/>
+                <talex:NumericUpDown Value="{Binding CodeLength, Mode=TwoWay}" Grid.Column="3" Grid.Row="3" Margin="5"/>
 
             </Grid>
         </GroupBox>

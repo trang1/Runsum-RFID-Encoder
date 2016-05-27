@@ -15,6 +15,7 @@ namespace RfidEncoder.ViewModels
         private int _nextTagNumber;
         private TotalRaceInfo _totalRaceInfo;
         private RaceInfo _selectedRace;
+        private int _lastTagNumber;
 
         public TotalRaceInfo TotalRaceInfo
         {
@@ -70,7 +71,8 @@ namespace RfidEncoder.ViewModels
 
         private void NewProject()
         {
-            TotalRaceInfo = new TotalRaceInfo();
+            if(TotalRaceInfo == null)
+                TotalRaceInfo = new TotalRaceInfo();
 
             var wnd = new RacesSettings();
             var model = new RacesSettingsViewModel(TotalRaceInfo) { FrameworkElement = wnd };
@@ -87,11 +89,36 @@ namespace RfidEncoder.ViewModels
                 TotalRaceInfo = info;
 
                 NextRaceNumber = TotalRaceInfo.StartNumber;
+                SelectedRace = TotalRaceInfo.First();
+                NextTagNumber = GetNextTag();
             }
         }
 
         private void StartEncoding()
         {
+            
+        }
+
+        private int GetNextTag()
+        {
+            var sb = new StringBuilder();
+
+            if (TotalRaceInfo.AddPrefix)
+                sb.Append(TotalRaceInfo.Prefix);
+
+            if (TotalRaceInfo.IsDigitInserting)
+            {
+                if (_lastTagNumber == 0)
+                    sb.Append("0");
+                else
+                {
+                    var raceInfo = TotalRaceInfo.FirstOrDefault(r => r.RaceNumber == NextRaceNumber);
+                    if (raceInfo == null) return 0;
+                    sb.Append(raceInfo.TagList.Count);
+                }
+            }
+
+            return int.Parse(sb.Append(NextRaceNumber).ToString());
             
         }
     }
@@ -110,6 +137,9 @@ namespace RfidEncoder.ViewModels
         private int _tagsPerRaceCount;
         private bool _isDigitInserting;
         private string _fileName;
+        private bool _addPrefix;
+        private string _prefix;
+        private int _codeLength;
 
         public int StartNumber
         {
@@ -148,6 +178,36 @@ namespace RfidEncoder.ViewModels
             {
                 _isDigitInserting = value;
                 OnPropertyChanged("IsDigitInserting");
+            }
+        }
+
+        public bool AddPrefix
+        {
+            get { return _addPrefix; }
+            set
+            {
+                _addPrefix = value;
+                OnPropertyChanged("AddPrefix");
+            }
+        }
+
+        public string Prefix
+        {
+            get { return _prefix; }
+            set
+            {
+                _prefix = value;
+                OnPropertyChanged("Prefix");
+            }
+        }
+
+        public int CodeLength
+        {
+            get { return _codeLength; }
+            set
+            {
+                _codeLength = value;
+                OnPropertyChanged("CodeLength");
             }
         }
 

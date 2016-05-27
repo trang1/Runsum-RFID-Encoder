@@ -33,7 +33,10 @@ namespace RfidEncoder.ViewModels
         private void ChooseFile()
         {
             var dialog = new OpenFileDialog();
-            dialog.ShowDialog();
+            if (dialog.ShowDialog().GetValueOrDefault(false))
+            {
+                TotalRaceInfo.FileName = dialog.FileName;
+            }
         }
 
         private void Save()
