@@ -65,6 +65,7 @@
     <Compile Include="RacesSettings.xaml.cs">
       <DependentUpon>RacesSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tracer.cs" />
     <Compile Include="ViewModels\BooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
     <Compile Include="ViewModels\INotifyPropertyChanged.cs" />

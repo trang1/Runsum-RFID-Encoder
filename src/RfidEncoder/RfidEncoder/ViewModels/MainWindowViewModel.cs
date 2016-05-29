@@ -12,6 +12,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using Microsoft.Win32;
 using ThingMagic;
+using System.Diagnostics;
 
 namespace RfidEncoder.ViewModels
 {
@@ -201,6 +202,7 @@ namespace RfidEncoder.ViewModels
                 //gridReadOptions.IsEnabled = false;
                 //regioncombo.IsEnabled = false;
                 //gridDisplayOptions.IsEnabled = false;
+                Trace.TraceError("Connection error. " + ex.Message + ex.StackTrace);
                 if (ex is IOException)
                 {
                     if (!(SelectedComPort.Name.Contains("COM") || SelectedComPort.Name.Contains("com")))
@@ -438,7 +440,7 @@ namespace RfidEncoder.ViewModels
             ExitCommand = new DelegateCommand(() => Application.Current.Shutdown());
 
             RacesViewModel = new RacesViewModel();
-
+            Regions = new List<string>();
             Refresh();          
         }
         
@@ -446,11 +448,11 @@ namespace RfidEncoder.ViewModels
         {
             Task.Factory.StartNew(() =>
             {
-                Thread.Sleep(200); // small delay for progress bar to be displayed
+                Thread.Sleep(300); // small delay for progress bar to be displayed
                 Application.Current.Dispatcher.Invoke(() => IsRefreshing = true);
                 var ports = ComPortHelper.GetCOMPortsInfo();
 
-                Thread.Sleep(3000);
+                //Thread.Sleep(3000);
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     ComPorts = ports;
