@@ -18,13 +18,7 @@ namespace RfidEncoder.ViewModels
 
         public RacesSettingsViewModel(TotalRaceInfo totalRaceInfo)
         {
-            TotalRaceInfo = new TotalRaceInfo()
-            {
-                IsDigitInserting = totalRaceInfo.IsDigitInserting,
-                StartNumber = totalRaceInfo.StartNumber,
-                EndNumber = totalRaceInfo.EndNumber,
-                TagsPerRaceCount = totalRaceInfo.TagsPerRaceCount == 0 ? 1 : totalRaceInfo.TagsPerRaceCount
-            };
+            TotalRaceInfo = new TotalRaceInfo(totalRaceInfo);
 
             SaveCommand = new DelegateCommand(Save);
             ChooseFileCommand = new DelegateCommand(ChooseFile);
@@ -33,6 +27,8 @@ namespace RfidEncoder.ViewModels
         private void ChooseFile()
         {
             var dialog = new OpenFileDialog();
+            dialog.CheckFileExists = false;
+            dialog.FileName = TotalRaceInfo.FileName;
             if (dialog.ShowDialog().GetValueOrDefault(false))
             {
                 TotalRaceInfo.FileName = dialog.FileName;
@@ -43,7 +39,7 @@ namespace RfidEncoder.ViewModels
         {
             if (TotalRaceInfo.StartNumber >= TotalRaceInfo.EndNumber)
             {
-                MessageBox.Show("End number must be greater than start number");
+                MessageBox.Show("End number must be greater than start number.", "Error");
                 return;
             }
 
@@ -58,6 +54,13 @@ namespace RfidEncoder.ViewModels
                 {
                     return;
                 }
+            }
+
+            if (TotalRaceInfo.StartNumber.ToString().Length > TotalRaceInfo.CodeLength ||
+                TotalRaceInfo.EndNumber.ToString().Length > TotalRaceInfo.CodeLength)
+            {
+                MessageBox.Show("Code length is too small.", "Error");
+                return;
             }
 
             if (FrameworkElement is Window)

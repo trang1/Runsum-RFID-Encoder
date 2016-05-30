@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace RfidEncoder.ViewModels
@@ -15,7 +18,6 @@ namespace RfidEncoder.ViewModels
         private int _nextTagNumber;
         private TotalRaceInfo _totalRaceInfo;
         private RaceInfo _selectedRace;
-        private int _lastTagNumber;
 
         public TotalRaceInfo TotalRaceInfo
         {
@@ -39,6 +41,8 @@ namespace RfidEncoder.ViewModels
 
         public ICommand StartEncodingCommand { get; set; }
         public ICommand NewProjectCommand { get; set; }
+        public ICommand SelectedTagChangedCommand { get; set; }
+        public ICommand SelectedRaceChangedCommand { get; set; }
         public bool IsEncoding { get; set; }
         public int NextRaceNumber
         {
@@ -61,20 +65,39 @@ namespace RfidEncoder.ViewModels
         }
 
         public string FileName { get; set; }
+        public int SelectedTagIndex { get; set; }
 
         public RacesViewModel()
         {
-            StartEncodingCommand = new DelegateCommand(StartEncoding, ()=> MainWindowViewModel.Instance.IsConnected);
+            StartEncodingCommand = new DelegateCommand(StartEncoding, ()=>true/* MainWindowViewModel.Instance.IsConnected*/);
             NewProjectCommand = new DelegateCommand(NewProject);
+            SelectedRaceChangedCommand = new DelegateCommand(SelectedRaceChanged);
+            SelectedTagChangedCommand = new DelegateCommand(SelectedTagChanged);
+        }
 
+        private void SelectedTagChanged()
+        {
+            if (SelectedTagIndex >= 0)
+            {
+                NextTagNumber = GetNextTag();
+            }
+        }
+
+        private void SelectedRaceChanged()
+        {
+            if (SelectedRace != null)
+            {
+                NextRaceNumber = SelectedRace.RaceNumber;
+                NextTagNumber = GetNextTag();
+            }
         }
 
         private void NewProject()
         {
             if(TotalRaceInfo == null)
-                TotalRaceInfo = new TotalRaceInfo();
+                TotalRaceInfo = new TotalRaceInfo(null);
 
-            var wnd = new RacesSettings();
+            var wnd = new RacesSettings {Owner = Application.Current.MainWindow};
             var model = new RacesSettingsViewModel(TotalRaceInfo) { FrameworkElement = wnd };
             wnd.DataContext = model;
 
@@ -96,7 +119,16 @@ namespace RfidEncoder.ViewModels
 
         private void StartEncoding()
         {
-            
+            MessageBox.Show("Tag " + NextTagNumber + " encoded.");
+
+            SelectedRace.TagList[SelectedTagIndex] = NextTagNumber;
+            SayNumber(NextTagNumber);
+        }
+
+        private void SayNumber(int nextTagNumber)
+        {
+            SpeechSynthesizer ss = new SpeechSynthesizer();
+            ss.SpeakAsync(nextTagNumber.ToString());
         }
 
         private int GetNextTag()
@@ -108,18 +140,16 @@ namespace RfidEncoder.ViewModels
 
             if (TotalRaceInfo.IsDigitInserting)
             {
-                if (_lastTagNumber == 0)
+                if (SelectedTagIndex < 0)
                     sb.Append("0");
                 else
                 {
-                    var raceInfo = TotalRaceInfo.FirstOrDefault(r => r.RaceNumber == NextRaceNumber);
-                    if (raceInfo == null) return 0;
-                    sb.Append(raceInfo.TagList.Count);
+                    sb.Append(SelectedTagIndex);
                 }
             }
 
-            return int.Parse(sb.Append(NextRaceNumber).ToString());
-            
+            return int.Parse(sb.Append(NextRaceNumber.ToString().PadLeft(TotalRaceInfo.CodeLength, '0')).ToString());
+
         }
     }
 
@@ -127,7 +157,12 @@ namespace RfidEncoder.ViewModels
     {
         public int RaceNumber { get; set; }
 
-        public ObservableCollection<int> TagList { get; set; }
+        public Hashtable TagList { get; set; }
+
+        public RaceInfo()
+        {
+            TagList = new Hashtable();
+        }
     }
 
     public class TotalRaceInfo : ObservableCollection<RaceInfo>, INotifyPropertyChanged
@@ -219,6 +254,20 @@ namespace RfidEncoder.ViewModels
                 _fileName = value;
                 OnPropertyChanged("FileName");
             }
+        }
+
+        public TotalRaceInfo(TotalRaceInfo totalRaceInfo)
+        {
+            if(totalRaceInfo == null) return;
+
+            _startNumber = totalRaceInfo.StartNumber;
+            _endNumber = totalRaceInfo.EndNumber;
+            _tagsPerRaceCount = totalRaceInfo.TagsPerRaceCount;
+            _isDigitInserting = totalRaceInfo.IsDigitInserting;
+            _fileName = totalRaceInfo.FileName;
+            _addPrefix = totalRaceInfo.AddPrefix;
+            _prefix = totalRaceInfo.Prefix;
+            _codeLength = totalRaceInfo.CodeLength;
         }
 
         #region INotifyPropertyChanged

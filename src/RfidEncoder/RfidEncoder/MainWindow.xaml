@@ -4,10 +4,10 @@
         xmlns:viewModels="clr-namespace:RfidEncoder.ViewModels"
         xmlns:rfidEncoder="clr-namespace:RfidEncoder"
         xmlns:talex="http://schemas.talex-soft.com/2010/xaml/presentation"
-        Title="Runsum RFID Encoder v0.2" Height="350" Width="525"
+        Title="Runsum RFID Encoder v0.2" Height="350" Width="600"
         MinWidth="500" MinHeight="600" MaxHeight="700"
         DataContext="{x:Static viewModels:MainWindowViewModel.Instance}"
-        SizeToContent="WidthAndHeight"
+        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen"
         Icon="Resources/rfid.ico"
         Background="DarkGray">
     
@@ -104,11 +104,11 @@
                     </Grid.ColumnDefinitions>
                     
                     <TextBlock Text="Next race #" FontSize="16" FontWeight="Bold" Margin="3"/>
-                    <talex:NumericUpDown Value="{Binding NextRaceNumber}" Grid.Column="1"  Margin="3" 
+                    <talex:NumericUpDown Value="{Binding NextRaceNumber, Mode=TwoWay}" Grid.Column="1"  Margin="3" 
                                          FontSize="16" FontWeight="Bold" />
 
                     <TextBlock Text="Next tag #" FontSize="16" FontWeight="Bold" Grid.Column="2" Margin="3"/>
-                    <talex:NumericUpDown Value="{Binding NextTagNumber}" Grid.Column="3" 
+                    <talex:NumericUpDown Value="{Binding NextTagNumber, Mode=TwoWay}" Grid.Column="3" 
                                          FontSize="16" FontWeight="Bold" Margin="3" />
                 </Grid>
             </Grid>
@@ -130,7 +130,10 @@
 
                         <rfidEncoder:RaceGridView Grid.Row="1" Margin="3" ItemsSource="{Binding TotalRaceInfo}" AutoGenerateColumns="False"
                                                   CanUserAddRows="False" IsReadOnly="True" AlternatingRowBackground="#ece6d5"
-                                                  SelectedItem="{Binding SelectedRace, Mode=TwoWay}" />
+                                                  SelectedItem="{Binding SelectedRace, Mode=TwoWay}"
+                                                  SelectionChangedCommand="{Binding SelectedRaceChangedCommand}"
+                                                  SelectedTagIndex="{Binding SelectedTagIndex, Mode=TwoWay}"
+                                                  SelectedTagChangedCommand="{Binding SelectedTagChangedCommand}"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Single">
