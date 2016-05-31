@@ -40,7 +40,7 @@
                              Grid.Column="3"/>
 
                 <TextBlock Text="Tags per race number" Margin="3" Grid.Row="1" />
-                <talex:NumericUpDown Grid.Column="1" Margin="5" Grid.Row="1"
+                <talex:NumericUpDown Grid.Column="1" Margin="5" Grid.Row="1" Minimum="1"
                              Value="{Binding TagsPerRaceCount, Mode=TwoWay}" />
                 
                 <CheckBox Content="Insert a digit into tag" IsChecked="{Binding IsDigitInserting}" 

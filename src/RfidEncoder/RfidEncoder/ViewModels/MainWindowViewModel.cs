@@ -522,6 +522,14 @@ namespace RfidEncoder.ViewModels
                 OnPropertyChanged("ConnectButtonContent");
             }
         }
+
+        public void EncodeTag(int tag)
+        {
+            var epcTag = tag.ToString("X8");
+            //_reader.WriteTag(null, new TagData(epcTag));
+           
+        }
+
         public string SelectedBaudRate { get; set; }
         public ICommand ConnectCommand { get; set; }
         public ICommand RefreshCommand { get; set; }

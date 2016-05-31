@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Speech.Synthesis;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -66,6 +67,7 @@ namespace RfidEncoder.ViewModels
 
         public string FileName { get; set; }
         public int SelectedTagIndex { get; set; }
+        public string StatusBarText { get; set; }
 
         public RacesViewModel()
         {
@@ -94,8 +96,8 @@ namespace RfidEncoder.ViewModels
 
         private void NewProject()
         {
-            if(TotalRaceInfo == null)
-                TotalRaceInfo = new TotalRaceInfo(null);
+            if (TotalRaceInfo == null)
+                TotalRaceInfo = new TotalRaceInfo(null) {TagsPerRaceCount = 1};
 
             var wnd = new RacesSettings {Owner = Application.Current.MainWindow};
             var model = new RacesSettingsViewModel(TotalRaceInfo) { FrameworkElement = wnd };
@@ -107,8 +109,14 @@ namespace RfidEncoder.ViewModels
 
                 for (var i = info.StartNumber; i <= info.EndNumber; i++)
                 {
-                    info.Add(new RaceInfo { RaceNumber = i });
+                    var list = new List<int?>();
+                    for (var j = 0; j < info.TagsPerRaceCount; j++)
+                        list.Add(null);
+
+                    var ri = new RaceInfo {RaceNumber = i, TagList = new ObservableCollection<int?>(list)};
+                    info.Add(ri);
                 }
+
                 TotalRaceInfo = info;
 
                 NextRaceNumber = TotalRaceInfo.StartNumber;
@@ -119,16 +127,31 @@ namespace RfidEncoder.ViewModels
 
         private void StartEncoding()
         {
-            MessageBox.Show("Tag " + NextTagNumber + " encoded.");
+            do
+            {
+                IsEncoding = true;
 
-            SelectedRace.TagList[SelectedTagIndex] = NextTagNumber;
-            SayNumber(NextTagNumber);
+                StatusBarText = "Waiting for tag...";
+
+                //MessageBox.Show("Tag " + NextTagNumber + " encoded.");
+                MainWindowViewModel.Instance.EncodeTag(NextTagNumber);
+
+
+                SelectedRace.TagList[SelectedTagIndex] = NextTagNumber;
+                Task.Factory.StartNew(() => SayNumber(NextTagNumber));
+
+                TotalRaceInfo.FireNextTag();
+
+                Thread.Sleep(240);
+            } while (IsEncoding);
         }
 
         private void SayNumber(int nextTagNumber)
         {
-            SpeechSynthesizer ss = new SpeechSynthesizer();
-            ss.SpeakAsync(nextTagNumber.ToString());
+            var ss = new SpeechSynthesizer {Rate = -5};
+            var digits = nextTagNumber.ToString().Reverse().Take(2).Reverse();
+            ss.Speak(digits.First().ToString());
+            ss.Speak(digits.Last().ToString());
         }
 
         private int GetNextTag()
@@ -157,12 +180,7 @@ namespace RfidEncoder.ViewModels
     {
         public int RaceNumber { get; set; }
 
-        public Hashtable TagList { get; set; }
-
-        public RaceInfo()
-        {
-            TagList = new Hashtable();
-        }
+        public ObservableCollection<int?> TagList { get; set; }
     }
 
     public class TotalRaceInfo : ObservableCollection<RaceInfo>, INotifyPropertyChanged
@@ -282,5 +300,16 @@ namespace RfidEncoder.ViewModels
 
         #endregion
 
+        public event EventHandler NextTag = (sender, args) => {};
+
+        public void FireNextTag()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(200);
+                Application.Current.Dispatcher.Invoke(() => NextTag(this, new EventArgs()));
+            });
+
+        }
     }
 }

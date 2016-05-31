@@ -115,6 +115,11 @@
         </GroupBox>
 
         <GroupBox Header="Encoding" Grid.Row="3" DataContext="{Binding RacesViewModel}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
             <TabControl>
                 <TabItem Header="List">
                     <Grid>
@@ -140,6 +145,12 @@
                     
                 </TabItem>
             </TabControl>
+            <StatusBar Grid.Row="1">
+                <StatusBarItem Content="{Binding StatusBarText}" HorizontalAlignment="Center" FontWeight="Bold"
+                               FontSize="16" Margin="5" />
+            </StatusBar>
+
+            </Grid>
         </GroupBox>
     </Grid>
 </Window>

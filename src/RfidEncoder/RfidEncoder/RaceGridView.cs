@@ -77,9 +77,46 @@ namespace RfidEncoder
             {
                 var column = new DataGridTextColumn();
                 column.Header = "Tag " + (index + 1) + " code";
-                column.Binding = new Binding("TagList["+index+"]");
+                column.Binding = new Binding("TagList["+index+"]"){UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged};
+                column.FontWeight = FontWeights.Bold;
+                column.FontSize = 16;
 
                 Columns.Add(column);
+            }
+
+            totalRaceInfo.NextTag += totalRaceInfo_NextTag;
+        }
+
+        private void totalRaceInfo_NextTag(object sender, EventArgs e)
+        {
+            var selectedRow = ItemContainerGenerator.ContainerFromItem(SelectedItem) as DataGridRow;
+
+            // selectedRow can be null due to virtualization
+            if (selectedRow != null)
+            {
+                // there should always be a selected cell
+                if (SelectedCells.Count != 0)
+                {
+                    // get the cell info
+                    DataGridCellInfo currentCell = SelectedCells[0];
+
+                    // get the display index of the cell's column + 1 (for next column)
+                    int columnDisplayIndex = currentCell.Column.DisplayIndex + 1;
+
+                    // if display index is valid
+                    if (columnDisplayIndex < Columns.Count)
+                    {
+                        // get the DataGridColumn instance from the display index
+                        DataGridColumn nextColumn = ColumnFromDisplayIndex(columnDisplayIndex);
+
+                        // setting the current cell (selected, focused)
+                        CurrentCell = new DataGridCellInfo(SelectedItem, nextColumn);
+
+                        // tell the grid to initialize edit mode for the current cell
+                        //BeginEdit();
+                        //Focus();
+                    }
+                }
             }
         }
 
