@@ -523,13 +523,51 @@ namespace RfidEncoder.ViewModels
             }
         }
 
-        public void EncodeTag(int tag)
+        public bool EncodeTag(uint tag)
         {
-            var epcTag = tag.ToString("X8");
-            //_reader.WriteTag(null, new TagData(epcTag));
-           
-        }
+            try
+            {
+                if (_reader.ParamGet("/reader/region/id").ToString() != "NA"/*SelectedRegion*/)
+                    _reader.ParamSet("/reader/region/id", Enum.Parse(typeof(Reader.Region), "NA"/*SelectedRegion*/));
 
+                if (_reader.ParamGet("/reader/tagop/antenna").ToString() != "1")
+                    _reader.ParamSet("/reader/tagop/antenna", 1);
+                
+                var data = ByteConv.EncodeU32(tag);
+                //_reader.WriteTag(null, new TagData(epcTag));
+                _reader.ExecuteTagOp(new Gen2.WriteTag(new Gen2.TagData(data)), null);
+                Trace.TraceInformation("Tag " + tag + " has been written.");
+                return true;
+            }
+            catch (Exception exception)
+            {
+                var error = "Error encoding the tag " + tag + ". " + exception.Message;
+                MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Trace.TraceError(error + exception.StackTrace);
+                return false;
+            }
+        }
+        public bool VerifyTag(uint tagToVerify)
+        {
+            try
+            {
+                var data = _reader.Read(1000);
+                if (data.Length > 0)
+                {
+                    var tag = ByteConv.ToU32(data[0].Epc, 0);
+                    Trace.TraceInformation("Tag " + tag + "has been read.");
+                    return tag == tagToVerify;
+                }
+                return false;
+            }
+            catch (Exception exception)
+            {
+                var error = "Error verifying the tag " + tagToVerify + ". " + exception.Message;
+                MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Trace.TraceError(error + exception.StackTrace);
+                return false;
+            }
+        }
         public string SelectedBaudRate { get; set; }
         public ICommand ConnectCommand { get; set; }
         public ICommand RefreshCommand { get; set; }

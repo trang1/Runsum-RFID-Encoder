@@ -87,35 +87,34 @@ namespace RfidEncoder
             totalRaceInfo.NextTag += totalRaceInfo_NextTag;
         }
 
-        private void totalRaceInfo_NextTag(object sender, EventArgs e)
+        private void totalRaceInfo_NextTag(object sender, TagEventArgs e)
         {
-            var selectedRow = ItemContainerGenerator.ContainerFromItem(SelectedItem) as DataGridRow;
+            var selectedRow = SelectedItem as RaceInfo;
 
             // selectedRow can be null due to virtualization
             if (selectedRow != null)
             {
-                // there should always be a selected cell
-                if (SelectedCells.Count != 0)
+                // get the display index of the cell's column + 1 (for next column)
+                int columnDisplayIndex = selectedRow.TagList.IndexOf(e.EncodedTag) + 2;
+
+                // if display index is valid
+                if (columnDisplayIndex < Columns.Count)
                 {
-                    // get the cell info
-                    DataGridCellInfo currentCell = SelectedCells[0];
+                    // get the DataGridColumn instance from the display index
+                    DataGridColumn nextColumn = ColumnFromDisplayIndex(columnDisplayIndex);
 
-                    // get the display index of the cell's column + 1 (for next column)
-                    int columnDisplayIndex = currentCell.Column.DisplayIndex + 1;
-
-                    // if display index is valid
-                    if (columnDisplayIndex < Columns.Count)
-                    {
-                        // get the DataGridColumn instance from the display index
-                        DataGridColumn nextColumn = ColumnFromDisplayIndex(columnDisplayIndex);
-
-                        // setting the current cell (selected, focused)
-                        CurrentCell = new DataGridCellInfo(SelectedItem, nextColumn);
-
-                        // tell the grid to initialize edit mode for the current cell
-                        //BeginEdit();
-                        //Focus();
-                    }
+                    // setting the current cell (selected, focused)
+                    CurrentCell = new DataGridCellInfo(SelectedItem, nextColumn);
+                    CurrentColumn = nextColumn;
+                    // tell the grid to initialize edit mode for the current cell
+                    BeginEdit();
+                    Focus();
+                }
+                else
+                {
+                    var index = ((TotalRaceInfo) ItemsSource).IndexOf(selectedRow);
+                    SelectedItem = ((TotalRaceInfo) ItemsSource)[index + 1];
+                    CurrentCell = new DataGridCellInfo(SelectedItem, Columns[1]);
                 }
             }
         }

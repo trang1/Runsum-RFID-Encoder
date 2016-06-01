@@ -10,16 +10,21 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace RfidEncoder.ViewModels
 {
     public class RacesViewModel : ViewModelBase
     {
         private int _nextRaceNumber;
-        private int _nextTagNumber;
+        private uint _nextTagNumber;
         private TotalRaceInfo _totalRaceInfo;
         private RaceInfo _selectedRace;
+        private bool _isEncoding;
+        private string _statusBarText;
+        private Brush _statusBarBackground;
 
+        #region Public
         public TotalRaceInfo TotalRaceInfo
         {
             get { return _totalRaceInfo; }
@@ -40,11 +45,27 @@ namespace RfidEncoder.ViewModels
             }
         }
 
+        public string EncodingButtonContent
+        {
+            get { return IsEncoding ? "Stop encoding" : "Start encoding"; }
+        }
+
         public ICommand StartEncodingCommand { get; set; }
         public ICommand NewProjectCommand { get; set; }
         public ICommand SelectedTagChangedCommand { get; set; }
         public ICommand SelectedRaceChangedCommand { get; set; }
-        public bool IsEncoding { get; set; }
+
+        public bool IsEncoding
+        {
+            get { return _isEncoding; }
+            set
+            {
+                _isEncoding = value;
+                OnPropertyChanged("IsEncoding");
+                OnPropertyChanged("EncodingButtonContent");
+            }
+        }
+
         public int NextRaceNumber
         {
             get { return _nextRaceNumber; }
@@ -55,7 +76,7 @@ namespace RfidEncoder.ViewModels
             }
         }
 
-        public int NextTagNumber
+        public uint NextTagNumber
         {
             get { return _nextTagNumber; }
             set
@@ -67,7 +88,28 @@ namespace RfidEncoder.ViewModels
 
         public string FileName { get; set; }
         public int SelectedTagIndex { get; set; }
-        public string StatusBarText { get; set; }
+
+        public string StatusBarText
+        {
+            get { return _statusBarText; }
+            set
+            {
+                _statusBarText = value;
+                OnPropertyChanged("StatusBarText");
+            }
+        }
+
+        public Brush StatusBarBackground
+        {
+            get { return _statusBarBackground; }
+            set
+            {
+                _statusBarBackground = value;
+                OnPropertyChanged("StatusBarBackground");
+            }
+        }
+
+        #endregion
 
         public RacesViewModel()
         {
@@ -99,7 +141,7 @@ namespace RfidEncoder.ViewModels
             if (TotalRaceInfo == null)
                 TotalRaceInfo = new TotalRaceInfo(null) {TagsPerRaceCount = 1};
 
-            var wnd = new RacesSettings {Owner = Application.Current.MainWindow};
+            var wnd = new RacesSettings {Owner = Application.Current.MainWindow, IsEnabled = !IsEncoding};
             var model = new RacesSettingsViewModel(TotalRaceInfo) { FrameworkElement = wnd };
             wnd.DataContext = model;
 
@@ -109,11 +151,11 @@ namespace RfidEncoder.ViewModels
 
                 for (var i = info.StartNumber; i <= info.EndNumber; i++)
                 {
-                    var list = new List<int?>();
+                    var list = new List<uint?>();
                     for (var j = 0; j < info.TagsPerRaceCount; j++)
                         list.Add(null);
 
-                    var ri = new RaceInfo {RaceNumber = i, TagList = new ObservableCollection<int?>(list)};
+                    var ri = new RaceInfo {RaceNumber = i, TagList = new ObservableCollection<uint?>(list)};
                     info.Add(ri);
                 }
 
@@ -127,34 +169,80 @@ namespace RfidEncoder.ViewModels
 
         private void StartEncoding()
         {
-            do
+            if (IsEncoding)
             {
-                IsEncoding = true;
+                IsEncoding = false;
+                StatusBarText = "Encoding stopped";
+                StatusBarBackground = Brushes.Green;
+                return;
+            }
 
-                StatusBarText = "Waiting for tag...";
+            if (string.IsNullOrEmpty(MainWindowViewModel.Instance.SelectedRegion) ||
+                MainWindowViewModel.Instance.SelectedRegion == "Select")
+            {
+                MessageBox.Show("Please, select the region first.", "Information", MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                //return;
+            }
 
-                //MessageBox.Show("Tag " + NextTagNumber + " encoded.");
-                MainWindowViewModel.Instance.EncodeTag(NextTagNumber);
+            Task.Factory.StartNew(() =>
+            {
+                do
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        IsEncoding = true;
+                        StatusBarText = "Waiting for tag...";
+                        StatusBarBackground = Brushes.Yellow;
+                    });
+
+                    //MessageBox.Show("Tag " + NextTagNumber + " encoded.");
+                    var encoded = MainWindowViewModel.Instance.EncodeTag(NextTagNumber);
+                    if (encoded)
+                    {
+                        StatusBarText = "Verifying...";
+                        StatusBarBackground = Brushes.Orange;
+                        encoded = MainWindowViewModel.Instance.VerifyTag(NextTagNumber);
+                    }
+
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        SelectedRace.TagList[SelectedTagIndex] = NextTagNumber;
+                        if (encoded)
+                        {
+                            StatusBarText = "Successfully encoded!";
+                            StatusBarBackground = Brushes.LawnGreen;
+                        }
+                        else
+                        {
+                            StatusBarText = "Encoding error, trying again...";
+                            StatusBarBackground = Brushes.Red;
+                        }   
+                    });
+
+                    //if (encoded)
+                    {
+                        SayNumber(NextTagNumber);
+                        TotalRaceInfo.FireNextTag(NextTagNumber);
+                    }
+
+                    Thread.Sleep(1000);
+                } while (IsEncoding);
+            }
+                );
 
 
-                SelectedRace.TagList[SelectedTagIndex] = NextTagNumber;
-                Task.Factory.StartNew(() => SayNumber(NextTagNumber));
-
-                TotalRaceInfo.FireNextTag();
-
-                Thread.Sleep(240);
-            } while (IsEncoding);
         }
 
-        private void SayNumber(int nextTagNumber)
+        private void SayNumber(uint nextTagNumber)
         {
-            var ss = new SpeechSynthesizer {Rate = -5};
+            var ss = new SpeechSynthesizer {Rate = -4};
             var digits = nextTagNumber.ToString().Reverse().Take(2).Reverse();
             ss.Speak(digits.First().ToString());
             ss.Speak(digits.Last().ToString());
         }
 
-        private int GetNextTag()
+        private uint GetNextTag()
         {
             var sb = new StringBuilder();
 
@@ -171,8 +259,7 @@ namespace RfidEncoder.ViewModels
                 }
             }
 
-            return int.Parse(sb.Append(NextRaceNumber.ToString().PadLeft(TotalRaceInfo.CodeLength, '0')).ToString());
-
+            return uint.Parse(sb.Append(NextRaceNumber.ToString().PadLeft(TotalRaceInfo.CodeLength, '0')).ToString());
         }
     }
 
@@ -180,7 +267,7 @@ namespace RfidEncoder.ViewModels
     {
         public int RaceNumber { get; set; }
 
-        public ObservableCollection<int?> TagList { get; set; }
+        public ObservableCollection<uint?> TagList { get; set; }
     }
 
     public class TotalRaceInfo : ObservableCollection<RaceInfo>, INotifyPropertyChanged
@@ -300,16 +387,26 @@ namespace RfidEncoder.ViewModels
 
         #endregion
 
-        public event EventHandler NextTag = (sender, args) => {};
-
-        public void FireNextTag()
+        public event TagEventHandler NextTag = (sender, args) => {};
+        public delegate void TagEventHandler (object sender, TagEventArgs tea);
+        public void FireNextTag(uint lastTag)
         {
             Task.Factory.StartNew(() =>
             {
                 Thread.Sleep(200);
-                Application.Current.Dispatcher.Invoke(() => NextTag(this, new EventArgs()));
+                Application.Current.Dispatcher.Invoke(() => NextTag(this, new TagEventArgs(lastTag)));
             });
 
+        }
+    }
+
+    public class TagEventArgs : EventArgs
+    {
+        public uint EncodedTag { get; set; }
+
+        public TagEventArgs(uint encodedTag)
+        {
+            EncodedTag = encodedTag;
         }
     }
 }
