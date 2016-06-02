@@ -32,7 +32,7 @@
             </MenuItem>
         </Menu>
         
-        <GroupBox Grid.Row="1" Header="Connection">
+        <GroupBox Grid.Row="1" Header="Connection" DataContext="{Binding TagOperationsViewModel}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -114,14 +114,14 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="Encoding" Grid.Row="3" DataContext="{Binding RacesViewModel}">
+        <GroupBox Header="Encoding" Grid.Row="3" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-            <TabControl>
-                <TabItem Header="List">
+                <TabControl Background="#FFDAD9C9">
+                    <TabItem Header="List" DataContext="{Binding RacesViewModel}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -141,11 +141,28 @@
                                                   SelectedTagChangedCommand="{Binding SelectedTagChangedCommand}"/>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Single">
-                    
-                </TabItem>
-            </TabControl>
-                <StatusBar Grid.Row="1" Background="{Binding StatusBarBackground}">
+                    <TabItem Header="Single" DataContext="{Binding TagOperationsViewModel}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <GroupBox Header="Read a tag" VerticalAlignment="Center">
+                                <StackPanel Orientation="Vertical" Width="150">
+                                    <Button Content="Read" Command="{Binding ReadTagCommand}" Margin="7" Width="80"/>
+                                    <TextBox Text="{Binding ReadResult}" Margin="3" IsEnabled="False" TextAlignment="Center"/>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Write a tag" Grid.Row="1" VerticalAlignment="Center">
+                                <StackPanel Orientation="Vertical" Width="150">
+                                    <TextBox Text="{Binding TagToWrite}" Margin="7" TextAlignment="Center"/>
+                                    <Button Content="Write" Command="{Binding WriteTagCommand}" Margin="3" Width="80" />
+                                </StackPanel>
+                            </GroupBox>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+                <StatusBar Grid.Row="1" DataContext="{Binding RacesViewModel}" Background="{Binding StatusBarBackground}">
                 <StatusBarItem Content="{Binding StatusBarText}" HorizontalAlignment="Center" FontWeight="Bold"
                                FontSize="16" Margin="5" />
             </StatusBar>

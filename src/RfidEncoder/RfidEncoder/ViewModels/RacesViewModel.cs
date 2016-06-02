@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Speech.Synthesis;
 using System.Text;
@@ -139,7 +141,7 @@ namespace RfidEncoder.ViewModels
         private void NewProject()
         {
             if (TotalRaceInfo == null)
-                TotalRaceInfo = new TotalRaceInfo(null) {TagsPerRaceCount = 1};
+                TotalRaceInfo = new TotalRaceInfo(null) {TagsPerRaceCount = 1, CodeLength = 2};
 
             var wnd = new RacesSettings {Owner = Application.Current.MainWindow, IsEnabled = !IsEncoding};
             var model = new RacesSettingsViewModel(TotalRaceInfo) { FrameworkElement = wnd };
@@ -177,8 +179,8 @@ namespace RfidEncoder.ViewModels
                 return;
             }
 
-            if (string.IsNullOrEmpty(MainWindowViewModel.Instance.SelectedRegion) ||
-                MainWindowViewModel.Instance.SelectedRegion == "Select")
+            if (string.IsNullOrEmpty(MainWindowViewModel.Instance.TagOperationsViewModel.SelectedRegion) ||
+                MainWindowViewModel.Instance.TagOperationsViewModel.SelectedRegion == "Select")
             {
                 MessageBox.Show("Please, select the region first.", "Information", MessageBoxButton.OK,
                     MessageBoxImage.Information);
@@ -197,12 +199,12 @@ namespace RfidEncoder.ViewModels
                     });
 
                     //MessageBox.Show("Tag " + NextTagNumber + " encoded.");
-                    var encoded = MainWindowViewModel.Instance.EncodeTag(NextTagNumber);
+                    var encoded = MainWindowViewModel.Instance.TagOperationsViewModel.EncodeTag(NextTagNumber);
                     if (encoded)
                     {
                         StatusBarText = "Verifying...";
                         StatusBarBackground = Brushes.Orange;
-                        encoded = MainWindowViewModel.Instance.VerifyTag(NextTagNumber);
+                        encoded = MainWindowViewModel.Instance.TagOperationsViewModel.VerifyTag(NextTagNumber);
                     }
 
                     Application.Current.Dispatcher.Invoke(() =>
@@ -220,9 +222,10 @@ namespace RfidEncoder.ViewModels
                         }   
                     });
 
-                    //if (encoded)
+                    if (encoded || Debugger.IsAttached)
                     {
                         SayNumber(NextTagNumber);
+                        WriteToFile();
                         TotalRaceInfo.FireNextTag(NextTagNumber);
                     }
 
@@ -230,8 +233,15 @@ namespace RfidEncoder.ViewModels
                 } while (IsEncoding);
             }
                 );
+        }
 
-
+        private void WriteToFile()
+        {
+            if (!string.IsNullOrEmpty(TotalRaceInfo.FileName))
+            {
+                File.AppendAllLines(TotalRaceInfo.FileName,
+                    new[] {string.Format("{0},{1}", SelectedRace.RaceNumber, NextTagNumber)});
+            }
         }
 
         private void SayNumber(uint nextTagNumber)
