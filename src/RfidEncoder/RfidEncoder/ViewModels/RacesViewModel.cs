@@ -25,6 +25,7 @@ namespace RfidEncoder.ViewModels
         private bool _isEncoding;
         private string _statusBarText;
         private Brush _statusBarBackground;
+        private bool _overrideTags;
 
         #region Public
         public TotalRaceInfo TotalRaceInfo
@@ -75,6 +76,16 @@ namespace RfidEncoder.ViewModels
             {
                 _nextRaceNumber = value;
                 OnPropertyChanged("NextRaceNumber");
+            }
+        }
+
+        public bool OverrideTags
+        {
+            get { return _overrideTags; }
+            set
+            {
+                _overrideTags = value;
+                OnPropertyChanged("OverrideTags");
             }
         }
 

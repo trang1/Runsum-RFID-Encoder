@@ -128,9 +128,11 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         
-                        <StackPanel Orientation="Horizontal" >
-                            <Button Content="{Binding EncodingButtonContent}" Margin="3" Width="120"
+                        <StackPanel Orientation="Horizontal"  >
+                            <Button Content="{Binding EncodingButtonContent}"  Width="120"
                                     Command="{Binding StartEncodingCommand}"/>
+                                <CheckBox Content="Override tags" IsChecked="{Binding OverrideTags}" 
+                                          Margin="50,3,3,3" HorizontalAlignment="Center"/>
                         </StackPanel>
 
                         <rfidEncoder:RaceGridView Grid.Row="1" Margin="3" ItemsSource="{Binding TotalRaceInfo}" AutoGenerateColumns="False"
@@ -147,13 +149,13 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <GroupBox Header="Read a tag" VerticalAlignment="Center">
+                            <GroupBox Header="Read tag" VerticalAlignment="Center">
                                 <StackPanel Orientation="Vertical" Width="150">
                                     <Button Content="Read" Command="{Binding ReadTagCommand}" Margin="7" Width="80"/>
                                     <TextBox Text="{Binding ReadResult}" Margin="3" IsEnabled="False" TextAlignment="Center"/>
                                 </StackPanel>
                             </GroupBox>
-                            <GroupBox Header="Write a tag" Grid.Row="1" VerticalAlignment="Center">
+                            <GroupBox Header="Write tag" Grid.Row="1" VerticalAlignment="Center">
                                 <StackPanel Orientation="Vertical" Width="150">
                                     <TextBox Text="{Binding TagToWrite}" Margin="7" TextAlignment="Center"/>
                                     <Button Content="Write" Command="{Binding WriteTagCommand}" Margin="3" Width="80" />
