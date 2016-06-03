@@ -126,7 +126,7 @@ namespace RfidEncoder.ViewModels
 
         public RacesViewModel()
         {
-            StartEncodingCommand = new DelegateCommand(StartEncoding, ()=>true/* MainWindowViewModel.Instance.IsConnected*/);
+            StartEncodingCommand = new DelegateCommand(StartEncoding, ()=>true/*/ MainWindowViewModel.Instance.TagOperationsViewModel.IsConnected*/);
             NewProjectCommand = new DelegateCommand(NewProject);
             SelectedRaceChangedCommand = new DelegateCommand(SelectedRaceChanged);
             SelectedTagChangedCommand = new DelegateCommand(SelectedTagChanged);
@@ -210,7 +210,17 @@ namespace RfidEncoder.ViewModels
                     });
 
                     //MessageBox.Show("Tag " + NextTagNumber + " encoded.");
-                    var encoded = MainWindowViewModel.Instance.TagOperationsViewModel.EncodeTag(NextTagNumber);
+                    var tag = MainWindowViewModel.Instance.TagOperationsViewModel.ReadTagSync();
+                    if (tag.HasValue && !OverrideTags && CheckRepeatedTag(tag))
+                    {
+                        StatusBarText = "Tag "+tag+" is already encoded";
+                        StatusBarBackground = Brushes.OrangeRed;
+                        Speak("Already encoded");
+                        Thread.Sleep(1000);
+                        continue;
+                    }
+
+                    var encoded = MainWindowViewModel.Instance.TagOperationsViewModel.WriteTag(NextTagNumber);
                     if (encoded)
                     {
                         StatusBarText = "Verifying...";
@@ -246,6 +256,17 @@ namespace RfidEncoder.ViewModels
                 );
         }
 
+        private bool CheckRepeatedTag(uint? tag)
+        {
+            foreach (var race in TotalRaceInfo)
+            {
+                if (race.TagList.Contains(tag))
+                    return true;
+            }
+
+            return false;
+        }
+
         private void WriteToFile()
         {
             if (!string.IsNullOrEmpty(TotalRaceInfo.FileName))
@@ -257,10 +278,17 @@ namespace RfidEncoder.ViewModels
 
         private void SayNumber(uint nextTagNumber)
         {
-            var ss = new SpeechSynthesizer {Rate = -4};
             var digits = nextTagNumber.ToString().Reverse().Take(2).Reverse();
-            ss.Speak(digits.First().ToString());
-            ss.Speak(digits.Last().ToString());
+            Speak(digits.First().ToString());
+            Speak(digits.Last().ToString());
+        }
+
+        private void Speak(String str)
+        {
+            using (var ss= new SpeechSynthesizer{Rate = -4})
+            {
+                ss.Speak(str);
+            }
         }
 
         private uint GetNextTag()

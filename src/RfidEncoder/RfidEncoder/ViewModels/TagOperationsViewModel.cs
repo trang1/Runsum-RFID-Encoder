@@ -60,6 +60,7 @@ namespace RfidEncoder.ViewModels
         {
             try
             {
+                CheckParams();
                 var data = _reader.Read(timeout);
                 if (data.Length > 0)
                 {
@@ -76,6 +77,64 @@ namespace RfidEncoder.ViewModels
                 Trace.TraceError(error + exception.StackTrace);
                 return null;
             }
+        }
+
+        public uint? ReadTagSync()
+        {
+            var action = new Action<Exception>(exception =>
+                {
+                    var error = "Error reading tags. " + exception.Message;
+                    MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Trace.TraceError(error + exception.StackTrace);
+                });
+
+            uint? tag = null;
+
+            try
+            {
+                CheckParams();
+
+                // Create a simplereadplan which uses the antenna list created above
+                SimpleReadPlan plan = new SimpleReadPlan(new[] {1}, TagProtocol.GEN2, null, null, 1000);
+                // Set the created readplan
+                _reader.ParamSet("/reader/read/plan", plan);
+
+                // Create and add tag listener
+                _reader.TagRead += delegate(Object sender, TagReadDataEventArgs e)
+                {
+                    var data = e.TagReadData;
+
+                    tag = ByteConv.ToU32(data.Epc, 0);
+                    Trace.TraceInformation("Tag " + tag + "has been read.");
+                };
+
+                // Create and add read exception listener
+                _reader.ReadException += delegate(object sender, ReaderExceptionEventArgs reea)
+                {
+                    if (reea.ReaderException != null)
+                        action(reea.ReaderException);
+                };
+
+                // Search for tags in the background
+                _reader.StartReading();
+
+                do
+                {
+                    Thread.Sleep(500);
+
+                    // do events
+                    Application.Current.Dispatcher.Invoke(() => { });
+                    
+                } while (!tag.HasValue);
+
+                _reader.StopReading();
+            }
+            catch (Exception exception)
+            {
+                action(exception);
+            }
+
+            return tag;
         }
 
         public ComPortInfo SelectedComPort { get; set; }
@@ -136,20 +195,12 @@ namespace RfidEncoder.ViewModels
             }
         }
 
-        public bool EncodeTag(uint tag)
-        {
-            return WriteTag(tag);
-        }
 
-        private bool WriteTag(uint tag)
+        public bool WriteTag(uint tag)
         {
             try
             {
-                if (_reader.ParamGet("/reader/region/id").ToString() != "NA" /*SelectedRegion*/)
-                    _reader.ParamSet("/reader/region/id", Enum.Parse(typeof (Reader.Region), "NA" /*SelectedRegion*/));
-
-                if (_reader.ParamGet("/reader/tagop/antenna").ToString() != "1")
-                    _reader.ParamSet("/reader/tagop/antenna", 1);
+                CheckParams();
 
                 var data = ByteConv.EncodeU32(tag);
                 //_reader.WriteTag(null, new TagData(epcTag));
@@ -166,9 +217,18 @@ namespace RfidEncoder.ViewModels
             }
         }
 
+        private void CheckParams()
+        {
+            if (_reader.ParamGet("/reader/region/id").ToString() != "NA" /*SelectedRegion*/)
+                _reader.ParamSet("/reader/region/id", Enum.Parse(typeof (Reader.Region), "NA" /*SelectedRegion*/));
+
+            if (_reader.ParamGet("/reader/tagop/antenna").ToString() != "1")
+                _reader.ParamSet("/reader/tagop/antenna", 1);
+        }
+
         public bool VerifyTag(uint tagToVerify)
         {
-            var tag = ReadTag(1000);
+            var tag = ReadTagSync();
             if (tag > 0)
             {
                 return tag == tagToVerify;
