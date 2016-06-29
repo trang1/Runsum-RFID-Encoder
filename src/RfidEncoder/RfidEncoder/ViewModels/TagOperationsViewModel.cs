@@ -89,20 +89,7 @@ namespace RfidEncoder.ViewModels
                 });
 
             uint? tag = null;
-            EventHandler<TagReadDataEventArgs> readerOnTagRead = delegate(Object sender, TagReadDataEventArgs e)
-            {
-                var data = e.TagReadData;
 
-                tag = ByteConv.ToU32(data.Epc, 0);
-                Trace.TraceInformation("Tag " + tag + " has been read.");
-            };
-
-            EventHandler<ReaderExceptionEventArgs> readerOnReadException = delegate(object sender, ReaderExceptionEventArgs reea)
-            {
-                if (reea.ReaderException != null)
-                    action(reea.ReaderException);
-            };
-                
             try
             {
                 CheckParams();
@@ -113,11 +100,20 @@ namespace RfidEncoder.ViewModels
                 _reader.ParamSet("/reader/read/plan", plan);
 
                 // Create and add tag listener
-                
-                _reader.TagRead += readerOnTagRead;
+                _reader.TagRead += delegate(Object sender, TagReadDataEventArgs e)
+                {
+                    var data = e.TagReadData;
+
+                    tag = ByteConv.ToU32(data.Epc, 0);
+                    Trace.TraceInformation("Tag " + tag + "has been read.");
+                };
 
                 // Create and add read exception listener
-                _reader.ReadException += readerOnReadException;
+                _reader.ReadException += delegate(object sender, ReaderExceptionEventArgs reea)
+                {
+                    if (reea.ReaderException != null)
+                        action(reea.ReaderException);
+                };
 
                 // Search for tags in the background
                 _reader.StartReading();
@@ -129,11 +125,9 @@ namespace RfidEncoder.ViewModels
                     // do events
                     Application.Current.Dispatcher.Invoke(() => { });
                     
-                } while (!tag.HasValue && MainWindowViewModel.Instance.RacesViewModel.IsEncoding);
+                } while (!tag.HasValue);
 
                 _reader.StopReading();
-                _reader.TagRead -= readerOnTagRead;
-                _reader.ReadException -= readerOnReadException;
             }
             catch (Exception exception)
             {

@@ -57,7 +57,7 @@
                           VerticalAlignment="Center" Margin="3" HorizontalAlignment="Right"/>
                 <TextBox Text="{Binding Prefix, Mode=TwoWay}" Grid.Column="1" Grid.Row="3" Margin="3" IsEnabled="{Binding ElementName=PrefixCheckBox, Path=IsChecked}"/>
                 <TextBlock Text="Code length" Grid.Column="2" Grid.Row="3" Margin="3" />
-                <talex:NumericUpDown Value="{Binding CodeLength, Mode=TwoWay}" Grid.Column="3" Grid.Row="3" Margin="5" Minimum="1"/>
+                <talex:NumericUpDown Value="{Binding CodeLength, Mode=TwoWay}" Grid.Column="3" Grid.Row="3" Margin="5" Minimum="1" />
 
             </Grid>
         </GroupBox>

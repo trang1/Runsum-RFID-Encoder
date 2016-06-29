@@ -4,7 +4,7 @@
         xmlns:viewModels="clr-namespace:RfidEncoder.ViewModels"
         xmlns:rfidEncoder="clr-namespace:RfidEncoder"
         xmlns:talex="http://schemas.talex-soft.com/2010/xaml/presentation"
-        Title="Runsum RFID Encoder v0.3" Height="350" Width="600"
+        Title="RunSum RFID Encoder v0.3" Height="350" Width="600"
         MinWidth="500" MinHeight="600" MaxHeight="700"
         DataContext="{x:Static viewModels:MainWindowViewModel.Instance}"
         SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen"

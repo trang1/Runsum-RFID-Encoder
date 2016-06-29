@@ -2,3 +2,4 @@
 /src/RfidEncoder/RfidEncoder/bin/Debug
 /src/RfidEncoder/RfidEncoder/obj/Debug
 *.zip
+*.user

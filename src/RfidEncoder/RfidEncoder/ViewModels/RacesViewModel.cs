@@ -152,7 +152,7 @@ namespace RfidEncoder.ViewModels
         private void NewProject()
         {
             if (TotalRaceInfo == null)
-                TotalRaceInfo = new TotalRaceInfo(null) {TagsPerRaceCount = 1, CodeLength = 2};
+                TotalRaceInfo = new TotalRaceInfo(null) { TagsPerRaceCount = 2, CodeLength = 4, StartNumber = 100, EndNumber = 1000, AddPrefix = true, IsDigitInserting = true, Prefix = "123" } ;
 
             var wnd = new RacesSettings {Owner = Application.Current.MainWindow, IsEnabled = !IsEncoding};
             var model = new RacesSettingsViewModel(TotalRaceInfo) { FrameworkElement = wnd };
@@ -195,7 +195,7 @@ namespace RfidEncoder.ViewModels
             {
                 MessageBox.Show("Please, select the region first.", "Information", MessageBoxButton.OK,
                     MessageBoxImage.Information);
-                return;
+                //return;
             }
 
             Task.Factory.StartNew(() =>
@@ -216,7 +216,7 @@ namespace RfidEncoder.ViewModels
                         StatusBarText = "Tag "+tag+" is already encoded";
                         StatusBarBackground = Brushes.OrangeRed;
                         Speak("Already encoded");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(300);
                         continue;
                     }
 
@@ -250,7 +250,7 @@ namespace RfidEncoder.ViewModels
                         TotalRaceInfo.FireNextTag(NextTagNumber);
                     }
 
-                    Thread.Sleep(1000);
+                    Thread.Sleep(300);
                 } while (IsEncoding);
             }
                 );
@@ -279,13 +279,15 @@ namespace RfidEncoder.ViewModels
         private void SayNumber(uint nextTagNumber)
         {
             var digits = nextTagNumber.ToString().Reverse().Take(2).Reverse();
-            Speak(digits.First().ToString());
-            Speak(digits.Last().ToString());
+            string s1 = digits.First().ToString() + " " + digits.Last().ToString();
+			Speak(s1);
+//			Speak(digits.First().ToString());
+//            Speak(digits.Last().ToString());
         }
 
         private void Speak(String str)
         {
-            using (var ss= new SpeechSynthesizer{Rate = -4})
+            using (var ss= new SpeechSynthesizer{Rate = 6})
             {
                 ss.Speak(str);
             }
@@ -442,7 +444,7 @@ namespace RfidEncoder.ViewModels
         {
             Task.Factory.StartNew(() =>
             {
-                Thread.Sleep(200);
+                Thread.Sleep(100);
                 Application.Current.Dispatcher.Invoke(() => NextTag(this, new TagEventArgs(lastTag)));
             });
 
