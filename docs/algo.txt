@@ -1,0 +1,29 @@
+	
+Scott Summers
+1:04 AM AST, 3 Jun, 2016
+Hi Anton,
+Excellent progress. Video attached.
+https://youtu.be/96HGzfxPc88
+
+Step by step of encoding a tag
+1. Wait for Tag
+2. Read tag
+3. if epc tag is in the number set to be encoded as defined by the project (i.e. 12301020) this indicates it is already encoded, 
+3a. show 'already encoded as 1020' 
+3b. return to 1.
+4. determine if access password is locked. In URA I see 'Gen2 memory locked' in Reserved Memory Bank (0) access password.
+4a. if access password locked, try the current access password from 'new project dialogue' which has yet to be created. if fails, open dialogue to ask for old access password. Remember this password for future uses of this dialogue. 
+4b. if access password is not locked, encode access password = #8 digits from access password dialogue needed in 'new project' screen# .
+
+At this point the software should have a valid access password. One possibility is that the user doesn't know the old access password and that it is locked. This is OK so long as the epc isn't locked. If this is the case then all the subsequent access password and kill password operations would not be performed, but the epc would be updated as normal. perhaps a visual indicator could be displayed that the access password is locked. If the epc is also locked, then an invalid chip message would be appropriate.
+
+5. encode tag to proper number
+6. lock epc memory (tag) with write lock. Gen2.LockAction.EPC_LOCK
+7. lock access password with read/write lock. Gen2.LockAction.ACCESS_LOCK 
+8. set kill password =#8 digits from kill password dialogue needed in 'new project' screen#
+9. lock kill password with read/write lock. Gen2.LockAction.LILL_LOCK
+10. re-read tag to validate that it is properly coded.
+11. have computer speak the last two digits of the number.
+12. increment to next tag,
+13. return to 1
+https://youtu.be/96HGzfxPc88

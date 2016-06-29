@@ -1,0 +1,1096 @@
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 11:53:23. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 12:44:17. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 12:48:19. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 12:58:31. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 12:59:04. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 12:59:25. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 13:16:30. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 13:19:41. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 13:30:07. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 13:32:11. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 13:34:06. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 13:42:55. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 14:16:10. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 14:43:39. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 14:46:11. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 14:47:27. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 14:49:03. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 15:04:44. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 15:25:40. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 30.05.2016 15:27:38. UnhandledException
+RfidEncoder.vshost.exe Error: 0 : Time: 30.05.2016 15:28:05. UnhandledException
+RfidEncoder.vshost.exe Error: 0 : Time: 30.05.2016 15:30:11. Connection error. Параметр задан неверно.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.set_BaudRate(Int32 value)
+   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect()
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 15:41:56. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 17:41:40. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 17:58:02. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 18:03:33. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 30.05.2016 18:05:17. UnhandledException
+RfidEncoder.vshost.exe Information: 0 : Time: 30.05.2016 18:10:42. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 11:07:41. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 12:45:02. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 12:46:50. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 31.05.2016 12:47:01. UnhandledException
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 12:47:49. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 12:51:45. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 12:55:14. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 12:58:18. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 12:59:24. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 13:02:11. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 13:08:07. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 13:09:30. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 13:10:49. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 13:19:40. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 31.05.2016 13:19:54. UnhandledException
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 13:23:01. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 13:30:21. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 31.05.2016 13:31:00. UnhandledException
+RfidEncoder.vshost.exe Error: 0 : Time: 31.05.2016 13:31:18. UnhandledException
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 13:33:58. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 13:34:45. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 14:15:48. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 14:44:23. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 15:01:00. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 16:04:11. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 16:07:14. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 31.05.2016 16:07:36. UnhandledException
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 16:08:23. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 16:12:02. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 31.05.2016 16:13:06. UnhandledException
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 16:17:49. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 16:18:00. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 16:23:48. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 16:28:57. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 16:36:01. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 17:42:07. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 31.05.2016 17:42:11. UnhandledException
+RfidEncoder.vshost.exe Error: 0 : Time: 31.05.2016 17:42:28. UnhandledException
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 17:42:38. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 31.05.2016 17:48:28. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 12:07:41. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 12:09:45. Connection error. Параметр задан неверно.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.set_BaudRate(Int32 value)
+   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 14:24:13. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 14:27:04. Connection error. Positive number required.
+Parameter name: BaudRate   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 14:27:43. Connection error. Параметр задан неверно.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.set_BaudRate(Int32 value)
+   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 14:28:53. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 14:30:03. UnhandledException
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 14:35:16. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 14:35:19. Connection error. Positive number required.
+Parameter name: BaudRate   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 14:35:38. Connection error. Параметр задан неверно.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.set_BaudRate(Int32 value)
+   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 14:36:11. UnhandledException
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 14:41:48. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 14:42:02. UnhandledException
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 14:42:24. UnhandledException
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 14:42:36. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 14:42:39. Connection error. Positive number required.
+Parameter name: BaudRate   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 14:42:42. Connection error. Параметр задан неверно.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.set_BaudRate(Int32 value)
+   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 14:43:06. UnhandledException
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 14:46:38. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 14:46:42. Connection error. Positive number required.
+Parameter name: BaudRate   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 14:46:45. Connection error. Параметр задан неверно.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.set_BaudRate(Int32 value)
+   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 14:47:05. UnhandledException
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 14:59:25. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 14:59:55. Error encoding the tag 38. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:00:04. Error encoding the tag 38. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:00:13. Error encoding the tag 38. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:00:19. Error encoding the tag 38. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:00:26. Error encoding the tag 38. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:00:31. Error encoding the tag 38. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:00:36. Error encoding the tag 38. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 15:01:01. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 15:06:44. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:07:02. Connection error. Параметр задан неверно.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.set_BaudRate(Int32 value)
+   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:07:28. Error encoding the tag 1054. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:07:43. Error encoding the tag 54. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:07:55. Error encoding the tag 54. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:08:07. Error encoding the tag 54. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:08:19. Error encoding the tag 56. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:08:30. Error encoding the tag 56. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 15:45:29. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 15:45:52. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:46:18. Connection error. Параметр задан неверно.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.set_BaudRate(Int32 value)
+   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:46:49. Error encoding the tag 10046. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:47:11. Error encoding the tag 46. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:47:23. Error encoding the tag 46. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:47:35. Error encoding the tag 46. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:47:46. Error encoding the tag 46. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:47:58. Error encoding the tag 47. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:48:09. Error encoding the tag 10047. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:48:20. Error encoding the tag 47. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:48:32. Error encoding the tag 49. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:48:45. Error encoding the tag 49. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:48:56. Error encoding the tag 49. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:49:07. Error encoding the tag 50. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:49:19. Error encoding the tag 50. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 15:49:55. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:50:01. Error encoding the tag 0. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:50:27. Error encoding the tag 0. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 15:54:16. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:54:23. Error encoding the tag 0. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:56:05. Connection error. Positive number required.
+Parameter name: BaudRate   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:56:24. Connection error. Параметр задан неверно.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.set_BaudRate(Int32 value)
+   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:57:42. Error encoding the tag 254. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:57:54. Error encoding the tag 254. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:58:06. Error encoding the tag 254. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:58:18. Error encoding the tag 255. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:58:30. Error encoding the tag 2256. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:58:42. Error encoding the tag 256. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:58:53. Error encoding the tag 256. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:59:05. Error encoding the tag 2259. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:59:16. Error encoding the tag 259. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:59:30. Error encoding the tag 259. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 15:59:42. Error encoding the tag 259. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdSetRegion(Region region) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4778
+   at ThingMagic.SerialReader.<.ctor>b__130_7(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1803
+   at ThingMagic.Reader.ParamSet(String key, Object value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1666
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 16:09:40. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:10:33. Error encoding the tag 148. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 16:31:42. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:32:04. Error encoding the tag 1078. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:32:52. Error encoding the tag 1078. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:33:08. Error encoding the tag 1078. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:33:16. Error encoding the tag 1078. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:33:21. Error encoding the tag 1078. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:33:27. Error encoding the tag 79. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:35:13. Error encoding the tag 1082. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:35:18. Error encoding the tag 1082. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:35:24. Error encoding the tag 1082. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 16:35:32. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:36:06. Error encoding the tag 1058. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:36:11. Error encoding the tag 1058. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:36:17. Error encoding the tag 1058. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:36:22. Error encoding the tag 2057. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:38:19. Error encoding the tag 1060. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:38:27. Error encoding the tag 1060. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:38:32. Error encoding the tag 1060. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:38:37. Error encoding the tag 1060. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:38:43. Error encoding the tag 2060. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 16:42:13. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:42:48. Error encoding the tag 1525. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:42:55. Error encoding the tag 1525. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:43:03. Error encoding the tag 1525. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:44:22. Error encoding the tag 2525. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag)
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:44:28. Error encoding the tag 3525. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag)
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:44:34. Error encoding the tag 4525. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag)
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:44:40. Error encoding the tag 526. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag)
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:44:45. Error encoding the tag 1526. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag)
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:44:51. Error encoding the tag 2526. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag)
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:44:56. Error encoding the tag 3526. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag)
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:45:02. Error encoding the tag 4526. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag)
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 16:45:07. Error encoding the tag 527. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag)
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 17:38:33. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:38:54. Connection error. Параметр задан неверно.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.set_BaudRate(Int32 value)
+   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:39:24. Error encoding the tag 1200053. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:39:33. Error encoding the tag 1200053. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:39:42. Error encoding the tag 1200053. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:39:51. Error encoding the tag 1200053. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 17:40:13. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:40:33. Connection error. Параметр задан неверно.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.set_BaudRate(Int32 value)
+   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:41:01. Error encoding the tag 20063. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:41:14. Error encoding the tag 21063. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:41:25. Error encoding the tag 22063. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:41:37. Error encoding the tag 23063. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:41:48. Error encoding the tag 20064. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:42:00. Error encoding the tag 21064. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:42:10. Error encoding the tag 22064. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 17:43:21. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 01.06.2016 17:43:28. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:43:51. Connection error. Параметр задан неверно.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.set_BaudRate(Int32 value)
+   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:44:18. Error encoding the tag 400062. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:44:30. Error encoding the tag 410062. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:45:55. Error encoding the tag 400064. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:46:06. Error encoding the tag 410064. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:46:21. Error encoding the tag 420064. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:46:36. Error encoding the tag 430064. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:46:54. Error encoding the tag 400065. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:48:29. Error encoding the tag 410065. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:48:41. Error encoding the tag 420065. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:49:11. Error encoding the tag 430065. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:49:24. Error encoding the tag 400066. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 01.06.2016 17:49:40. Error encoding the tag 410066. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 13:32:02. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:32:28. Connection error. Параметр задан неверно.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.set_BaudRate(Int32 value)
+   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.MainWindowViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 98
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:33:17. Error encoding the tag 300055. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:34:19. Error encoding the tag 300054. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:34:32. Error encoding the tag 310054. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:34:43. Error encoding the tag 320054. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:34:54. Error encoding the tag 300055. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:35:06. Error encoding the tag 310055. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:35:18. Error encoding the tag 320055. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:35:29. Error encoding the tag 300056. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:35:40. Error encoding the tag 310056. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:35:52. Error encoding the tag 320056. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:36:04. Error encoding the tag 300057. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:36:15. Error encoding the tag 310057. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:36:26. Error encoding the tag 320057. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:36:38. Error encoding the tag 300058. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 13:36:49. Error encoding the tag 310058. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.MainWindowViewModel.EncodeTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\MainWindowViewModel.cs:line 530
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 14:15:23. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 14:15:52. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 14:17:27. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 14:18:01. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 14:20:37. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 14:22:12. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 15:42:49. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 15:43:15. Connection error. Параметр задан неверно.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.set_BaudRate(Int32 value)
+   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.TagOperationsViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 222
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 16:20:32. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:20:45. Connection error. Параметр задан неверно.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.set_BaudRate(Int32 value)
+   at System.IO.Ports.SerialPort.set_BaudRate(Int32 value)
+   at ThingMagic.SerialTransportNative.set_BaudRate(Int32 value) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialTransportNative.cs:line 49
+   at ThingMagic.SerialReader.OpenSerialPort(String comPort, Int32& currentBaudRate) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2911
+   at ThingMagic.SerialReader.Connect() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2642
+   at RfidEncoder.ViewModels.TagOperationsViewModel.Connect() in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 262
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:21:04. Error encoding the tag 44444. The operation has timed out.   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3267
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.SendM5eCommand(ICollection`1 data) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 2988
+   at ThingMagic.SerialReader.CmdGetRegion() in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 4763
+   at ThingMagic.SerialReader.<.ctor>b__130_6(Object val) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 1797
+   at ThingMagic.Reader.ParamGet(String key) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1474
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 16:34:51. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 16:35:19. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 16:49:40. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:50:24. Error encoding the tag 2594. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:50:31. Error encoding the tag 102594. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:50:38. Error encoding the tag 202594. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:50:43. Error encoding the tag 2595. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:50:49. Error encoding the tag 102595. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:50:54. Error encoding the tag 202595. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:51:00. Error encoding the tag 2596. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 16:51:36. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:52:36. Error encoding the tag 3500240. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:52:42. Error encoding the tag 3510240. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:52:47. Error encoding the tag 3520240. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:52:52. Error encoding the tag 3500241. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:52:57. Error encoding the tag 3510241. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:53:02. Error encoding the tag 3520241. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:53:07. Error encoding the tag 3500242. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:53:12. Error encoding the tag 3510242. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:53:18. Error encoding the tag 3520242. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Error: 0 : Time: 02.06.2016 16:53:23. Error encoding the tag 3500243. Object reference not set to an instance of an object.   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 148
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 17:38:37. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 17:39:17. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 17:40:10. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.vshost.exe Information: 0 : Time: 02.06.2016 18:04:15. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 9:57:46 AM. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+RfidEncoder.exe Error: 0 : Time: 6/2/2016 9:59:45 AM. Error encoding the tag 12301003. No tags found.   at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12880
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3007
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+   at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+   at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 156
+RfidEncoder.exe Error: 0 : Time: 6/2/2016 9:59:55 AM. Error encoding the tag 12301003. No tags found.   at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12880
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3007
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+   at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+   at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 156
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 9:59:56 AM. Tag 12301003 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 9:59:57 AM. Tag 0has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 9:59:59 AM. Tag 12301003 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:00 AM. Tag 12301003has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:04 AM. Tag 12311003 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:05 AM. Tag 12311003has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:09 AM. Tag 12301004 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:11 AM. Tag 12301004has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:15 AM. Tag 12311004 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:16 AM. Tag 12311004has been read.
+RfidEncoder.exe Error: 0 : Time: 6/2/2016 10:00:24 AM. Error encoding the tag 12301005. Tag write operation failed.   at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12892
+   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3367
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+   at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+   at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 156
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:25 AM. Tag 12301005 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:26 AM. Tag 12301005has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:30 AM. Tag 12311005 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:31 AM. Tag 12311005has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:35 AM. Tag 12301006 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:37 AM. Tag 12301006has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:41 AM. Tag 12311006 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:42 AM. Tag 12311006has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:46 AM. Tag 12301007 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:47 AM. Tag 12301007has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:51 AM. Tag 12311007 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:52 AM. Tag 12311007has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:57 AM. Tag 12301008 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:00:58 AM. Tag 12301008has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:02 AM. Tag 12311008 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:03 AM. Tag 12311008has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:07 AM. Tag 12301009 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:08 AM. Tag 12301009has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:12 AM. Tag 12311009 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:13 AM. Tag 12311009has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:17 AM. Tag 12301010 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:18 AM. Tag 12301010has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:22 AM. Tag 12311010 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:24 AM. Tag 12311010has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:28 AM. Tag 12301011 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:29 AM. Tag 12301011has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:33 AM. Tag 12311011 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:34 AM. Tag 12311011has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:38 AM. Tag 12301012 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:39 AM. Tag 12311011has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:40 AM. Tag 12301012 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:41 AM. Tag 12311011has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:42 AM. Tag 12301012 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:43 AM. Tag 12301012has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:48 AM. Tag 12311012 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:49 AM. Tag 12311012has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:53 AM. Tag 12301013 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:54 AM. Tag 45781has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:55 AM. Tag 12301013 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:56 AM. Tag 12311011has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:58 AM. Tag 12301013 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:01:59 AM. Tag 12301013has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:02:03 AM. Tag 12311013 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:02:04 AM. Tag 12311011has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:02:05 AM. Tag 12311013 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:02:06 AM. Tag 12311011has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:02:07 AM. Tag 12311013 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:02:08 AM. Tag 12311013has been read.
+RfidEncoder.exe Error: 0 : Time: 6/2/2016 10:02:30 AM. Error encoding the tag 12301014. Tag write operation failed.   at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12892
+   at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3367
+   at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+   at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+   at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 156
+RfidEncoder.exe Error: 0 : Time: 6/2/2016 10:02:37 AM. Error encoding the tag 12301014. No tags found.   at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12880
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3007
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+   at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+   at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 156
+RfidEncoder.exe Error: 0 : Time: 6/2/2016 10:02:41 AM. Error encoding the tag 12301014. No tags found.   at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12880
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3007
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+   at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+   at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 156
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:05:41 AM. Tag 12301004has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:05:51 AM. Tag 12301004has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:06:01 AM. Tag 12301004has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:06:18 AM. Tag 12301004has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:07:45 AM. Tag 12311004has been read.
+RfidEncoder.exe Error: 0 : Time: 6/2/2016 10:10:00 AM. Error encoding the tag 12401003. No tags found.   at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12880
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3007
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+   at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+   at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 156
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:01 AM. Tag 12401003 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:03 AM. Tag 12401003has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:07 AM. Tag 12411003 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:08 AM. Tag 12411003has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:12 AM. Tag 12401004 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:13 AM. Tag 12401004has been read.
+RfidEncoder.exe Error: 0 : Time: 6/2/2016 10:10:20 AM. Error encoding the tag 12411004. No tags found.   at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12880
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3007
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+   at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+   at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 156
+RfidEncoder.exe Error: 0 : Time: 6/2/2016 10:10:24 AM. Error encoding the tag 12411004. No tags found.   at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12880
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3007
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+   at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+   at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 156
+RfidEncoder.exe Error: 0 : Time: 6/2/2016 10:10:32 AM. Error encoding the tag 12411004. No tags found.   at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12880
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3007
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+   at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+   at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 156
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:33 AM. Tag 12411004 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:34 AM. Tag 12411004has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:38 AM. Tag 12411003 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:39 AM. Tag 12411003has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:41 AM. Tag 12401003 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:42 AM. Tag 12401003has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:46 AM. Tag 12411003 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:47 AM. Tag 12411003has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:51 AM. Tag 12401004 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:52 AM. Tag 12401004has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:56 AM. Tag 12411004 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:10:58 AM. Tag 12411004has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:02 AM. Tag 12401005 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:03 AM. Tag 12401005has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:07 AM. Tag 12411005 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:08 AM. Tag 12411005has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:12 AM. Tag 12401006 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:14 AM. Tag 12401006has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:18 AM. Tag 12411006 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:19 AM. Tag 12411006has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:23 AM. Tag 12401007 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:24 AM. Tag 12401007has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:28 AM. Tag 12411007 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:30 AM. Tag 12411007has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:34 AM. Tag 12401008 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:35 AM. Tag 12401008has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:39 AM. Tag 12411008 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:40 AM. Tag 12411008has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:44 AM. Tag 12401009 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:45 AM. Tag 12401009has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:50 AM. Tag 12411009 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:11:51 AM. Tag 12411009has been read.
+RfidEncoder.exe Error: 0 : Time: 6/2/2016 10:12:14 AM. Error encoding the tag 12401010. No tags found.   at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12880
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3007
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+   at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+   at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 156
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:12:15 AM. Tag 12401010 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:12:16 AM. Tag 12401010has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:12:20 AM. Tag 12411010 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:12:21 AM. Tag 12411010has been read.
+RfidEncoder.exe Error: 0 : Time: 6/2/2016 10:12:28 AM. Error encoding the tag 12401011. No tags found.   at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12880
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3007
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+   at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+   at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 156
+RfidEncoder.exe Error: 0 : Time: 6/2/2016 10:12:32 AM. Error encoding the tag 12401011. No tags found.   at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12880
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3007
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+   at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+   at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 156
+RfidEncoder.exe Error: 0 : Time: 6/2/2016 10:13:37 AM. Error encoding the tag 12401011. No tags found.   at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12880
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3007
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+   at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+   at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 156
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:13:38 AM. Tag 12401011 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:13:39 AM. Tag 12401011has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:13:40 AM. Tag 12401003 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:13:41 AM. Tag 12401003has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:13:45 AM. Tag 12411003 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:13:46 AM. Tag 12411003has been read.
+RfidEncoder.exe Error: 0 : Time: 6/2/2016 10:14:03 AM. Error encoding the tag 12401004. No tags found.   at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12880
+   at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3007
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+   at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+   at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+   at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+   at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in i:\Projects\Runsum-RFID-Encoder\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 156
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:14:39 AM. Tag 12401003has been read.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:14:47 AM. Tag 2222 has been written.
+RfidEncoder.exe Information: 0 : Time: 6/2/2016 10:15:01 AM. Tag 2222has been read.

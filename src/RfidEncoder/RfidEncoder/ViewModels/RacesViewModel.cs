@@ -195,7 +195,7 @@ namespace RfidEncoder.ViewModels
             {
                 MessageBox.Show("Please, select the region first.", "Information", MessageBoxButton.OK,
                     MessageBoxImage.Information);
-                //return;
+                return;
             }
 
             Task.Factory.StartNew(() =>
