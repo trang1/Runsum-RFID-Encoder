@@ -105,7 +105,8 @@
                     
                     <TextBlock Text="Next race #" FontSize="16" FontWeight="Bold" Margin="3"/>
                     <talex:NumericUpDown Value="{Binding NextRaceNumber, Mode=TwoWay}" Grid.Column="1"  Margin="3" 
-                                         FontSize="16" FontWeight="Bold" />
+                                         FontSize="16" FontWeight="Bold" 
+                                         ToolTip="Press enter to select a corresponding item in the grid"/>
 
                     <TextBlock Text="Next tag #" FontSize="16" FontWeight="Bold" Grid.Column="2" Margin="3"/>
                     <talex:NumericUpDown Value="{Binding NextTagNumber, Mode=TwoWay}" Grid.Column="3" 
@@ -150,15 +151,20 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <GroupBox Header="Read tag" VerticalAlignment="Center">
-                                <StackPanel Orientation="Vertical" Width="150">
-                                    <Button Content="Read" Command="{Binding ReadTagCommand}" Margin="7" Width="80"/>
-                                    <TextBox Text="{Binding ReadResult}" Margin="3" IsEnabled="False" TextAlignment="Center"/>
+                                <StackPanel Orientation="Vertical" Width="250">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Read" Command="{Binding ReadTagCommand}" Margin="7" Width="110"/>
+                                        <Button Content="{Binding ReadMultipleTagsButtonContent}" Command="{Binding ReadMultipleTagsCommand}" Margin="7" Width="110"/>
+                                    </StackPanel>
+                                    <TextBox Text="{Binding ReadResult}" Margin="3" IsEnabled="False" TextAlignment="Center"
+                                             FontSize="16" FontWeight="Bold"/>
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox Header="Write tag" Grid.Row="1" VerticalAlignment="Center">
-                                <StackPanel Orientation="Vertical" Width="150">
-                                    <TextBox Text="{Binding TagToWrite}" Margin="7" TextAlignment="Center"/>
-                                    <Button Content="Write" Command="{Binding WriteTagCommand}" Margin="3" Width="80" />
+                                <StackPanel Orientation="Vertical" Width="250">
+                                    <TextBox Text="{Binding TagToWrite}" Margin="7" TextAlignment="Center"
+                                             FontSize="16" FontWeight="Bold"/>
+                                    <Button Content="Write" Command="{Binding WriteTagCommand}" Margin="3" Width="110" />
                                 </StackPanel>
                             </GroupBox>
                         </Grid>

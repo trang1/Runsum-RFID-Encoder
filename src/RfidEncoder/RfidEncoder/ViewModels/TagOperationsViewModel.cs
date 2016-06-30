@@ -19,6 +19,7 @@ namespace RfidEncoder.ViewModels
         private bool _isConnected;
         private Dictionary<string, string> _optimalReaderSettings;
         private bool _isRefreshing;
+        private bool _isWaitingForTagRead;
 
         public TagOperationsViewModel()
         {
@@ -28,13 +29,67 @@ namespace RfidEncoder.ViewModels
             RefreshCommand = new DelegateCommand(Refresh, () => !IsRefreshing);
 
             ReadTagCommand = new DelegateCommand(ReadTag, () => IsConnected && !IsRefreshing && 
-                !MainWindowViewModel.Instance.RacesViewModel.IsEncoding);
+                !MainWindowViewModel.Instance.RacesViewModel.IsEncoding && !IsWaitingForTagRead);
+            ReadMultipleTagsCommand = new DelegateCommand(ReadMultipleTags, () =>true/* IsConnected && !IsRefreshing &&
+                !MainWindowViewModel.Instance.RacesViewModel.IsEncoding*/);
+
             WriteTagCommand = new DelegateCommand(WriteTag, () => IsConnected && !IsRefreshing &&
-                !MainWindowViewModel.Instance.RacesViewModel.IsEncoding);
+                !MainWindowViewModel.Instance.RacesViewModel.IsEncoding && !IsWaitingForTagRead);
             Regions = new List<string>();
             Refresh();          
         }
 
+        private void ReadMultipleTags()
+        {
+            if (IsWaitingForTagRead)
+            {
+                _cancelReading = true;
+                IsWaitingForTagRead = false;
+                return;
+            }
+
+            IsWaitingForTagRead = true;
+            Task.Factory.StartNew(() =>
+            {
+                var tag = ReadTagSync();
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    ReadResult = tag.ToString();
+                    IsWaitingForTagRead = false;
+                });
+            });
+
+        }
+        private void ReadTag()
+        {
+            IsWaitingForTagRead = true;
+            Task.Factory.StartNew(() =>
+            {
+                var tag = ReadTagSync();
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    ReadResult = tag.ToString();
+                    IsWaitingForTagRead = false;
+                });
+            });
+        }
+
+        public bool IsWaitingForTagRead
+        {
+            get { return _isWaitingForTagRead; }
+            set
+            {
+                _isWaitingForTagRead = value; 
+                OnPropertyChanged("IsWaitingForTagRead");
+                OnPropertyChanged("ReadMultipleTagsButtonContent");
+            }
+        }
+
+        volatile bool _cancelReading;
+        public string ReadMultipleTagsButtonContent
+        {
+            get { return IsWaitingForTagRead ? "Stop reading" : "Read continuously"; }
+        }
         private void WriteTag()
         {
             uint tag;
@@ -50,12 +105,7 @@ namespace RfidEncoder.ViewModels
             }
         }
 
-        private void ReadTag()
-        {
-            var tag = ReadTag(10000);
-            ReadResult = tag.ToString();
-        }
-
+        // seems like the wrong method
         private uint? ReadTag(int timeout)
         {
             try
@@ -120,14 +170,15 @@ namespace RfidEncoder.ViewModels
 
                 do
                 {
-                    Thread.Sleep(500);
+                    Thread.Sleep(200);
 
                     // do events
                     Application.Current.Dispatcher.Invoke(() => { });
                     
-                } while (!tag.HasValue);
+                } while (!tag.HasValue || _cancelReading);
 
                 _reader.StopReading();
+                _cancelReading = false;
             }
             catch (Exception exception)
             {
@@ -180,6 +231,8 @@ namespace RfidEncoder.ViewModels
         public ICommand RefreshCommand { get; set; }
 
         public ICommand ReadTagCommand { get; set; }
+        public ICommand ReadMultipleTagsCommand { get; set; }
+
         public ICommand WriteTagCommand { get; set; }
         public bool IsConnected
         {

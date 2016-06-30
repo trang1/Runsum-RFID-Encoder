@@ -85,6 +85,25 @@ namespace RfidEncoder
             }
 
             totalRaceInfo.NextTag += totalRaceInfo_NextTag;
+            totalRaceInfo.SelectCell += totalRaceInfo_SelectCell;
+        }
+
+        void totalRaceInfo_SelectCell(object sender, TagEventArgs tea)
+        {
+            if (tea.NextRace.HasValue)
+            {
+                var race = ((TotalRaceInfo) ItemsSource).FirstOrDefault(t => t.RaceNumber == tea.NextRace);
+                if (race != null)
+                {
+                    SelectedItem = race;
+                    ScrollIntoView(race);
+                    Focus();
+                }
+            }
+            else if (tea.NextTag.HasValue)
+            {
+               
+            }
         }
 
         private void totalRaceInfo_NextTag(object sender, TagEventArgs e)

@@ -75,6 +75,7 @@ namespace RfidEncoder.ViewModels
             set
             {
                 _nextRaceNumber = value;
+                TotalRaceInfo.FireSelectCell(value, null);
                 OnPropertyChanged("NextRaceNumber");
             }
         }
@@ -95,6 +96,7 @@ namespace RfidEncoder.ViewModels
             set
             {
                 _nextTagNumber = value;
+                TotalRaceInfo.FireSelectCell(null, value);
                 OnPropertyChanged("NextTagNumber");
             }
         }
@@ -209,8 +211,10 @@ namespace RfidEncoder.ViewModels
                         StatusBarBackground = Brushes.Yellow;
                     });
 
-                    //MessageBox.Show("Tag " + NextTagNumber + " encoded.");
+                    //MessageBox.Show("Tag " + nextTagNumber + " encoded.");
                     var tag = MainWindowViewModel.Instance.TagOperationsViewModel.ReadTagSync();
+
+                    if(!IsEncoding)
                     if (tag.HasValue && !OverrideTags && CheckRepeatedTag(tag))
                     {
                         StatusBarText = "Tag "+tag+" is already encoded";
@@ -279,7 +283,7 @@ namespace RfidEncoder.ViewModels
         private void SayNumber(uint nextTagNumber)
         {
             var digits = nextTagNumber.ToString().Reverse().Take(2).Reverse();
-            string s1 = digits.First().ToString() + " " + digits.Last().ToString();
+            string s1 = digits.First() + " " + digits.Last();
 			Speak(s1);
 //			Speak(digits.First().ToString());
 //            Speak(digits.Last().ToString());
@@ -287,9 +291,9 @@ namespace RfidEncoder.ViewModels
 
         private void Speak(String str)
         {
-            using (var ss= new SpeechSynthesizer{Rate = 6})
+            using (var ss= new SpeechSynthesizer{Rate = 5})
             {
-                ss.Speak(str);
+                ss.SpeakAsync(str);
             }
         }
 
@@ -439,6 +443,8 @@ namespace RfidEncoder.ViewModels
         #endregion
 
         public event TagEventHandler NextTag = (sender, args) => {};
+        public event TagEventHandler SelectCell = (sender, args) => { };
+
         public delegate void TagEventHandler (object sender, TagEventArgs tea);
         public void FireNextTag(uint lastTag)
         {
@@ -449,15 +455,32 @@ namespace RfidEncoder.ViewModels
             });
 
         }
+
+        public void FireSelectCell(int? nextRaceNumber, uint? nextTagNumber)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(100);
+                Application.Current.Dispatcher.Invoke(() => SelectCell(this, new TagEventArgs(nextTagNumber, nextRaceNumber)));
+            });
+        }
     }
 
     public class TagEventArgs : EventArgs
     {
         public uint EncodedTag { get; set; }
-
+        public uint? NextTag { get; set; }
+        public int? NextRace { get; set; }
+        
         public TagEventArgs(uint encodedTag)
         {
             EncodedTag = encodedTag;
+        }
+
+        public TagEventArgs(uint? nextTag, int? nextRace)
+        {
+            NextTag = nextTag;
+            NextRace = nextRace;
         }
     }
 }
