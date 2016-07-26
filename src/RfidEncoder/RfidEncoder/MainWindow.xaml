@@ -31,8 +31,8 @@
                 <MenuItem Header="About"/>
             </MenuItem>
         </Menu>
-        
-        <GroupBox Grid.Row="1" Header="Connection" DataContext="{Binding TagOperationsViewModel}">
+
+        <GroupBox Grid.Row="1" Header="Connection" DataContext="{Binding RacesViewModel.TagOperationsViewModel}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -144,7 +144,7 @@
                                                   SelectedTagChangedCommand="{Binding SelectedTagChangedCommand}"/>
                     </Grid>
                 </TabItem>
-                    <TabItem Header="Single" DataContext="{Binding TagOperationsViewModel}">
+                    <TabItem Header="Single" DataContext="{Binding RacesViewModel.TagOperationsViewModel}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>

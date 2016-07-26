@@ -33,7 +33,6 @@ namespace RfidEncoder.ViewModels
             ExitCommand = new DelegateCommand(() => Application.Current.Shutdown());
 
             RacesViewModel = new RacesViewModel();
-            TagOperationsViewModel = new TagOperationsViewModel();
         }
 
         #endregion
@@ -47,7 +46,6 @@ namespace RfidEncoder.ViewModels
         }
 
         public RacesViewModel RacesViewModel { get; set; }
-        public TagOperationsViewModel TagOperationsViewModel { get; set; }
         
         public ICommand ExitCommand { get; set; }
         #endregion

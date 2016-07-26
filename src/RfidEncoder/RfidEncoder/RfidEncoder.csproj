@@ -64,10 +64,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="NewPasswordWnd.xaml.cs">
+      <DependentUpon>NewPasswordWnd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RaceGridView.cs" />
     <Compile Include="RacesSettings.xaml.cs">
       <DependentUpon>RacesSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TagMemoryHelper.cs" />
     <Compile Include="Tracer.cs" />
     <Compile Include="ViewModels\BooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
@@ -91,6 +95,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewPasswordWnd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RacesSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
