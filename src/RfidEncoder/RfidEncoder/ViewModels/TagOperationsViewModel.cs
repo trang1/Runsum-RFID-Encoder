@@ -30,8 +30,8 @@ namespace RfidEncoder.ViewModels
 
             ReadTagCommand = new DelegateCommand(ReadTag, () => IsConnected && !IsRefreshing && 
                 !MainWindowViewModel.Instance.RacesViewModel.IsEncoding && !IsWaitingForTagRead);
-            ReadMultipleTagsCommand = new DelegateCommand(ReadMultipleTags, () =>true/* IsConnected && !IsRefreshing &&
-                !MainWindowViewModel.Instance.RacesViewModel.IsEncoding*/);
+            ReadMultipleTagsCommand = new DelegateCommand(ReadMultipleTags, () => IsConnected && !IsRefreshing &&
+                !MainWindowViewModel.Instance.RacesViewModel.IsEncoding);
 
             WriteTagCommand = new DelegateCommand(WriteTag, () => IsConnected && !IsRefreshing &&
                 !MainWindowViewModel.Instance.RacesViewModel.IsEncoding && !IsWaitingForTagRead);
@@ -58,8 +58,8 @@ namespace RfidEncoder.ViewModels
                     IsWaitingForTagRead = false;
                 });
             });
-
         }
+
         private void ReadTag()
         {
             IsWaitingForTagRead = true;
@@ -739,5 +739,87 @@ namespace RfidEncoder.ViewModels
             }
         }
 
+        /// <summary>
+        /// Write the access password in the reserved memory
+        /// </summary>
+        public void WriteAccessPassword(string accessPassword)
+        {
+            try
+            {
+                _reader.ParamSet("/reader/tagop/protocol", TagProtocol.GEN2);
+                ushort[] dataToBeWritten = null;
+                dataToBeWritten = ByteConv.ToU16s(ByteFormat.FromHex(accessPassword.Replace(" ", "")));
+                _reader.ExecuteTagOp(new Gen2.WriteData(Gen2.Bank.RESERVED, 2, dataToBeWritten), null);
+                //MessageBox.Show("Access Password has successfully been set to 0x" + txtbxAccesspaasword.Text.Replace(" ", ""), "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        /// <summary>
+        /// Write the kill password in the reserved memory
+        /// </summary>
+        public void WriteKillPassword(string killPassword)
+        {
+            try
+            {
+                _reader.ParamSet("/reader/tagop/protocol", TagProtocol.GEN2);
+                ushort[] dataToBeWritten = null;
+                dataToBeWritten = ByteConv.ToU16s(ByteFormat.FromHex(killPassword.Replace(" ", "")));
+                _reader.ExecuteTagOp(new Gen2.WriteData(Gen2.Bank.RESERVED, 0, dataToBeWritten), null);
+                //MessageBox.Show("Access Password has successfully been set to 0x" + txtbxAccesspaasword.Text.Replace(" ", ""), "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        /// <summary>
+        /// Apply lock action on the tag
+        /// </summary>
+        public bool ApplyLockAction(Gen2.LockAction action, string accessPassword)
+        {
+            try
+            {
+                _reader.ParamSet("/reader/tagop/protocol", TagProtocol.GEN2);
+
+                _reader.ExecuteTagOp(new Gen2.Lock(ByteConv.ToU32(
+                    ByteFormat.FromHex(accessPassword.Replace(" ", "")), 0), action), null);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
+
+        public bool CheckAccessPassword()
+        {
+            try
+            {
+                string reservedBankData = string.Empty;
+                //Read access password
+                var op = new Gen2.ReadData(Gen2.Bank.RESERVED, 2, 2);
+                var reservedData = (ushort[])_reader.ExecuteTagOp(op, null);
+
+                if (null != reservedData)
+                    reservedBankData = ByteFormat.ToHex(ByteConv.ConvertFromUshortArray(reservedData), "", " ");
+
+                var accessPassword = reservedBankData.Trim(' ');
+                return false;
+            }
+            catch (Exception ex)
+            {
+                if (ex is FAULT_GEN2_PROTOCOL_MEMORY_LOCKED_Exception)
+                {
+                    return true;
+                }
+                Trace.TraceError("Error checking access password. " + ex.Message + ex.StackTrace);
+                return false;
+            }
+        }
     }
 }

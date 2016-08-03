@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using ThingMagic;
 
 namespace RfidEncoder.ViewModels
 {
@@ -52,7 +53,7 @@ namespace RfidEncoder.ViewModels
         {
             get { return IsEncoding ? "Stop encoding" : "Start encoding"; }
         }
-
+        public TagOperationsViewModel TagOperationsViewModel { get; set; }
         public ICommand StartEncodingCommand { get; set; }
         public ICommand NewProjectCommand { get; set; }
         public ICommand SelectedTagChangedCommand { get; set; }
@@ -128,7 +129,10 @@ namespace RfidEncoder.ViewModels
 
         public RacesViewModel()
         {
-            StartEncodingCommand = new DelegateCommand(StartEncoding, ()=>true/*/ MainWindowViewModel.Instance.TagOperationsViewModel.IsConnected*/);
+            TagOperationsViewModel = new TagOperationsViewModel();
+
+            StartEncodingCommand = new DelegateCommand(StartEncoding, ()=>/*true*/
+                TagOperationsViewModel.IsConnected);
             NewProjectCommand = new DelegateCommand(NewProject);
             SelectedRaceChangedCommand = new DelegateCommand(SelectedRaceChanged);
             SelectedTagChangedCommand = new DelegateCommand(SelectedTagChanged);
@@ -154,10 +158,20 @@ namespace RfidEncoder.ViewModels
         private void NewProject()
         {
             if (TotalRaceInfo == null)
-                TotalRaceInfo = new TotalRaceInfo(null) { TagsPerRaceCount = 2, CodeLength = 4, StartNumber = 100, EndNumber = 1000, AddPrefix = true, IsDigitInserting = true, Prefix = "123" } ;
+                TotalRaceInfo = new TotalRaceInfo(null)
+                {
+                    TagsPerRaceCount = 2,
+                    CodeLength = 4,
+                    StartNumber = 100,
+                    EndNumber = 1000,
+                    AddPrefix = true,
+                    IsDigitInserting = true,
+                    Prefix = "123"
+                };
+
 
             var wnd = new RacesSettings {Owner = Application.Current.MainWindow, IsEnabled = !IsEncoding};
-            var model = new RacesSettingsViewModel(TotalRaceInfo) { FrameworkElement = wnd };
+            var model = new RacesSettingsViewModel(TotalRaceInfo) {FrameworkElement = wnd};
             wnd.DataContext = model;
 
             if (wnd.ShowDialog().GetValueOrDefault(false))
@@ -192,8 +206,8 @@ namespace RfidEncoder.ViewModels
                 return;
             }
 
-            if (string.IsNullOrEmpty(MainWindowViewModel.Instance.TagOperationsViewModel.SelectedRegion) ||
-                MainWindowViewModel.Instance.TagOperationsViewModel.SelectedRegion == "Select")
+            if (string.IsNullOrEmpty(TagOperationsViewModel.SelectedRegion) ||
+                TagOperationsViewModel.SelectedRegion == "Select")
             {
                 MessageBox.Show("Please, select the region first.", "Information", MessageBoxButton.OK,
                     MessageBoxImage.Information);
@@ -204,6 +218,7 @@ namespace RfidEncoder.ViewModels
             {
                 do
                 {
+                    //1. Wait for Tag
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         IsEncoding = true;
@@ -211,25 +226,76 @@ namespace RfidEncoder.ViewModels
                         StatusBarBackground = Brushes.Yellow;
                     });
 
-                    //MessageBox.Show("Tag " + nextTagNumber + " encoded.");
-                    var tag = MainWindowViewModel.Instance.TagOperationsViewModel.ReadTagSync();
+                    //2. Read tag
+                    var tag = TagOperationsViewModel.ReadTagSync();
 
+                    //3. if epc tag is in the number set to be encoded as defined by the project (i.e. 12301020) this indicates it is already encoded, 
+                    //3a. show 'already encoded as 1020' 
+                    //3b. return to 1.
                     if(!IsEncoding)
-                    if (tag.HasValue && !OverrideTags && CheckRepeatedTag(tag))
+                        if (tag.HasValue && !OverrideTags && CheckRepeatedTag(tag))
+                        {
+                            StatusBarText = "Tag " + tag + " is already encoded";
+                            StatusBarBackground = Brushes.OrangeRed;
+                            Speak("Already encoded");
+                            Thread.Sleep(300);
+                            continue;
+                        }
+
+                    var apLocked = false;
+
+                    //4. determine if access password is locked. In URA I see 'Gen2 memory locked' in Reserved Memory Bank (0) access password.
+                    if (TagOperationsViewModel.CheckAccessPassword())
                     {
-                        StatusBarText = "Tag "+tag+" is already encoded";
-                        StatusBarBackground = Brushes.OrangeRed;
-                        Speak("Already encoded");
-                        Thread.Sleep(300);
-                        continue;
+                        //4a. if access password locked, try the current access password from 'new project dialogue' 
+                        //which has yet to be created. if fails, open dialogue to ask for old access password. Remember this password for 
+                        //future uses of this dialogue. 
+                        if (!TagOperationsViewModel.ApplyLockAction
+                            (new Gen2.LockAction(Gen2.LockAction.ACCESS_UNLOCK), _totalRaceInfo.AccessPassword))
+                        {
+                            //open dialog
+                            if (!TagOperationsViewModel.ApplyLockAction
+                                (new Gen2.LockAction(Gen2.LockAction.ACCESS_UNLOCK), _totalRaceInfo.AccessPassword))
+                            {
+                                // failed again
+                                // check if epc is locked
+                                // if locked -> invalid chip -> continue
+                                
+                                //if not locked ask for continue without locking
+                                //if no -> continue
+
+                                //if yes
+                                apLocked = true;
+                            }
+                        }
                     }
 
-                    var encoded = MainWindowViewModel.Instance.TagOperationsViewModel.WriteTag(NextTagNumber);
-                    if (encoded)
+                    //4b. if access password is not locked, encode access password = 
+                    //#8 digits from access password dialogue needed in 'new project' screen# .
+                    if (!apLocked)
                     {
-                        StatusBarText = "Verifying...";
-                        StatusBarBackground = Brushes.Orange;
-                        encoded = MainWindowViewModel.Instance.TagOperationsViewModel.VerifyTag(NextTagNumber);
+                        TagOperationsViewModel.WriteAccessPassword(_totalRaceInfo.AccessPassword);
+                    }
+
+                    //5. encode tag to proper number
+                    var encoded = TagOperationsViewModel.WriteTag(NextTagNumber);
+
+                    if (encoded && !apLocked)
+                    {
+                        //6. lock epc memory (tag) with write lock. Gen2.LockAction.EPC_LOCK
+                        TagOperationsViewModel.ApplyLockAction(
+                            new Gen2.LockAction(Gen2.LockAction.EPC_LOCK), _totalRaceInfo.AccessPassword);
+                        
+                        //7. lock access password with read/write lock. Gen2.LockAction.ACCESS_LOCK 
+                        TagOperationsViewModel.ApplyLockAction(
+                            new Gen2.LockAction(Gen2.LockAction.ACCESS_LOCK), _totalRaceInfo.AccessPassword);
+                        
+                        //8. set kill password =#8 digits from kill password dialogue needed in 'new project' screen#
+                        TagOperationsViewModel.WriteAccessPassword(_totalRaceInfo.KillPassword);
+
+                        //9. lock kill password with read/write lock. Gen2.LockAction.LILL_LOCK
+                        TagOperationsViewModel.ApplyLockAction(
+                            new Gen2.LockAction(Gen2.LockAction.KILL_LOCK), _totalRaceInfo.AccessPassword);
                     }
 
                     Application.Current.Dispatcher.Invoke(() =>
@@ -247,10 +313,20 @@ namespace RfidEncoder.ViewModels
                         }   
                     });
 
+                    if (encoded)
+                    {
+                        //10. re-read tag to validate that it is properly coded.
+                        StatusBarText = "Verifying...";
+                        StatusBarBackground = Brushes.Orange;
+                        encoded = TagOperationsViewModel.VerifyTag(NextTagNumber);
+                    }
+
+                    //11. have computer speak the last two digits of the number.
                     if (encoded || Debugger.IsAttached)
                     {
                         SayNumber(NextTagNumber);
                         WriteToFile();
+                        //12. increment to next tag
                         TotalRaceInfo.FireNextTag(NextTagNumber);
                     }
 
@@ -335,6 +411,8 @@ namespace RfidEncoder.ViewModels
         private bool _addPrefix;
         private string _prefix;
         private int _codeLength;
+        private string _killPassword;
+        private string _accessPassword;
 
         public int StartNumber
         {
@@ -416,6 +494,26 @@ namespace RfidEncoder.ViewModels
             }
         }
 
+        public string AccessPassword
+        {
+            get { return _accessPassword; }
+            set
+            {
+                _accessPassword = value;
+                OnPropertyChanged("AccessPassword");
+            }
+        }
+
+        public string KillPassword
+        {
+            get { return _killPassword; }
+            set
+            {
+                _killPassword = value;
+                OnPropertyChanged("KillPassword");
+            }
+        }
+
         public TotalRaceInfo(TotalRaceInfo totalRaceInfo)
         {
             if(totalRaceInfo == null) return;
@@ -428,6 +526,8 @@ namespace RfidEncoder.ViewModels
             _addPrefix = totalRaceInfo.AddPrefix;
             _prefix = totalRaceInfo.Prefix;
             _codeLength = totalRaceInfo.CodeLength;
+            _accessPassword = totalRaceInfo.AccessPassword;
+            _killPassword = totalRaceInfo.KillPassword;
         }
 
         #region INotifyPropertyChanged

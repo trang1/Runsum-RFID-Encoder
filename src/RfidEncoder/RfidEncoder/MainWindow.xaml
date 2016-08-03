@@ -31,8 +31,8 @@
                 <MenuItem Header="About"/>
             </MenuItem>
         </Menu>
-        
-        <GroupBox Grid.Row="1" Header="Connection" DataContext="{Binding TagOperationsViewModel}">
+
+        <GroupBox Grid.Row="1" Header="Connection" DataContext="{Binding RacesViewModel.TagOperationsViewModel}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -72,6 +72,7 @@
                     <ComboBox ItemsSource="{Binding BaudRates}" SelectedItem="{Binding SelectedBaudRate}" 
                               Margin="5" Grid.Column="3" />
                 </Grid>
+                
                 <Button Grid.Row="2" Grid.Column="2" Content="{Binding ConnectButtonContent}" 
                         Command="{Binding ConnectCommand}" Margin="5" MinWidth="120" />
             </Grid>    
@@ -117,46 +118,33 @@
         <GroupBox Header="Encoding" Grid.Row="3" >
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Grid.Resources>
-                    <viewModels:ReadPowerConverter x:Key="ReadPowerConverter" />
-                </Grid.Resources>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DataContext="{Binding TagOperationsViewModel}">
-                    <TextBlock Text="Read power" Margin="3"/>
-                    <Slider TickPlacement="BottomRight" Margin="3" Width="250"
-                        IsSnapToTickEnabled="True" TickFrequency="0.1" Value="{Binding ReadPower}"/>
-                    <TextBlock Text="{Binding ReadPower, Converter={StaticResource ReadPowerConverter}}" 
-                             Width="17" Margin="3"/>
-                    <TextBlock Text="dBm" Margin="3"/>
-
-                </StackPanel>
-                <TabControl Background="#FFDAD9C9" Grid.Row="1">
+                <TabControl Background="#FFDAD9C9">
                     <TabItem Header="List" DataContext="{Binding RacesViewModel}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-
-                            <StackPanel Orientation="Horizontal"  >
-                                <Button Content="{Binding EncodingButtonContent}"  Width="120"
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        
+                        <StackPanel Orientation="Horizontal"  >
+                            <Button Content="{Binding EncodingButtonContent}"  Width="120"
                                     Command="{Binding StartEncodingCommand}"/>
                                 <CheckBox Content="Override tags" IsChecked="{Binding OverrideTags}" 
                                           Margin="50,3,3,3" HorizontalAlignment="Center"/>
-                            </StackPanel>
+                        </StackPanel>
 
-                            <rfidEncoder:RaceGridView Grid.Row="1" Margin="3" ItemsSource="{Binding TotalRaceInfo}" AutoGenerateColumns="False"
+                        <rfidEncoder:RaceGridView Grid.Row="1" Margin="3" ItemsSource="{Binding TotalRaceInfo}" AutoGenerateColumns="False"
                                                   CanUserAddRows="False" IsReadOnly="True" AlternatingRowBackground="#ece6d5"
                                                   SelectedItem="{Binding SelectedRace, Mode=TwoWay}"
                                                   SelectionChangedCommand="{Binding SelectedRaceChangedCommand}"
                                                   SelectedTagIndex="{Binding SelectedTagIndex, Mode=TwoWay}"
                                                   SelectedTagChangedCommand="{Binding SelectedTagChangedCommand}"/>
-                        </Grid>
-                    </TabItem>
-                    <TabItem Header="Single" DataContext="{Binding TagOperationsViewModel}">
+                    </Grid>
+                </TabItem>
+                    <TabItem Header="Single" DataContext="{Binding RacesViewModel.TagOperationsViewModel}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -182,10 +170,10 @@
                         </Grid>
                     </TabItem>
                 </TabControl>
-                <StatusBar Grid.Row="2" DataContext="{Binding RacesViewModel}" Background="{Binding StatusBarBackground}">
-                    <StatusBarItem Content="{Binding StatusBarText}" HorizontalAlignment="Center" FontWeight="Bold"
+                <StatusBar Grid.Row="1" DataContext="{Binding RacesViewModel}" Background="{Binding StatusBarBackground}">
+                <StatusBarItem Content="{Binding StatusBarText}" HorizontalAlignment="Center" FontWeight="Bold"
                                FontSize="16" Margin="5" />
-                </StatusBar>
+            </StatusBar>
 
             </Grid>
         </GroupBox>

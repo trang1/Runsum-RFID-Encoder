@@ -29,6 +29,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
                 <TextBlock Text="From race number" Margin="3" />
@@ -58,7 +59,12 @@
                 <TextBox Text="{Binding Prefix, Mode=TwoWay}" Grid.Column="1" Grid.Row="3" Margin="3" IsEnabled="{Binding ElementName=PrefixCheckBox, Path=IsChecked}"/>
                 <TextBlock Text="Code length" Grid.Column="2" Grid.Row="3" Margin="3" />
                 <talex:NumericUpDown Value="{Binding CodeLength, Mode=TwoWay}" Grid.Column="3" Grid.Row="3" Margin="5" Minimum="1" />
-
+                
+                <TextBlock Text="Access password" Grid.Row="4" Margin="3"/>
+                <TextBox Text="{Binding AccessPassword}" Grid.Row="4" Grid.Column="1" Margin="3" />
+                <TextBlock Text="Kill password" Grid.Row="4" Grid.Column="2" Margin="3"/>
+                <TextBox Text="{Binding KillPassword}" Grid.Row="4" Grid.Column="3" Margin="3" />
+                
             </Grid>
         </GroupBox>
         
