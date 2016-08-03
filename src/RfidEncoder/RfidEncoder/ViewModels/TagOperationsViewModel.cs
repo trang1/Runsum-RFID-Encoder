@@ -762,7 +762,7 @@ namespace RfidEncoder.ViewModels
             }
         }
 
-        public bool CheckAccessPassword()
+        public bool CheckAccessPasswordIsLocked()
         {
             try
             {
@@ -784,6 +784,27 @@ namespace RfidEncoder.ViewModels
                     return true;
                 }
                 Trace.TraceError("Error checking access password. " + ex.Message + ex.StackTrace);
+                return false;
+            }
+        }
+
+        public bool CheckEpcIsLocked(string accessPassword)
+        {
+            try
+            {
+                _reader.ParamSet("/reader/tagop/protocol", TagProtocol.GEN2);
+
+                _reader.ExecuteTagOp(new Gen2.Lock(ByteConv.ToU32(
+                    ByteFormat.FromHex(accessPassword.Replace(" ", "")), 0), new Gen2.LockAction(Gen2.LockAction.EPC_UNLOCK)), null);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                if (ex is FAULT_GEN2_PROTOCOL_MEMORY_LOCKED_Exception)
+                {
+                    return true;
+                }
+                Trace.TraceError("Error checking EPC. " + ex.Message + ex.StackTrace);
                 return false;
             }
         }

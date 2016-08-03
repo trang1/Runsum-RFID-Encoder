@@ -245,7 +245,7 @@ namespace RfidEncoder.ViewModels
                     var apLocked = false;
 
                     //4. determine if access password is locked. In URA I see 'Gen2 memory locked' in Reserved Memory Bank (0) access password.
-                    if (TagOperationsViewModel.CheckAccessPassword())
+                    if (TagOperationsViewModel.CheckAccessPasswordIsLocked())
                     {
                         //4a. if access password locked, try the current access password from 'new project dialogue' 
                         //which has yet to be created. if fails, open dialogue to ask for old access password. Remember this password for 
@@ -254,18 +254,45 @@ namespace RfidEncoder.ViewModels
                             (new Gen2.LockAction(Gen2.LockAction.ACCESS_UNLOCK), _totalRaceInfo.AccessPassword))
                         {
                             //open dialog
-                            if (!TagOperationsViewModel.ApplyLockAction
-                                (new Gen2.LockAction(Gen2.LockAction.ACCESS_UNLOCK), _totalRaceInfo.AccessPassword))
+                            var dialog = new NewPasswordWnd(_totalRaceInfo.AccessPassword);
+                            if (dialog.ShowDialog().GetValueOrDefault(false))
                             {
-                                // failed again
-                                // check if epc is locked
-                                // if locked -> invalid chip -> continue
-                                
-                                //if not locked ask for continue without locking
-                                //if no -> continue
 
-                                //if yes
-                                apLocked = true;
+                                if (!TagOperationsViewModel.ApplyLockAction
+                                    (new Gen2.LockAction(Gen2.LockAction.ACCESS_UNLOCK), dialog.Password))
+                                {
+                                    // failed again
+                                    // check if epc is locked
+                                    // if locked -> invalid chip -> continue
+                                    if (TagOperationsViewModel.CheckEpcIsLocked(dialog.Password))
+                                    {
+                                        StatusBarText = "Invalid chip, continue...";
+                                        StatusBarBackground = Brushes.Red;
+                                        Speak("Invalid chip");
+                                        Thread.Sleep(300);
+                                        continue;
+                                    }
+                                    //if not locked ask for continue without locking
+                                    else
+                                    {
+                                        if (MessageBox.Show("EPC is not locked. Continue without locking?", "Question",
+                                                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                                        {
+                                            //if yes
+                                            apLocked = true;    
+                                        }
+                                        //if no -> continue
+                                        else
+                                        {
+                                            Thread.Sleep(300);
+                                            continue;
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                
                             }
                         }
                     }
@@ -291,7 +318,7 @@ namespace RfidEncoder.ViewModels
                             new Gen2.LockAction(Gen2.LockAction.ACCESS_LOCK), _totalRaceInfo.AccessPassword);
                         
                         //8. set kill password =#8 digits from kill password dialogue needed in 'new project' screen#
-                        TagOperationsViewModel.WriteAccessPassword(_totalRaceInfo.KillPassword);
+                        TagOperationsViewModel.WriteKillPassword(_totalRaceInfo.KillPassword);
 
                         //9. lock kill password with read/write lock. Gen2.LockAction.LILL_LOCK
                         TagOperationsViewModel.ApplyLockAction(

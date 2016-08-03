@@ -19,14 +19,22 @@ namespace RfidEncoder
     /// </summary>
     public partial class NewPasswordWnd : Window
     {
-        public NewPasswordWnd()
+        public NewPasswordWnd(string password)
         {
             InitializeComponent();
+
+            Password = password;
+        }
+
+        public string Password
+        {
+            get { return PwdTextBox.Text; }
+            set { PwdTextBox.Text = value; }
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            DialogResult = true;
         }
     }
 }
