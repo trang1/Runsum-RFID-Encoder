@@ -86,6 +86,8 @@ namespace RfidEncoder.ViewModels
         }
 
         volatile bool _cancelReading;
+        private double _readPower;
+
         public string ReadMultipleTagsButtonContent
         {
             get { return IsWaitingForTagRead ? "Stop reading" : "Read continuously"; }
@@ -191,6 +193,17 @@ namespace RfidEncoder.ViewModels
         public ComPortInfo SelectedComPort { get; set; }
         public List<string> Regions { get; set; }
 
+        public double ReadPower
+        {
+            get { return _readPower; }
+            set
+            {
+                _readPower = value;
+                Task.Factory.StartNew(SetReadPower);
+                OnPropertyChanged("ReadPower");
+            }
+        }
+
         public IList<ComPortInfo> ComPorts{ get; set; }
 
         public string SelectedRegion { get; set; }
@@ -287,6 +300,27 @@ namespace RfidEncoder.ViewModels
                 return tag == tagToVerify;
             }
             return false;
+        }
+
+        bool _changingPower;
+        private void SetReadPower()
+        {
+            try
+            {
+                if (_reader != null && !_changingPower)
+                {
+                    _changingPower = true;
+                    _reader.ParamSet("/reader/radio/readPower", Convert.ToInt32(100 * _readPower));
+                    _changingPower = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message
+                    + " Check supported protocol configurations in Reader's Hardware Guide.",
+                    "Unsupported Reader Configuration", MessageBoxButton.OK, MessageBoxImage.Error);
+                _changingPower = false;
+            }
         }
 
         private void Refresh()
