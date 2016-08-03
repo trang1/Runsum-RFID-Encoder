@@ -307,6 +307,7 @@ namespace RfidEncoder.ViewModels
         {
             try
             {
+                Debug.WriteLine("Power to set = " + Convert.ToInt32(100 * _readPower));
                 if (_reader != null && !_changingPower)
                 {
                     _changingPower = true;
