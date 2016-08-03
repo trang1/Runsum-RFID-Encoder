@@ -80,6 +80,7 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\RacesSettingsViewModel.cs" />
     <Compile Include="ViewModels\RacesViewModel.cs" />
+    <Compile Include="ViewModels\ReadPowerConverter.cs" />
     <Compile Include="ViewModels\TagOperationsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Page Include="MainWindow.xaml">
