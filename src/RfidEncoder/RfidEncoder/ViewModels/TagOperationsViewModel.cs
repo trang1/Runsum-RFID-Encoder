@@ -317,9 +317,10 @@ namespace RfidEncoder.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message
-                    + " Check supported protocol configurations in Reader's Hardware Guide.",
-                    "Unsupported Reader Configuration", MessageBoxButton.OK, MessageBoxImage.Error);
+                var error = ex.Message + " Check supported protocol configurations in Reader's Hardware Guide.";
+                MessageBox.Show(error, "Unsupported Reader Configuration", MessageBoxButton.OK, MessageBoxImage.Error);
+                Trace.TraceError(error + ex.StackTrace);
+
                 _changingPower = false;
             }
         }
