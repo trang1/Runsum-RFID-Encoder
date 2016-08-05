@@ -117,7 +117,7 @@ namespace RfidEncoder.ViewModels
                 if (data.Length > 0)
                 {
                     var tag = ByteConv.ToU32(data[0].Epc, 0);
-                    Trace.TraceInformation("Tag " + tag + "has been read.");
+                    Trace.TraceInformation("Tag " + tag + " has been read.");
                     return tag;
                 }
                 return null;
@@ -157,7 +157,7 @@ namespace RfidEncoder.ViewModels
                     var data = e.TagReadData;
 
                     tag = ByteConv.ToU32(data.Epc, 0);
-                    Trace.TraceInformation("Tag " + tag + "has been read.");
+                    Trace.TraceInformation("Tag " + tag + " has been read.");
                 };
 
                 // Create and add read exception listener
@@ -307,11 +307,11 @@ namespace RfidEncoder.ViewModels
         {
             try
             {
-                Debug.WriteLine("Power to set = " + Convert.ToInt32(100 * _readPower));
+                Debug.WriteLine("Power to set = " + Convert.ToInt32(1000 + 130 * _readPower));
                 if (_reader != null && !_changingPower)
                 {
                     _changingPower = true;
-                    _reader.ParamSet("/reader/radio/readPower", Convert.ToInt32(100 * _readPower));
+                    _reader.ParamSet("/reader/radio/readPower", Convert.ToInt32(1000 + 130 * _readPower));
                     _changingPower = false;
                 }
             }

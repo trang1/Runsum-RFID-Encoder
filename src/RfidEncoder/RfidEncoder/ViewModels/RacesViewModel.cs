@@ -166,7 +166,8 @@ namespace RfidEncoder.ViewModels
                     EndNumber = 1000,
                     AddPrefix = true,
                     IsDigitInserting = true,
-                    Prefix = "123"
+                    Prefix = "123",
+                    AccessPassword = "0"
                 };
 
 
