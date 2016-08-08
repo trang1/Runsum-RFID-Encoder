@@ -756,7 +756,9 @@ namespace RfidEncoder.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                var error = "Error writing the access password (" + accessPassword + "). " + ex.Message;
+                MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Trace.TraceError(error + ex.StackTrace);
             }
         }
 
@@ -775,7 +777,9 @@ namespace RfidEncoder.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                var error = "Error writing the kill password (" + killPassword + "). " + ex.Message;
+                MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Trace.TraceError(error + ex.StackTrace);
             }
         }
         /// <summary>
@@ -793,7 +797,10 @@ namespace RfidEncoder.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                var error = string.Format("Error applying the lock action (action = {0}, password = {1}). {2}", action,
+                    accessPassword, ex.Message);
+                MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Trace.TraceError(error + ex.StackTrace);
                 return false;
             }
         }
