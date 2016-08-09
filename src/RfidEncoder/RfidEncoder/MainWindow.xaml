@@ -169,7 +169,7 @@
                                         <Button Content="Read" Command="{Binding ReadTagCommand}" Margin="7" Width="110"/>
                                         <Button Content="{Binding ReadMultipleTagsButtonContent}" Command="{Binding ReadMultipleTagsCommand}" Margin="7" Width="110"/>
                                     </StackPanel>
-                                    <TextBox Text="{Binding ReadResult}" Margin="3" IsEnabled="False" TextAlignment="Center"
+                                    <TextBox Text="{Binding SingleReadResult}" Margin="3" IsEnabled="False" TextAlignment="Center"
                                              FontSize="16" FontWeight="Bold"/>
                                 </StackPanel>
                             </GroupBox>

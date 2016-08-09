@@ -131,8 +131,8 @@ namespace RfidEncoder.ViewModels
         {
             TagOperationsViewModel = new TagOperationsViewModel();
 
-            StartEncodingCommand = new DelegateCommand(StartEncoding, ()=>/*true*/
-                TagOperationsViewModel.IsConnected);
+            StartEncodingCommand = new DelegateCommand(StartEncoding, ()=> TagOperationsViewModel.IsConnected &&
+                !TagOperationsViewModel.IsWaitingForTagRead);
             NewProjectCommand = new DelegateCommand(NewProject);
             SelectedRaceChangedCommand = new DelegateCommand(SelectedRaceChanged);
             SelectedTagChangedCommand = new DelegateCommand(SelectedTagChanged);
@@ -212,7 +212,7 @@ namespace RfidEncoder.ViewModels
             {
                 MessageBox.Show("Please, select the region first.", "Information", MessageBoxButton.OK,
                     MessageBoxImage.Information);
-                //return;
+                return;
             }
 
             Task.Factory.StartNew(() =>
@@ -317,13 +317,17 @@ namespace RfidEncoder.ViewModels
                         //7. lock access password with read/write lock. Gen2.LockAction.ACCESS_LOCK 
                         TagOperationsViewModel.ApplyLockAction(
                             new Gen2.LockAction(Gen2.LockAction.ACCESS_LOCK), _totalRaceInfo.AccessPassword);
-                        
-                        //8. set kill password =#8 digits from kill password dialogue needed in 'new project' screen#
-                        TagOperationsViewModel.WriteKillPassword(_totalRaceInfo.KillPassword);
 
-                        //9. lock kill password with read/write lock. Gen2.LockAction.LILL_LOCK
-                        TagOperationsViewModel.ApplyLockAction(
-                            new Gen2.LockAction(Gen2.LockAction.KILL_LOCK), _totalRaceInfo.AccessPassword);
+                        // if we have a kill password
+                        if (!string.IsNullOrEmpty(_totalRaceInfo.KillPassword))
+                        {
+                            //8. set kill password =#8 digits from kill password dialogue needed in 'new project' screen#
+                            TagOperationsViewModel.WriteKillPassword(_totalRaceInfo.KillPassword);
+
+                            //9. lock kill password with read/write lock. Gen2.LockAction.LILL_LOCK
+                            TagOperationsViewModel.ApplyLockAction(
+                                new Gen2.LockAction(Gen2.LockAction.KILL_LOCK), _totalRaceInfo.AccessPassword);
+                        }
                     }
 
                     Application.Current.Dispatcher.Invoke(() =>
