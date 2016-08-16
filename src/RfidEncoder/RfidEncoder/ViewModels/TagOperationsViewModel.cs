@@ -221,7 +221,15 @@ namespace RfidEncoder.ViewModels
 
         public IList<ComPortInfo> ComPorts{ get; set; }
 
-        public string SelectedRegion { get; set; }
+        public string SelectedRegion
+        {
+            get { return _selectedRegion; }
+            set
+            {
+                _selectedRegion = value;
+                OnPropertyChanged("SelectedRegion");
+            }
+        }
 
         public string SingleReadResult
         {
@@ -329,6 +337,7 @@ namespace RfidEncoder.ViewModels
 
         bool _changingPower;
         private string _singleReadResult;
+        private string _selectedRegion;
 
         private void SetReadPower()
         {
@@ -380,10 +389,9 @@ namespace RfidEncoder.ViewModels
                 OnPropertyChanged("ConnectButtonContent");
                 return;
             }
-
+            //Regions.AddRange(new[] {"LA", "NA", "BGG"});
             //ConfigureAntennaBoxes(null);
             //ConfigureProtocols(null);
-
             try
             {
                 // Creates a Reader Object for operations on the Reader.
@@ -398,36 +406,6 @@ namespace RfidEncoder.ViewModels
                 }
                 _reader = Reader.Create(string.Concat("tmr:///", readerUri));
 
-                //uri = readerUri;
-
-                // If Option selected add the serial-reader-specific message logger
-                // before connecting, so we can see the initialization.
-                //if ((bool)chkEnableTransportLogging.IsChecked)
-                //{
-                //    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                //    saveFileDialog1.Filter = "Text Files (.txt)|*.txt";
-                //    saveFileDialog1.Title = "Select a File to save transport layer logging";
-                //    string strDestinationFile = "UniversalReader_transportLog" 
-                //        + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + @".txt";
-                //    saveFileDialog1.FileName = strDestinationFile;
-                //    // Show the Dialog.
-                //    // If the user clicked OK in the dialog and
-                //    // a .txt file was selected, open it.
-                //    if (saveFileDialog1.ShowDialog() == true)
-                //    {
-                //        StreamWriter writer = new StreamWriter(saveFileDialog1.FileName);
-                //        writer.AutoFlush = true;
-                //        if (_reader is SerialReader)
-                //            _reader.Transport += SerialListener;
-                //    }
-                //    else
-                //    {
-                //        chkEnableTransportLogging.IsChecked = false;
-                //    }
-                //}
-
-                //chkEnableTransportLogging.IsEnabled = false;
-
                 // Set the selected baud rate, so that api try's connecting to the 
                 // module with the selected baud rate first
                 SetBaudRate();
@@ -437,29 +415,10 @@ namespace RfidEncoder.ViewModels
                 Mouse.SetCursor(Cursors.Wait);
                 _reader.Connect();
 
-                Mouse.SetCursor(Cursors.Arrow);
+               // Mouse.SetCursor(Cursors.Arrow);
 
                 //readerStatus.IsEnabled = true;
-                var regionToSet = (Reader.Region)_reader.ParamGet("/reader/region/id");
-                Trace.TraceInformation("Region to set = " + regionToSet);
-
-
-                Regions.Add("Select");
-                Regions.AddRange(((Reader.Region[])_reader.ParamGet("/reader/region/supportedRegions")).Select(r => r.ToString()));
-
-                var region = ConfigurationManager.AppSettings["DefaultRegion"];
-                if (Regions.Contains(region))
-                    //(regionToSet != Reader.Region.UNSPEC)
-                {
-                    //set the region on module
-                    SelectedRegion = Regions[Regions.IndexOf(region)];
-                    //Regions[Regions.IndexOf(regionToSet.ToString())];
-                }
-                else
-                {
-                    SelectedRegion = Regions[Regions.IndexOf("Select")];
-                }
-
+               
                 // TODO: Initialize max and min read power for read power slider
                 //InitializeRdPwrSldrMaxNMinValue();
 
@@ -531,11 +490,13 @@ namespace RfidEncoder.ViewModels
                 //    rdBtnAutoSwitching.IsChecked = false;
                 //}
                 Mouse.SetCursor(Cursors.Arrow);
-                //CustomizedMessageBox = new URACustomMessageBoxWindow();
+                IsConnected = true;
 
+                //CustomizedMessageBox = new URACustomMessageBoxWindow();
+                
+                Task.Factory.StartNew(SetDefaultRegion);
                 //// Clear firmware Update open file dialog status
                 //txtFirmwarePath.Text = "";
-                IsConnected = true;
             }
             catch (Exception ex)
             {
@@ -615,6 +576,42 @@ namespace RfidEncoder.ViewModels
                     }
                 }
             }
+        }
+
+        private void SetDefaultRegion()
+        {
+            Thread.Sleep(300);
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                try
+                {
+                    Regions.Add("Select");
+                    Regions.AddRange(
+                        ((Reader.Region[])_reader.ParamGet("/reader/region/supportedRegions")).Select(r => r.ToString()));
+
+                    var regionToSet = (Reader.Region)_reader.ParamGet("/reader/region/id");
+                    Trace.TraceInformation("Region to set = " + regionToSet);
+
+                    var region = ConfigurationManager.AppSettings["DefaultRegion"];
+                    if (Regions.Contains(region))
+                    //(regionToSet != Reader.Region.UNSPEC)
+                    {
+                        //set the region on module
+                        SelectedRegion = Regions[Regions.IndexOf(region)];
+                        //Regions[Regions.IndexOf(regionToSet.ToString())];
+                    }
+                    else
+                    {
+                        SelectedRegion = Regions[Regions.IndexOf("Select")];
+                    }
+                }
+                catch (Exception exception)
+                {
+                    var error = "Error setting default region. " + exception.Message;
+                    Trace.TraceError(error + exception.StackTrace);
+                }
+            });
         }
 
         /// <summary>

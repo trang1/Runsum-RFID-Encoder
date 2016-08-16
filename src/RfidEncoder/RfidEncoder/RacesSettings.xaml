@@ -9,6 +9,11 @@
         Title="RacesSettings" Width="300"
         MinWidth="400" MinHeight="200" WindowStartupLocation="CenterOwner"
         Background="DarkGray">
+    <Window.Resources>
+        <Style x:Key="RightTextBlock" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Right" />
+        </Style>
+    </Window.Resources>
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -32,15 +37,15 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
-                <TextBlock Text="From race number" Margin="3" />
+                <TextBlock Text="From race number" Margin="3" Style="{DynamicResource RightTextBlock}"/>
                 <talex:NumericUpDown Grid.Column="1" Margin="5"
                              Value="{Binding StartNumber, Mode=TwoWay}" />
 
-                <TextBlock Text="To race number" Grid.Column="2" Margin="3"/>
+                <TextBlock Text="To race number" Grid.Column="2" Margin="3" Style="{DynamicResource RightTextBlock}"/>
                 <talex:NumericUpDown Value="{Binding EndNumber, Mode=TwoWay}" Margin="5"
                              Grid.Column="3"/>
 
-                <TextBlock Text="Tags per race number" Margin="3" Grid.Row="1" />
+                <TextBlock Text="Tags per race number" Margin="3" Grid.Row="1"  Style="{DynamicResource RightTextBlock}"/>
                 <talex:NumericUpDown Grid.Column="1" Margin="5" Grid.Row="1" Minimum="1" Maximum="10"
                              Value="{Binding TagsPerRaceCount, Mode=TwoWay}" />
                 
@@ -56,13 +61,14 @@
 
                 <CheckBox Content="Add a prefix" Grid.Row="3" IsChecked="{Binding AddPrefix, Mode=TwoWay}" Name="PrefixCheckBox"
                           VerticalAlignment="Center" Margin="3" HorizontalAlignment="Right"/>
-                <TextBox Text="{Binding Prefix, Mode=TwoWay}" Grid.Column="1" Grid.Row="3" Margin="3" IsEnabled="{Binding ElementName=PrefixCheckBox, Path=IsChecked}"/>
-                <TextBlock Text="Code length" Grid.Column="2" Grid.Row="3" Margin="3" />
+                <TextBox Text="{Binding Prefix, Mode=TwoWay}" Grid.Column="1" Grid.Row="3" Margin="3" 
+                         IsEnabled="{Binding ElementName=PrefixCheckBox, Path=IsChecked}"/>
+                <TextBlock Text="Code length" Grid.Column="2" Grid.Row="3" Margin="3"  Style="{DynamicResource RightTextBlock}"/>
                 <talex:NumericUpDown Value="{Binding CodeLength, Mode=TwoWay}" Grid.Column="3" Grid.Row="3" Margin="5" Minimum="1" />
-                
-                <TextBlock Text="Access password" Grid.Row="4" Margin="3"/>
+
+                <TextBlock Text="Access password" Grid.Row="4" Margin="3" Style="{DynamicResource RightTextBlock}"/>
                 <TextBox Text="{Binding AccessPassword}" Grid.Row="4" Grid.Column="1" Margin="3" />
-                <TextBlock Text="Kill password" Grid.Row="4" Grid.Column="2" Margin="3"/>
+                <TextBlock Text="Kill password" Grid.Row="4" Grid.Column="2" Margin="3" Style="{DynamicResource RightTextBlock}"/>
                 <TextBox Text="{Binding KillPassword}" Grid.Row="4" Grid.Column="3" Margin="3" />
                 
             </Grid>
