@@ -72,6 +72,7 @@
     <Compile Include="RacesSettings.xaml.cs">
       <DependentUpon>RacesSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ReaderMockup.cs" />
     <Compile Include="TagMemoryHelper.cs" />
     <Compile Include="Tracer.cs" />
     <Compile Include="ViewModels\BooleanToVisibilityConverter.cs" />

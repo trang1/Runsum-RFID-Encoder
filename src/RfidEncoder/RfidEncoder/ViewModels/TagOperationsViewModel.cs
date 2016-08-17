@@ -404,7 +404,9 @@ namespace RfidEncoder.ViewModels
                 {
                     readerUri = m.ToString();
                 }
-                _reader = Reader.Create(string.Concat("tmr:///", readerUri));
+
+                //_reader = Reader.Create(string.Concat("tmr:///", readerUri));
+                _reader = new ReaderMockup();
 
                 // Set the selected baud rate, so that api try's connecting to the 
                 // module with the selected baud rate first
