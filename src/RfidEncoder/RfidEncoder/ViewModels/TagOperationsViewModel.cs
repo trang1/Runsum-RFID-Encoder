@@ -67,6 +67,8 @@ namespace RfidEncoder.ViewModels
                         SingleReadResult = tag.ToString();
                     });
                 } while (!_cancelReading);
+
+                _cancelReading = false;
             });
         }
 
@@ -92,6 +94,7 @@ namespace RfidEncoder.ViewModels
                 _isWaitingForTagRead = value; 
                 OnPropertyChanged("IsWaitingForTagRead");
                 OnPropertyChanged("ReadMultipleTagsButtonContent");
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -191,10 +194,9 @@ namespace RfidEncoder.ViewModels
                     // do events
                     Application.Current.Dispatcher.Invoke(() => { });
                     
-                } while (!tag.HasValue || _cancelReading);
+                } while (!tag.HasValue);
 
                 _reader.StopReading();
-                _cancelReading = false;
             }
             catch (Exception exception)
             {

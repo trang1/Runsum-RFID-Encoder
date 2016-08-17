@@ -22,7 +22,7 @@ namespace RfidEncoder
             ParamAdd(new Setting("/reader/region/id", typeof (Region), Region.UNSPEC, true));
             ParamAdd(new Setting("/reader/radio/readPower", typeof (int), 100, true));
             ParamAdd(new Setting("/reader/tagop/antenna", typeof (int), 1, true));
-            ParamAdd(new Setting("/reader/tagop/antenna", typeof (int), 1, true));
+            ParamAdd(new Setting("/reader/tagop/protocol", typeof (TagProtocol), TagProtocol.NONE, true));
             ParamAdd(new Setting("/reader/read/plan", typeof (ReadPlan), null, true));
             //ParamSet("/reader/baudRate", 0);
         }
@@ -54,22 +54,43 @@ namespace RfidEncoder
             throw new NotImplementedException();
         }
 
+        byte[] _previousTag;
+        volatile bool _isReading;
         public override void StartReading()
         {
-            var rnd = new Random();
-            Task.Factory.StartNew(() =>
+            if(_isReading) return;
+            lock (this)
             {
-                Thread.Sleep(rnd.Next(1000, 5000));
-                var data = new TagReadData();
-                var epcField = typeof (TagReadData).GetField("_tagData",BindingFlags.NonPublic | BindingFlags.Instance);
-                epcField.SetValue(data, new TagData(new byte[] {1, 0, 0, 0}));
-                OnTagRead(data);
-            });
+                if (_isReading) return;
+                var rnd = new Random();
+                _isReading = true;
+                Task.Factory.StartNew(() =>
+                {
+                    
+                        Thread.Sleep(rnd.Next(1000, 5000));
+                        //if (!_isReading) break;
+
+                        var data = new TagReadData();
+                        var epcField = typeof (TagReadData).GetField("_tagData",
+                            BindingFlags.NonPublic | BindingFlags.Instance);
+                        epcField.SetValue(data,
+                            new TagData(_previousTag ??
+                                        new[]
+                                        {
+                                            (byte) rnd.Next(256), (byte) rnd.Next(256),
+                                            (byte) rnd.Next(256), (byte) rnd.Next(256)
+                                        }));
+                        OnTagRead(data);
+                });
+            }
         }
 
         public override void StopReading()
         {
-            throw new NotImplementedException();
+            lock (this)
+            {
+                _isReading = false;
+            }
         }
 
         public override void FirmwareLoad(Stream firmware)
@@ -94,7 +115,13 @@ namespace RfidEncoder
 
         public override object ExecuteTagOp(TagOp tagOP, TagFilter target)
         {
-            throw new NotImplementedException();
+            if (tagOP is Gen2.WriteTag)
+            {
+                Thread.Sleep(300);
+                _previousTag = ((Gen2.WriteTag)tagOP).Epc.EpcBytes;
+                MessageBox.Show("Tag has been written");
+            }
+            return null;
         }
 
         public override void KillTag(TagFilter target, TagAuthentication password)
@@ -119,7 +146,9 @@ namespace RfidEncoder
 
         public override void WriteTag(TagFilter target, TagData epc)
         {
-            throw new NotImplementedException();
+            Thread.Sleep(300);
+            _previousTag = epc.EpcBytes;
+            MessageBox.Show("Tag written");
         }
 
         public override void WriteTagMemBytes(TagFilter target, int bank, int address, ICollection<byte> data)

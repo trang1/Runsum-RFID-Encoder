@@ -354,7 +354,7 @@ namespace RfidEncoder.ViewModels
                     }
 
                     //11. have computer speak the last two digits of the number.
-                    if (encoded || Debugger.IsAttached)
+                    if (encoded)
                     {
                         SayNumber(NextTagNumber);
                         WriteToFile();
