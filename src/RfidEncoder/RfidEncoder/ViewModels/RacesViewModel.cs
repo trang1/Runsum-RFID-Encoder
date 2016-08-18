@@ -230,18 +230,19 @@ namespace RfidEncoder.ViewModels
                     //2. Read tag
                     var tag = TagOperationsViewModel.ReadTagSync();
 
+                    if (!IsEncoding) return;
+
                     //3. if epc tag is in the number set to be encoded as defined by the project (i.e. 12301020) this indicates it is already encoded, 
                     //3a. show 'already encoded as 1020' 
                     //3b. return to 1.
-                    if(!IsEncoding)
-                        if (tag.HasValue && !OverrideTags && CheckRepeatedTag(tag))
-                        {
-                            StatusBarText = "Tag " + tag + " is already encoded";
-                            StatusBarBackground = Brushes.OrangeRed;
-                            Speak("Already encoded");
-                            Thread.Sleep(300);
-                            continue;
-                        }
+                    if (tag.HasValue && !OverrideTags && CheckRepeatedTag(tag))
+                    {
+                        StatusBarText = "Tag " + tag + " is already encoded";
+                        StatusBarBackground = Brushes.OrangeRed;
+                        Speak("Already encoded");
+                        Thread.Sleep(500);
+                        continue;
+                    }
 
                     var apLocked = false;
 
@@ -298,9 +299,11 @@ namespace RfidEncoder.ViewModels
                         }
                     }
 
+                    var isLockingNeeded = _totalRaceInfo.AccessPassword != "0";
+                    
                     //4b. if access password is not locked, encode access password = 
                     //#8 digits from access password dialogue needed in 'new project' screen# .
-                    if (!apLocked)
+                    if (!apLocked && isLockingNeeded)
                     {
                         TagOperationsViewModel.WriteAccessPassword(_totalRaceInfo.AccessPassword);
                     }
@@ -308,7 +311,7 @@ namespace RfidEncoder.ViewModels
                     //5. encode tag to proper number
                     var encoded = TagOperationsViewModel.WriteTag(NextTagNumber);
 
-                    if (encoded && !apLocked)
+                    if (encoded && !apLocked && isLockingNeeded)
                     {
                         //6. lock epc memory (tag) with write lock. Gen2.LockAction.EPC_LOCK
                         TagOperationsViewModel.ApplyLockAction(

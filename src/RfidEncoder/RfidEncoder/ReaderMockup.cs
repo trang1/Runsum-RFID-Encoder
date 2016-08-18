@@ -66,21 +66,21 @@ namespace RfidEncoder
                 _isReading = true;
                 Task.Factory.StartNew(() =>
                 {
-                    
-                        Thread.Sleep(rnd.Next(1000, 5000));
-                        //if (!_isReading) break;
 
-                        var data = new TagReadData();
-                        var epcField = typeof (TagReadData).GetField("_tagData",
-                            BindingFlags.NonPublic | BindingFlags.Instance);
-                        epcField.SetValue(data,
-                            new TagData(_previousTag ??
-                                        new[]
-                                        {
-                                            (byte) rnd.Next(256), (byte) rnd.Next(256),
-                                            (byte) rnd.Next(256), (byte) rnd.Next(256)
-                                        }));
-                        OnTagRead(data);
+                    Thread.Sleep(rnd.Next(1000, 5000));
+                    //if (!_isReading) break;
+
+                    var data = new TagReadData();
+                    var epcField = typeof (TagReadData).GetField("_tagData",
+                        BindingFlags.NonPublic | BindingFlags.Instance);
+                    epcField.SetValue(data, new TagData(_previousTag ??
+                                                        new[]
+                                                        {
+                                                            (byte) rnd.Next(256), (byte) rnd.Next(256),
+                                                            (byte) rnd.Next(256), (byte) rnd.Next(256)
+                                                        }));
+                    OnTagRead(data);
+                    _previousTag = null;
                 });
             }
         }
@@ -119,7 +119,7 @@ namespace RfidEncoder
             {
                 Thread.Sleep(300);
                 _previousTag = ((Gen2.WriteTag)tagOP).Epc.EpcBytes;
-                MessageBox.Show("Tag has been written");
+                MessageBox.Show("Tag " + ((Gen2.WriteTag)tagOP).Epc + " has been written");
             }
             return null;
         }
