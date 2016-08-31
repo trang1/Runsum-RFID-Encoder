@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,14 @@ namespace RfidEncoder
         public RacesSettings()
         {
             InitializeComponent();
+        }
+
+        public static bool MonzaR6Visibility
+        {
+            get
+            {
+                return bool.Parse(ConfigurationManager.AppSettings["MonzaR6"]);
+            }
         }
     }
 }

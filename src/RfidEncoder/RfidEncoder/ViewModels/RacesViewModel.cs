@@ -167,7 +167,7 @@ namespace RfidEncoder.ViewModels
                     AddPrefix = true,
                     IsDigitInserting = true,
                     Prefix = "123",
-                    AccessPassword = "0"
+                    AccessPassword = "00000000"
                 };
 
 
@@ -448,6 +448,7 @@ namespace RfidEncoder.ViewModels
         private int _codeLength;
         private string _killPassword;
         private string _accessPassword;
+        private bool _permalock;
 
         public int StartNumber
         {
@@ -549,6 +550,16 @@ namespace RfidEncoder.ViewModels
             }
         }
 
+        public bool Permalock
+        {
+            get { return _permalock; }
+            set
+            {
+                _permalock = value;
+                OnPropertyChanged("Permalock");
+            }
+        }
+
         public TotalRaceInfo(TotalRaceInfo totalRaceInfo)
         {
             if(totalRaceInfo == null) return;
@@ -563,6 +574,7 @@ namespace RfidEncoder.ViewModels
             _codeLength = totalRaceInfo.CodeLength;
             _accessPassword = totalRaceInfo.AccessPassword;
             _killPassword = totalRaceInfo.KillPassword;
+            _permalock = totalRaceInfo.Permalock;
         }
 
         #region INotifyPropertyChanged

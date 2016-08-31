@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RfidEncoder"
         xmlns:talex="http://schemas.talex-soft.com/2010/xaml/presentation"
+        xmlns:configuration="clr-namespace:System.Configuration;assembly=System.Configuration"
+        xmlns:viewModels="clr-namespace:RfidEncoder.ViewModels"
         mc:Ignorable="d" SizeToContent="WidthAndHeight"
         Title="RacesSettings" Width="300"
         MinWidth="400" MinHeight="200" WindowStartupLocation="CenterOwner"
@@ -13,6 +15,7 @@
         <Style x:Key="RightTextBlock" TargetType="TextBlock">
             <Setter Property="TextAlignment" Value="Right" />
         </Style>
+        <viewModels:BooleanToVisibilityConverter x:Key="BoolToVisConverter" IsReversed="True" />
     </Window.Resources>
     <Grid >
         <Grid.RowDefinitions>
@@ -67,10 +70,13 @@
                 <talex:NumericUpDown Value="{Binding CodeLength, Mode=TwoWay}" Grid.Column="3" Grid.Row="3" Margin="5" Minimum="1" />
 
                 <TextBlock Text="Access password" Grid.Row="4" Margin="3" Style="{DynamicResource RightTextBlock}"/>
-                <TextBox Text="{Binding AccessPassword}" Grid.Row="4" Grid.Column="1" Margin="3" ToolTip="8 digits or zero"/>
-                <TextBlock Text="Kill password" Grid.Row="4" Grid.Column="2" Margin="3" Style="{DynamicResource RightTextBlock}"/>
-                <TextBox Text="{Binding KillPassword}" Grid.Row="4" Grid.Column="3" Margin="3" />
+                <TextBox Text="{Binding AccessPassword}" Grid.Row="4" Grid.Column="1" Margin="3" ToolTip="8 digits"/>
+                <TextBlock Text="Kill password" Grid.Row="4" Grid.Column="2" Margin="3" Style="{DynamicResource RightTextBlock}" 
+                           />
+                <TextBox Text="{Binding KillPassword}" Grid.Row="4" Grid.Column="3" Margin="3" 
+                         />
                 
+                <!--<CheckBox Content="Permalock chip" IsChecked="{Binding Permalock}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"/>-->
             </Grid>
         </GroupBox>
         

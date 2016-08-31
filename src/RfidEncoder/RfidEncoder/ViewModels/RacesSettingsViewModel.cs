@@ -63,9 +63,10 @@ namespace RfidEncoder.ViewModels
                 return;
             }
 
-            if (TotalRaceInfo.AccessPassword.Length < 8 && TotalRaceInfo.AccessPassword != "0")
+            int ap;
+            if (TotalRaceInfo.AccessPassword.Length < 8 || !int.TryParse(TotalRaceInfo.AccessPassword, out ap))
             {
-                MessageBox.Show("The access password has to be minimum 8 digits long or set to zero.", "Error");
+                MessageBox.Show("The access password has to be minimum 8 digits long.", "Error");
                 return;
             }
 
