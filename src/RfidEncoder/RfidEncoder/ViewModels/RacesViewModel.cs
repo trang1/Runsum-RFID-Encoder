@@ -299,7 +299,7 @@ namespace RfidEncoder.ViewModels
                         }
                     }
 
-                    var isLockingNeeded = _totalRaceInfo.AccessPassword != "0";
+                    var isLockingNeeded = _totalRaceInfo.AccessPassword != "00000000";
                     
                     //4b. if access password is not locked, encode access password = 
                     //#8 digits from access password dialogue needed in 'new project' screen# .
@@ -308,7 +308,10 @@ namespace RfidEncoder.ViewModels
                         TagOperationsViewModel.WriteAccessPassword(_totalRaceInfo.AccessPassword);
                     }
 
-                    //5. encode tag to proper number
+                    // 5. Unlock EPC and encode tag to proper number
+                    TagOperationsViewModel.ApplyLockAction(
+                        new Gen2.LockAction(Gen2.LockAction.EPC_UNLOCK), _totalRaceInfo.AccessPassword);
+
                     var encoded = TagOperationsViewModel.WriteTag(NextTagNumber);
 
                     if (encoded && !apLocked && isLockingNeeded)

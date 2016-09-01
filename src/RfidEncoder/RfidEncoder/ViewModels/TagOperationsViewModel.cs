@@ -332,8 +332,13 @@ namespace RfidEncoder.ViewModels
             var tag = ReadTagSync();
             if (tag > 0)
             {
-                return tag == tagToVerify;
+                if (tag == tagToVerify)
+                {
+                    Trace.TraceInformation("Tag "+tag+" verified successfully.");
+                    return true;
+                }
             }
+            Trace.TraceInformation("Tag " + tag + " verified unsuccessfully.");
             return false;
         }
 
@@ -345,12 +350,12 @@ namespace RfidEncoder.ViewModels
         {
             try
             {
-                Debug.WriteLine("Power to set = " + Convert.ToInt32(1000 + 130 * _readPower));
+                var power = Convert.ToInt32(1000 + 130*_readPower);
+                Debug.WriteLine("Power to set = " + power);
                 if (_reader != null && !_changingPower)
                 {
                     _changingPower = true;
-                    _reader.ParamSet("/reader/radio/readPower", Convert.ToInt32(1000 + 130 * _readPower));
-                    _changingPower = false;
+                    _reader.ParamSet("/reader/radio/readPower", power);
                 }
             }
             catch (Exception ex)
@@ -358,7 +363,9 @@ namespace RfidEncoder.ViewModels
                 var error = ex.Message + " Check supported protocol configurations in Reader's Hardware Guide.";
                 MessageBox.Show(error, "Unsupported Reader Configuration", MessageBoxButton.OK, MessageBoxImage.Error);
                 Trace.TraceError(error + ex.StackTrace);
-
+            }
+            finally
+            {
                 _changingPower = false;
             }
         }
@@ -408,8 +415,6 @@ namespace RfidEncoder.ViewModels
                 }
 
                 _reader = Reader.Create(string.Concat("tmr:///", readerUri));
-                
-                // HERE WE CAN SWITCH TO TEST THE FUNCIONALITY
                 //_reader = new ReaderMockup();
 
                 // Set the selected baud rate, so that api try's connecting to the 
@@ -507,13 +512,7 @@ namespace RfidEncoder.ViewModels
             catch (Exception ex)
             {
                 Mouse.SetCursor(Cursors.Arrow);
-                //btnConnect.IsEnabled = true;
-                //initialReaderSettingsLoaded = true;
-                //lblshowStatus.Content = "Disconnected";
-                //chkEnableTransportLogging.IsEnabled = true;
-                //gridReadOptions.IsEnabled = false;
-                //regioncombo.IsEnabled = false;
-                //gridDisplayOptions.IsEnabled = false;
+
                 Trace.TraceError("Connection error. " + ex.Message + ex.StackTrace);
                 if (ex is IOException)
                 {
@@ -528,8 +527,6 @@ namespace RfidEncoder.ViewModels
                         MessageBox.Show("Reader not connected on " + SelectedComPort.Name, "Error",
                             MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                    //cmbReaderAddr.IsEnabled = true;
-                    //cmbFixedReaderAddr.IsEnabled = true;
                 }
                 else if (ex is ReaderException)
                 {
@@ -543,18 +540,6 @@ namespace RfidEncoder.ViewModels
                     {
                         MessageBox.Show("Error connecting to reader: " + ex.Message + ". Please update the module firmware.", "Reader Error",
                                 MessageBoxButton.OK, MessageBoxImage.Error);
-                        //expdrFirmwareUpdate.IsExpanded = true;
-                        //expdrFirmwareUpdate.Focus();
-                        ////Dock the settings/status panel if not docked, to display Firmware update options
-                        //if (pane1Button.Visibility == System.Windows.Visibility.Visible)
-                        //{
-                        //    pane1Button.RaiseEvent(new RoutedEventArgs(ButtonBase.MouseEnterEvent));
-                        //    pane1Pin.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
-                        //}
-                        //if (expdrConnect.IsExpanded)
-                        //{
-                        //    expdrConnect.IsExpanded = false;
-                        //}
                     }
                     else
                     {
@@ -788,7 +773,8 @@ namespace RfidEncoder.ViewModels
                 ushort[] dataToBeWritten = null;
                 dataToBeWritten = ByteConv.ToU16s(ByteFormat.FromHex(accessPassword.Replace(" ", "")));
                 _reader.ExecuteTagOp(new Gen2.WriteData(Gen2.Bank.RESERVED, 2, dataToBeWritten), null);
-                //MessageBox.Show("Access Password has successfully been set to 0x" + txtbxAccesspaasword.Text.Replace(" ", ""), "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                
+                Trace.TraceInformation("Access Password has successfully been set to " + accessPassword);
             }
             catch (Exception ex)
             {
@@ -810,7 +796,8 @@ namespace RfidEncoder.ViewModels
                 ushort[] dataToBeWritten = null;
                 dataToBeWritten = ByteConv.ToU16s(ByteFormat.FromHex(killPassword.Replace(" ", "")));
                 _reader.ExecuteTagOp(new Gen2.WriteData(Gen2.Bank.RESERVED, 0, dataToBeWritten), null);
-                //MessageBox.Show("Access Password has successfully been set to 0x" + txtbxAccesspaasword.Text.Replace(" ", ""), "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                
+                Trace.TraceInformation("Kill Password has successfully been set to " + killPassword);
             }
             catch (Exception ex)
             {
@@ -831,6 +818,8 @@ namespace RfidEncoder.ViewModels
 
                 _reader.ExecuteTagOp(new Gen2.Lock(ByteConv.ToU32(
                     ByteFormat.FromHex(accessPassword.Replace(" ", "")), 0), action), null);
+
+                Trace.TraceInformation("LockAction applied: " + action);
                 return true;
             }
             catch (Exception ex)
@@ -856,12 +845,14 @@ namespace RfidEncoder.ViewModels
                     reservedBankData = ByteFormat.ToHex(ByteConv.ConvertFromUshortArray(reservedData), "", " ");
 
                 var accessPassword = reservedBankData.Trim(' ');
+                Trace.TraceInformation("Access password = " + accessPassword);
                 return false;
             }
             catch (Exception ex)
             {
                 if (ex is FAULT_GEN2_PROTOCOL_MEMORY_LOCKED_Exception)
                 {
+                    Trace.TraceInformation("Access password is locked.");
                     return true;
                 }
                 Trace.TraceError("Error checking access password. " + ex.Message + ex.StackTrace);
@@ -877,12 +868,15 @@ namespace RfidEncoder.ViewModels
 
                 _reader.ExecuteTagOp(new Gen2.Lock(ByteConv.ToU32(
                     ByteFormat.FromHex(accessPassword.Replace(" ", "")), 0), new Gen2.LockAction(Gen2.LockAction.EPC_UNLOCK)), null);
+
+                Trace.TraceInformation("EPC successfully unlocked.");
                 return false;
             }
             catch (Exception ex)
             {
                 if (ex is FAULT_GEN2_PROTOCOL_MEMORY_LOCKED_Exception)
                 {
+                    Trace.TraceInformation("EPC is locked.");
                     return true;
                 }
                 Trace.TraceError("Error checking EPC. " + ex.Message + ex.StackTrace);
