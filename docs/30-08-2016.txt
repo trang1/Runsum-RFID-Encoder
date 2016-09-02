@@ -1,0 +1,101 @@
+I have learned that the Monza R6 RFIC chips I purchased do not have the access and kill password features of the GEN2 standard. Seems that IMPINJ took a shortcut with the Monza R6 chips and they do not fully follow the GEN2 standard. IMPINJ is coming out with the Monza R6-P which will be GEN2 compatible. The Monza R6 chip doesn't have an access password or a kill password, but it can be permalocked. The documentation says that this is done with a lock command with a payload of all ones.
+https://support.impinj.com/hc/en-us/sections/200465897-Monza-6-Tag-Chips
+
+So it seems I need three modes.
+1. Mode that writes locked and unlocked epc's and leave the access password at 00000000
+2. Mode that writes locked and unlocked epc's with a defined access password
+3. Mode that permalocks Monza R6 chips epc (These would never be changeable)
+
+Documentation on the permalock is https://support.impinj.com/hc/en-us/articles/204963168-Monza-R6-Permalock-Memory
+
+
+
+I tried the software with five Monza 4D chips that were sent to me as a sample. Your programming worked for these chips on the first encoding. It encoded them, set the access password, locked the access password and locked the epc code. Wonderful!
+However When I tried to rewrite the epc of these 5 tags (after the action above) I would receive an error message indicating that the tag write failed on the second attempt at encoding the epc. It seems that the programming didn't detect that the chip had a locked epc that it could unlock with the access password, re-encode the epc, and then lock it again. 
+
+The log file
+
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:01:25 PM. Logging started. OS version: Microsoft Windows NT 6.1.7601 Service Pack 1
+
+Writing unlocked Monza 4D to access password of 12345678 for 5 chips
+
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:22 PM. Tag 12600102 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:22 PM. Tag 12600102 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:23 PM. Tag 12300100 has been written.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:23 PM. Tag 12300100 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:23 PM. Tag 12300100 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:26 PM. Tag 12600100 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:27 PM. Tag 12600100 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:27 PM. Tag 12310100 has been written.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:27 PM. Tag 12310100 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:28 PM. Tag 12310100 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:28 PM. Tag 12310100 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:29 PM. Tag 12310100 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:29 PM. Tag 12310100 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:31 PM. Tag 12610100 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:31 PM. Tag 12610100 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:32 PM. Tag 12300101 has been written.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:32 PM. Tag 12300101 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:32 PM. Tag 12300101 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:33 PM. Tag 12300101 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:33 PM. Tag 12300101 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:34 PM. Tag 12300101 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:34 PM. Tag 12300101 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:37 PM. Tag 12600101 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:37 PM. Tag 12600101 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:37 PM. Tag 12310101 has been written.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:38 PM. Tag 12310101 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:38 PM. Tag 12310101 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:38 PM. Tag 12310101 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:39 PM. Tag 12310101 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:42 PM. Tag 12610101 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:42 PM. Tag 12610101 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:42 PM. Tag 12300102 has been written.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:43 PM. Tag 12300102 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:43 PM. Tag 12300102 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:43 PM. Tag 12300102 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:44 PM. Tag 12300102 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:45 PM. Tag 12300102 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:02:45 PM. Tag 12300102 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:03:03 PM. Tag 12300100 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:03:03 PM. Tag 12300100 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:03:04 PM. Tag 12300100 has been read.
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:03:04 PM. Tag 12300100 has been read.
+RfidEncoder.exe Error: 0 : Time: 8/29/2016 9:03:06 PM. Error checking access password. No tags found. at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12880
+at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3007
+at ThingMagic.SerialReader.CmdGen2ReadTagData(UInt16 timeout, TagMetadataFlag metadataFlags, Bank bank, UInt32 address, Byte count, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9771
+at ThingMagic.SerialReader.ReadTagMemBytes(TagFilter target, Int32 bank, Int32 byteAddress, Int32 byteCount) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8082
+at ThingMagic.Reader.ReadTagMemWordsGivenReadTagMemBytes(TagFilter target, Int32 bank, Int32 wordAddress, Int32 wordCount) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\Reader.cs:line 1938
+at ThingMagic.SerialReader.ReadTagMemWords(TagFilter target, Int32 bank, Int32 wordAddress, Int32 wordCount) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8140
+at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8386
+at RfidEncoder.ViewModels.TagOperationsViewModel.CheckAccessPasswordIsLocked() in c:\Users\sls238\Source\Repos\Runsum-RFID-Encoder2\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 851
+
+
+
+
+
+
+Tried rewriting the locked tag to 12710100 with access password of 12345678
+
+Seems that the epc wasn't unlocked with the access password and the write failed.
+
+
+
+
+
+
+RfidEncoder.exe Error: 0 : Time: 8/29/2016 9:03:09 PM. Error encoding the tag 12710100. Tag write operation failed. at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12892
+at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3367
+at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock, UInt32 accessPassword, TagFilter filter) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9605
+at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC, Boolean Lock) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 9570
+at ThingMagic.SerialReader.WriteTag(TagFilter target, TagData epc) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8166
+at ThingMagic.SerialReader.ExecuteTagOp(TagOp tagOP, TagFilter target) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 8398
+at RfidEncoder.ViewModels.TagOperationsViewModel.WriteTag(UInt32 tag) in c:\Users\sls238\Source\Repos\Runsum-RFID-Encoder2\src\RfidEncoder\RfidEncoder\ViewModels\TagOperationsViewModel.cs:line 308
+RfidEncoder.exe Information: 0 : Time: 8/29/2016 9:03:10 PM. Tag 12300100 has been read.
+RfidEncoder.exe Error: 0 : Time: 8/29/2016 9:03:10 PM. Error encoding the tag 12710100. Tag write operation failed. at ThingMagic.SerialReader.GetError(UInt16 error) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 12892
+at ThingMagic.SerialReader.receiveMessage(Byte opcode, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3367
+at ThingMagic.SerialReader.SendTimeoutUnchecked(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3026
+at ThingMagic.SerialReader.SendTimeout(ICollection`1 data, Int32 timeout) in I:\Projects\mercuryapi-1.27.3.16\cs\ThingMagic.Reader\SerialReader.cs:line 3003
+at ThingMagic.SerialReader.CmdWriteTagEpc(UInt16 timeout, Byte[] EPC,
