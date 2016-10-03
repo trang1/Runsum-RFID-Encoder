@@ -217,6 +217,7 @@ namespace RfidEncoder.ViewModels
 
             Task.Factory.StartNew(() =>
             {
+                string newAccessPassword = "";
                 do
                 {
                     //1. Wait for Tag
@@ -253,20 +254,30 @@ namespace RfidEncoder.ViewModels
                         //which has yet to be created. if fails, open dialogue to ask for old access password. Remember this password for 
                         //future uses of this dialogue. 
                         if (!TagOperationsViewModel.ApplyLockAction
-                            (new Gen2.LockAction(Gen2.LockAction.ACCESS_UNLOCK), _totalRaceInfo.AccessPassword))
+                            (new Gen2.LockAction(Gen2.LockAction.ACCESS_UNLOCK), string.IsNullOrEmpty(newAccessPassword)
+                                ? _totalRaceInfo.AccessPassword
+                                : newAccessPassword))
                         {
                             //open dialog
-                            var dialog = new NewPasswordWnd(_totalRaceInfo.AccessPassword);
-                            if (dialog.ShowDialog().GetValueOrDefault(false))
+                            bool dialogResult = false;
+
+                            Application.Current.Dispatcher.Invoke(() =>
+                            {
+                                var dialog = new NewPasswordWnd(_totalRaceInfo.AccessPassword);
+                                dialogResult = dialog.ShowDialog().GetValueOrDefault(false);
+                                newAccessPassword = dialog.Password;
+                            });
+                            if (dialogResult)
                             {
 
                                 if (!TagOperationsViewModel.ApplyLockAction
-                                    (new Gen2.LockAction(Gen2.LockAction.ACCESS_UNLOCK), dialog.Password))
+                                    (new Gen2.LockAction(Gen2.LockAction.ACCESS_UNLOCK), newAccessPassword))
                                 {
                                     // failed again
                                     // check if epc is locked
                                     // if locked -> invalid chip -> continue
-                                    if (TagOperationsViewModel.CheckEpcIsLocked(dialog.Password))
+                                    newAccessPassword = "";
+                                    if (TagOperationsViewModel.CheckEpcIsLocked(newAccessPassword))
                                     {
                                         StatusBarText = "Invalid chip, continue...";
                                         StatusBarBackground = Brushes.Red;
@@ -294,16 +305,27 @@ namespace RfidEncoder.ViewModels
                             }
                             else
                             {
-                                
+                                if (MessageBox.Show("Continue without locking?", "Question",
+                                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                                {
+                                    //if yes
+                                    apLocked = true;
+                                }
+                                //if no -> continue
+                                else
+                                {
+                                    Thread.Sleep(300);
+                                    continue;
+                                }
                             }
                         }
                     }
 
-                    var isLockingNeeded = _totalRaceInfo.AccessPassword != "00000000";
+                    //var isLockingNeeded = _totalRaceInfo.AccessPassword != "00000000";
                     
                     //4b. if access password is not locked, encode access password = 
                     //#8 digits from access password dialogue needed in 'new project' screen# .
-                    if (!apLocked && isLockingNeeded)
+                    if (!apLocked)// && isLockingNeeded)
                     {
                         TagOperationsViewModel.WriteAccessPassword(_totalRaceInfo.AccessPassword);
                     }
@@ -314,7 +336,7 @@ namespace RfidEncoder.ViewModels
 
                     var encoded = TagOperationsViewModel.WriteTag(NextTagNumber);
 
-                    if (encoded && !apLocked && isLockingNeeded)
+                    if (encoded && !apLocked)// && isLockingNeeded)
                     {
                         //6. lock epc memory (tag) with write lock. Gen2.LockAction.EPC_LOCK
                         TagOperationsViewModel.ApplyLockAction(

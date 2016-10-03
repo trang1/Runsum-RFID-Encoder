@@ -160,7 +160,7 @@ namespace RfidEncoder.ViewModels
                 var data = e.TagReadData;
 
                 tag = ByteConv.ToU32(data.Epc, 0);
-                Trace.TraceInformation("Tag " + tag + " has been read.");
+                LogReadInfo(tag);
             });
 
             var exceptionAction = new EventHandler<ReaderExceptionEventArgs>((sender, reea) =>
@@ -205,6 +205,29 @@ namespace RfidEncoder.ViewModels
             _reader.TagRead -= readAction;
             _reader.ReadException -= exceptionAction;
             return tag;
+        }
+
+        private readonly List<uint?> _readInfoTags=new List<uint?>(); 
+        private void LogReadInfo(uint? tag)
+        {
+            lock(_readInfoTags)
+                if (!_readInfoTags.Contains(tag))
+                    _readInfoTags.Add(tag);
+
+            Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(500);
+                lock (_readInfoTags)
+                {
+                    foreach (var readInfoTag in _readInfoTags)
+                    {
+                        Trace.TraceInformation("Tag " + readInfoTag
+                                               + " has been read.");
+                    }
+                    _readInfoTags.Clear();
+                }
+            });
+            
         }
 
         public ComPortInfo SelectedComPort { get; set; }
@@ -360,8 +383,8 @@ namespace RfidEncoder.ViewModels
             }
             catch (Exception ex)
             {
-                var error = ex.Message + " Check supported protocol configurations in Reader's Hardware Guide.";
-                MessageBox.Show(error, "Unsupported Reader Configuration", MessageBoxButton.OK, MessageBoxImage.Error);
+                var error = "Error while setting read power. " + ex.Message;
+                MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 Trace.TraceError(error + ex.StackTrace);
             }
             finally
@@ -414,8 +437,8 @@ namespace RfidEncoder.ViewModels
                     readerUri = m.ToString();
                 }
 
-                _reader = Reader.Create(string.Concat("tmr:///", readerUri));
-                //_reader = new ReaderMockup();
+                //_reader = Reader.Create(string.Concat("tmr:///", readerUri));
+                _reader = new ReaderMockup();
 
                 // Set the selected baud rate, so that api try's connecting to the 
                 // module with the selected baud rate first
@@ -819,7 +842,7 @@ namespace RfidEncoder.ViewModels
                 _reader.ExecuteTagOp(new Gen2.Lock(ByteConv.ToU32(
                     ByteFormat.FromHex(accessPassword.Replace(" ", "")), 0), action), null);
 
-                Trace.TraceInformation("LockAction applied: " + action);
+                Trace.TraceInformation("LockAction applied: " + action + ". Access password = " + accessPassword);
                 return true;
             }
             catch (Exception ex)

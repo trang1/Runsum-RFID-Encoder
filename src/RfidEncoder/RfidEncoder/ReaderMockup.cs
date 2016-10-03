@@ -121,6 +121,40 @@ namespace RfidEncoder
                 _previousTag = ((Gen2.WriteTag)tagOP).Epc.EpcBytes;
                 MessageBox.Show("Tag " + ((Gen2.WriteTag)tagOP).Epc + " has been written");
             }
+            else if (tagOP is Gen2.Lock)
+            {
+                byte[] apBytes =new byte[4];
+                ByteConv.FromU32(apBytes, 0, ((Gen2.Lock) tagOP).AccessPassword);
+                var ap = ByteFormat.ToHex(apBytes);
+
+                var action = ((Gen2.Lock) tagOP).LockAction;
+                
+                
+                if (action.ToString()==Gen2.LockAction.EPC_UNLOCK.ToString())
+                {
+                    if (ap == "0x00000000")
+                    {
+                        
+                    }
+                }
+
+                if (action.ToString() == Gen2.LockAction.ACCESS_UNLOCK.ToString())
+                {
+                    if (ap == "0x00000000")
+                    {
+                        throw new FAULT_GEN2_PROTOCOL_MEMORY_LOCKED_Exception();
+                    }
+                }
+
+        }
+            else if (tagOP is Gen2.ReadData)
+            {
+                if (((Gen2.ReadData) tagOP).Bank == Gen2.Bank.RESERVED && ((Gen2.ReadData) tagOP).Len == 2
+                    && ((Gen2.ReadData) tagOP).WordAddress == 2)
+                {
+                    throw new FAULT_GEN2_PROTOCOL_MEMORY_LOCKED_Exception();
+                }
+            }
             return null;
         }
 
