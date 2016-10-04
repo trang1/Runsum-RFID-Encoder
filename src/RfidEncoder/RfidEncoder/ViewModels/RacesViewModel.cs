@@ -266,6 +266,7 @@ namespace RfidEncoder.ViewModels
                             Application.Current.Dispatcher.Invoke(() =>
                             {
                                 var dialog = new NewPasswordWnd(_totalRaceInfo.AccessPassword);
+                                dialog.Owner = Application.Current.MainWindow;
                                 dialogResult = dialog.ShowDialog().GetValueOrDefault(false);
                                 newAccessPassword = dialog.Password;
                             });
@@ -325,17 +326,20 @@ namespace RfidEncoder.ViewModels
 
                     //var isLockingNeeded = _totalRaceInfo.AccessPassword != "00000000";
                     if (!IsEncoding) return;
-
+                    string currentAP = _totalRaceInfo.AccessPassword;
                     //4b. if access password is not locked, encode access password = 
                     //#8 digits from access password dialogue needed in 'new project' screen# .
-                    if (!apLocked)// && isLockingNeeded)
+                    // we can write a new access password to the chip here
+                    if (!apLocked && _totalRaceInfo.SetAccessPassword)// && isLockingNeeded)
                     {
-                        TagOperationsViewModel.WriteAccessPassword(_totalRaceInfo.AccessPassword);
+                        if(TagOperationsViewModel.WriteAccessPassword(_totalRaceInfo.NewAccessPassword))
+                            currentAP = _totalRaceInfo.NewAccessPassword;
+                        //our current access password has changed
                     }
 
                     // 5. Unlock EPC and encode tag to proper number
                     TagOperationsViewModel.ApplyLockAction(
-                        new Gen2.LockAction(Gen2.LockAction.EPC_UNLOCK), _totalRaceInfo.AccessPassword);
+                        new Gen2.LockAction(Gen2.LockAction.EPC_UNLOCK), currentAP);
 
                     var encoded = TagOperationsViewModel.WriteTag(NextTagNumber);
 
@@ -343,11 +347,11 @@ namespace RfidEncoder.ViewModels
                     {
                         //6. lock epc memory (tag) with write lock. Gen2.LockAction.EPC_LOCK
                         TagOperationsViewModel.ApplyLockAction(
-                            new Gen2.LockAction(Gen2.LockAction.EPC_LOCK), _totalRaceInfo.AccessPassword);
+                            new Gen2.LockAction(Gen2.LockAction.EPC_LOCK), currentAP);
                         
                         //7. lock access password with read/write lock. Gen2.LockAction.ACCESS_LOCK 
                         TagOperationsViewModel.ApplyLockAction(
-                            new Gen2.LockAction(Gen2.LockAction.ACCESS_LOCK), _totalRaceInfo.AccessPassword);
+                            new Gen2.LockAction(Gen2.LockAction.ACCESS_LOCK), currentAP);
 
                         // if we have a kill password
                         if (!string.IsNullOrEmpty(_totalRaceInfo.KillPassword))
@@ -357,7 +361,13 @@ namespace RfidEncoder.ViewModels
 
                             //9. lock kill password with read/write lock. Gen2.LockAction.LILL_LOCK
                             TagOperationsViewModel.ApplyLockAction(
-                                new Gen2.LockAction(Gen2.LockAction.KILL_LOCK), _totalRaceInfo.AccessPassword);
+                                new Gen2.LockAction(Gen2.LockAction.KILL_LOCK), currentAP);
+                        }
+
+                        // if we chose a permalock feature
+                        if (_totalRaceInfo.Permalock)
+                        {
+                            TagOperationsViewModel.ApplyPermalockAction(currentAP);
                         }
                     }
 

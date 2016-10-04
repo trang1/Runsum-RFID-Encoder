@@ -39,8 +39,9 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                
+
                 <TextBlock Text="From race number" Margin="3" Style="{DynamicResource RightTextBlock}"/>
                 <talex:NumericUpDown Grid.Column="1" Margin="5"
                              Value="{Binding StartNumber, Mode=TwoWay}" />
@@ -52,7 +53,7 @@
                 <TextBlock Text="Tags per race number" Margin="3" Grid.Row="1"  Style="{DynamicResource RightTextBlock}"/>
                 <talex:NumericUpDown Grid.Column="1" Margin="5" Grid.Row="1" Minimum="1" Maximum="10"
                              Value="{Binding TagsPerRaceCount, Mode=TwoWay}" />
-                
+
                 <CheckBox Content="Insert a digit into tag" IsChecked="{Binding IsDigitInserting}" 
                           Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center"/>
 
@@ -75,22 +76,23 @@
                 <TextBlock Text="Kill password" Grid.Row="4" Grid.Column="2" Margin="3" Style="{DynamicResource RightTextBlock}" 
                            />
                 <TextBox Text="{Binding KillPassword}" Grid.Row="4" Grid.Column="3" Margin="3" />
-                
-                <StackPanel Grid.Row="5" Orientation="Horizontal" Grid.ColumnSpan="6" HorizontalAlignment="Center">
-                    <CheckBox Content="Set access password to " Name="SetApCheckBox" Margin="3" VerticalAlignment="Center" IsChecked="{Binding SetAccessPassword}"/>
-                    <TextBox Text="{Binding NewAccessPassword}" Margin="3" Width="100" IsEnabled="{Binding ElementName=SetApCheckBox, Path=IsChecked}" />
-                </StackPanel>
-                
-                <!--<CheckBox Content="Permalock chip" IsChecked="{Binding Permalock}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"/>-->
+
+                <CheckBox Grid.Row="5" Content="Set access password to " Name="SetApCheckBox" Margin="3" 
+                          VerticalAlignment="Center" IsChecked="{Binding SetAccessPassword}"/>
+                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding NewAccessPassword}" Margin="3" 
+                             IsEnabled="{Binding ElementName=SetApCheckBox, Path=IsChecked}" />
+               
+                <CheckBox Content="Permalock R6 chips" IsChecked="{Binding Permalock}" Grid.Row="5" Grid.Column="2" 
+                          Grid.ColumnSpan="2" Margin="3" VerticalAlignment="Center"/>
             </Grid>
         </GroupBox>
-        
-                <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="3" 
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="3" 
                     HorizontalAlignment="Right">
-                    <Button Content="OK" IsDefault="True" Width="80" Margin="5" Name="OkButton"
+            <Button Content="OK" IsDefault="True" Width="80" Margin="5" Name="OkButton"
                             Command="{Binding SaveCommand}"/>
-                    <Button Content="Cancel" IsCancel="True"  Width="80" Margin="5"/>
-                </StackPanel>
+            <Button Content="Cancel" IsCancel="True"  Width="80" Margin="5"/>
+        </StackPanel>
 
     </Grid>
 </Window>

@@ -24,13 +24,5 @@ namespace RfidEncoder
         {
             InitializeComponent();
         }
-
-        public static bool MonzaR6Visibility
-        {
-            get
-            {
-                return bool.Parse(ConfigurationManager.AppSettings["MonzaR6"]);
-            }
-        }
     }
 }

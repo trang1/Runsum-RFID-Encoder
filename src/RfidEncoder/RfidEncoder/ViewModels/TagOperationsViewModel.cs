@@ -787,7 +787,7 @@ namespace RfidEncoder.ViewModels
         /// <summary>
         /// Write the access password in the reserved memory
         /// </summary>
-        public void WriteAccessPassword(string accessPassword)
+        public bool WriteAccessPassword(string accessPassword)
         {
             try
             {
@@ -798,12 +798,14 @@ namespace RfidEncoder.ViewModels
                 _reader.ExecuteTagOp(new Gen2.WriteData(Gen2.Bank.RESERVED, 2, dataToBeWritten), null);
                 
                 Trace.TraceInformation("Access Password has successfully been set to " + accessPassword);
+                return true;
             }
             catch (Exception ex)
             {
                 var error = "Error writing the access password (" + accessPassword + "). " + ex.Message;
                 MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 Trace.TraceError(error + ex.StackTrace);
+                return false;
             }
         }
 
@@ -848,6 +850,33 @@ namespace RfidEncoder.ViewModels
             catch (Exception ex)
             {
                 var error = string.Format("Error applying the lock action (action = {0}, password = {1}). {2}", action,
+                    accessPassword, ex.Message);
+                MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Trace.TraceError(error + ex.StackTrace);
+                return false;
+            }
+        }
+
+        public bool ApplyPermalockAction(string accessPassword)
+        {
+            try
+            {
+                CheckParams();
+                _reader.ParamSet("/reader/tagop/protocol", TagProtocol.GEN2);
+
+                var payload = ByteConv.ToU16(ByteFormat.FromHex("0xfffff"), 0);
+
+                var lockOp = new Gen2.Lock(ByteConv.ToU32(
+                    ByteFormat.FromHex(accessPassword.Replace(" ", "")), 0),
+                    new Gen2.LockAction(payload, payload));
+                _reader.ExecuteTagOp(lockOp, null);
+
+                Trace.TraceInformation("Permalock Action applied" + ". Access password = " + accessPassword);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                var error = string.Format("Error applying the permalock action (password = {0}). {1}",
                     accessPassword, ex.Message);
                 MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 Trace.TraceError(error + ex.StackTrace);
