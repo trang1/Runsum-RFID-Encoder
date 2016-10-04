@@ -38,6 +38,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
                 <TextBlock Text="From race number" Margin="3" Style="{DynamicResource RightTextBlock}"/>
@@ -73,8 +74,12 @@
                 <TextBox Text="{Binding AccessPassword}" Grid.Row="4" Grid.Column="1" Margin="3" ToolTip="8 digits"/>
                 <TextBlock Text="Kill password" Grid.Row="4" Grid.Column="2" Margin="3" Style="{DynamicResource RightTextBlock}" 
                            />
-                <TextBox Text="{Binding KillPassword}" Grid.Row="4" Grid.Column="3" Margin="3" 
-                         />
+                <TextBox Text="{Binding KillPassword}" Grid.Row="4" Grid.Column="3" Margin="3" />
+                
+                <StackPanel Grid.Row="5" Orientation="Horizontal" Grid.ColumnSpan="6" HorizontalAlignment="Center">
+                    <CheckBox Content="Set access password to " Name="SetApCheckBox" Margin="3" VerticalAlignment="Center" IsChecked="{Binding SetAccessPassword}"/>
+                    <TextBox Text="{Binding NewAccessPassword}" Margin="3" Width="100" IsEnabled="{Binding ElementName=SetApCheckBox, Path=IsChecked}" />
+                </StackPanel>
                 
                 <!--<CheckBox Content="Permalock chip" IsChecked="{Binding Permalock}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"/>-->
             </Grid>

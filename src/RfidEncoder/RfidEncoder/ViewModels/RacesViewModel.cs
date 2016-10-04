@@ -167,7 +167,9 @@ namespace RfidEncoder.ViewModels
                     AddPrefix = true,
                     IsDigitInserting = true,
                     Prefix = "123",
-                    AccessPassword = "00000000"
+                    AccessPassword = "00000000",
+                    SetAccessPassword = false,
+                    NewAccessPassword = "00000000"
                 };
 
 
@@ -322,7 +324,8 @@ namespace RfidEncoder.ViewModels
                     }
 
                     //var isLockingNeeded = _totalRaceInfo.AccessPassword != "00000000";
-                    
+                    if (!IsEncoding) return;
+
                     //4b. if access password is not locked, encode access password = 
                     //#8 digits from access password dialogue needed in 'new project' screen# .
                     if (!apLocked)// && isLockingNeeded)
@@ -474,6 +477,8 @@ namespace RfidEncoder.ViewModels
         private string _killPassword;
         private string _accessPassword;
         private bool _permalock;
+        private bool _setAccessPassword;
+        private string _newAccessPassword;
 
         public int StartNumber
         {
@@ -585,6 +590,26 @@ namespace RfidEncoder.ViewModels
             }
         }
 
+        public bool SetAccessPassword
+        {
+            get { return _setAccessPassword; }
+            set
+            {
+                _setAccessPassword = value;
+                OnPropertyChanged("SetAccessPassword");
+            }
+        }
+
+        public string NewAccessPassword
+        {
+            get { return _newAccessPassword; }
+            set
+            {
+                _newAccessPassword = value; 
+                OnPropertyChanged("NewAccessPassword");
+            }
+        }
+
         public TotalRaceInfo(TotalRaceInfo totalRaceInfo)
         {
             if(totalRaceInfo == null) return;
@@ -600,6 +625,8 @@ namespace RfidEncoder.ViewModels
             _accessPassword = totalRaceInfo.AccessPassword;
             _killPassword = totalRaceInfo.KillPassword;
             _permalock = totalRaceInfo.Permalock;
+            _setAccessPassword = totalRaceInfo.SetAccessPassword;
+            _newAccessPassword = totalRaceInfo.NewAccessPassword;
         }
 
         #region INotifyPropertyChanged
