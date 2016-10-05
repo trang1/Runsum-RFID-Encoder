@@ -168,7 +168,7 @@ namespace RfidEncoder.ViewModels
                     IsDigitInserting = true,
                     Prefix = "123",
                     AccessPassword = "00000000",
-                    SetAccessPassword = false,
+                    SetNewAccessPassword = false,
                     NewAccessPassword = "00000000"
                 };
 
@@ -330,7 +330,7 @@ namespace RfidEncoder.ViewModels
                     //4b. if access password is not locked, encode access password = 
                     //#8 digits from access password dialogue needed in 'new project' screen# .
                     // we can write a new access password to the chip here
-                    if (!apLocked && _totalRaceInfo.SetAccessPassword)// && isLockingNeeded)
+                    if (!apLocked && _totalRaceInfo.SetNewAccessPassword)// && isLockingNeeded)
                     {
                         if(TagOperationsViewModel.WriteAccessPassword(_totalRaceInfo.NewAccessPassword))
                             currentAP = _totalRaceInfo.NewAccessPassword;
@@ -487,7 +487,7 @@ namespace RfidEncoder.ViewModels
         private string _killPassword;
         private string _accessPassword;
         private bool _permalock;
-        private bool _setAccessPassword;
+        private bool _setNewAccessPassword;
         private string _newAccessPassword;
 
         public int StartNumber
@@ -600,13 +600,13 @@ namespace RfidEncoder.ViewModels
             }
         }
 
-        public bool SetAccessPassword
+        public bool SetNewAccessPassword
         {
-            get { return _setAccessPassword; }
+            get { return _setNewAccessPassword; }
             set
             {
-                _setAccessPassword = value;
-                OnPropertyChanged("SetAccessPassword");
+                _setNewAccessPassword = value;
+                OnPropertyChanged("SetNewAccessPassword");
             }
         }
 
@@ -635,7 +635,7 @@ namespace RfidEncoder.ViewModels
             _accessPassword = totalRaceInfo.AccessPassword;
             _killPassword = totalRaceInfo.KillPassword;
             _permalock = totalRaceInfo.Permalock;
-            _setAccessPassword = totalRaceInfo.SetAccessPassword;
+            _setNewAccessPassword = totalRaceInfo.SetNewAccessPassword;
             _newAccessPassword = totalRaceInfo.NewAccessPassword;
         }
 

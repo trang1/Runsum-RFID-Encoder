@@ -14,6 +14,9 @@ using ThingMagic;
 
 namespace RfidEncoder.ViewModels
 {
+    /// <summary>
+    /// Operations with reader & tags
+    /// </summary>
     public class TagOperationsViewModel : ViewModelBase
     {
         private Reader _reader;
@@ -21,6 +24,13 @@ namespace RfidEncoder.ViewModels
         private Dictionary<string, string> _optimalReaderSettings;
         private bool _isRefreshing;
         private bool _isWaitingForTagRead;
+        private volatile bool _cancelReading;
+        private double _readPower;
+        private readonly List<uint?> _readInfoTags = new List<uint?>();
+        private bool _changingPower;
+        private string _singleReadResult;
+        private string _selectedRegion;
+
 
         public TagOperationsViewModel()
         {
@@ -39,6 +49,7 @@ namespace RfidEncoder.ViewModels
 
             Regions = new List<string>();
 
+            // select baud rate from app.config
             var baudRate = ConfigurationManager.AppSettings["DefaultBaudRate"];
             if (BaudRates.Contains(baudRate))
                 SelectedBaudRate = baudRate;
@@ -46,6 +57,7 @@ namespace RfidEncoder.ViewModels
             Refresh();          
         }
 
+        #region Private methods
         private void ReadMultipleTags()
         {
             if (IsWaitingForTagRead)
@@ -85,26 +97,6 @@ namespace RfidEncoder.ViewModels
                 });
             });
         }
-
-        public bool IsWaitingForTagRead
-        {
-            get { return _isWaitingForTagRead; }
-            set
-            {
-                _isWaitingForTagRead = value; 
-                OnPropertyChanged("IsWaitingForTagRead");
-                OnPropertyChanged("ReadMultipleTagsButtonContent");
-                CommandManager.InvalidateRequerySuggested();
-            }
-        }
-
-        volatile bool _cancelReading;
-        private double _readPower;
-
-        public string ReadMultipleTagsButtonContent
-        {
-            get { return IsWaitingForTagRead ? "Stop reading" : "Read continuously"; }
-        }
         private void WriteTag()
         {
             uint tag;
@@ -115,102 +107,14 @@ namespace RfidEncoder.ViewModels
             }
             else
             {
-                MessageBox.Show("The string " + TagToWrite + " couldn't be recognized as a valid unsigned integer.",
-                    "Error");
+                MessageBox.Show("The string " + TagToWrite + " couldn't be recognized as a valid unsigned integer.", "Error");
             }
         }
 
-        // seems like the wrong method
-        private uint? ReadTag(int timeout)
-        {
-            try
-            {
-                CheckParams();
-                var data = _reader.Read(timeout);
-                if (data.Length > 0)
-                {
-                    var tag = ByteConv.ToU32(data[0].Epc, 0);
-                    Trace.TraceInformation("Tag " + tag + " has been read.");
-                    return tag;
-                }
-                return null;
-            }
-            catch (Exception exception)
-            {
-                var error = "Error reading tags. " + exception.Message;
-                MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                Trace.TraceError(error + exception.StackTrace);
-                return null;
-            }
-        }
-
-        public uint? ReadTagSync()
-        {
-            var action = new Action<Exception>(exception =>
-                {
-                    var error = "Error reading tags. " + exception.Message;
-                    MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    Trace.TraceError(error + exception.StackTrace);
-                });
-
-            uint? tag = null;
-
-            var readAction = new EventHandler<TagReadDataEventArgs>((sender, e) =>
-            {
-                var data = e.TagReadData;
-
-                tag = ByteConv.ToU32(data.Epc, 0);
-                LogReadInfo(tag);
-            });
-
-            var exceptionAction = new EventHandler<ReaderExceptionEventArgs>((sender, reea) =>
-            {
-                if (reea.ReaderException != null)
-                    action(reea.ReaderException);
-            });
-
-            try
-            {
-                CheckParams();
-
-                // Create a simplereadplan which uses the antenna list created above
-                SimpleReadPlan plan = new SimpleReadPlan(new[] {1}, TagProtocol.GEN2, null, null, 1000);
-                // Set the created readplan
-                _reader.ParamSet("/reader/read/plan", plan);
-
-                // Create and add tag listener
-                _reader.TagRead += readAction;
-
-                // Create and add read exception listener
-                _reader.ReadException += exceptionAction;
-
-                // Search for tags in the background
-                _reader.StartReading();
-
-                do
-                {
-                    Thread.Sleep(200);
-
-                    // do events
-                    Application.Current.Dispatcher.Invoke(() => { });
-                    
-                } while (!tag.HasValue);
-
-                _reader.StopReading();
-            }
-            catch (Exception exception)
-            {
-                action(exception);
-            }
-            _reader.TagRead -= readAction;
-            _reader.ReadException -= exceptionAction;
-            return tag;
-        }
-
-        private readonly List<uint?> _readInfoTags=new List<uint?>(); 
+        // prevent log from writing identical tag reads
         private void LogReadInfo(uint? tag)
         {
-            lock(_readInfoTags)
+            lock (_readInfoTags)
                 if (!_readInfoTags.Contains(tag))
                     _readInfoTags.Add(tag);
 
@@ -221,159 +125,26 @@ namespace RfidEncoder.ViewModels
                 {
                     foreach (var readInfoTag in _readInfoTags)
                     {
-                        Trace.TraceInformation("Tag " + readInfoTag
-                                               + " has been read.");
+                        Trace.TraceInformation("Tag " + readInfoTag + " has been read.");
                     }
                     _readInfoTags.Clear();
                 }
             });
-            
         }
-
-        public ComPortInfo SelectedComPort { get; set; }
-        public List<string> Regions { get; set; }
-
-        public double ReadPower
-        {
-            get { return _readPower; }
-            set
-            {
-                _readPower = value;
-                Task.Factory.StartNew(SetReadPower);
-                OnPropertyChanged("ReadPower");
-            }
-        }
-
-        public IList<ComPortInfo> ComPorts{ get; set; }
-
-        public string SelectedRegion
-        {
-            get { return _selectedRegion; }
-            set
-            {
-                _selectedRegion = value;
-                OnPropertyChanged("SelectedRegion");
-            }
-        }
-
-        public string SingleReadResult
-        {
-            get { return _singleReadResult; }
-            set
-            {
-                _singleReadResult = value;
-                OnPropertyChanged("SingleReadResult");
-            }
-        }
-
-        public string TagToWrite { get; set; }
-        public IList<string> BaudRates
-        {
-            get
-            {
-                return new List<string>
-                {
-                    "Select","9600", "19200", "38400", "115200", "230400", "460800","921600"
-                };
-            }
-        }
-
-        public string ConnectButtonContent
-        {
-            get
-            {
-                return _isConnected ? "Disconnect" : "Connect";
-            }
-        }
-
-        public bool IsRefreshing
-        {
-            get { return _isRefreshing; }
-            set
-            {
-                _isRefreshing = value;
-                OnPropertyChanged("IsRefreshing");
-                CommandManager.InvalidateRequerySuggested();
-            }
-        }
-        
-        public string SelectedBaudRate { get; set; }
-        public ICommand ConnectCommand { get; set; }
-        public ICommand RefreshCommand { get; set; }
-
-        public ICommand ReadTagCommand { get; set; }
-        public ICommand ReadMultipleTagsCommand { get; set; }
-
-        public ICommand WriteTagCommand { get; set; }
-        public bool IsConnected
-        {
-            get
-            {
-                return _isConnected;
-            }
-            set
-            {
-                _isConnected = value;
-                OnPropertyChanged("IsConnected");
-                OnPropertyChanged("ConnectButtonContent");
-            }
-        }
-
-
-        public bool WriteTag(uint tag)
-        {
-            try
-            {
-                CheckParams();
-
-                var data = ByteConv.EncodeU32(tag);
-                //_reader.WriteTag(null, new TagData(epcTag));
-                _reader.ExecuteTagOp(new Gen2.WriteTag(new Gen2.TagData(data)), null);
-                Trace.TraceInformation("Tag " + tag + " has been written.");
-                return true;
-            }
-            catch (Exception exception)
-            {
-                var error = "Error encoding the tag " + tag + ". " + exception.Message;
-                MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                Trace.TraceError(error + exception.StackTrace);
-                return false;
-            }
-        }
-
         private void CheckParams()
         {
             if (_reader.ParamGet("/reader/region/id").ToString() != SelectedRegion)
-                _reader.ParamSet("/reader/region/id", Enum.Parse(typeof (Reader.Region), SelectedRegion));
+                _reader.ParamSet("/reader/region/id", Enum.Parse(typeof(Reader.Region), SelectedRegion));
 
             if (_reader.ParamGet("/reader/tagop/antenna").ToString() != "1")
                 _reader.ParamSet("/reader/tagop/antenna", 1);
         }
 
-        public bool VerifyTag(uint tagToVerify)
-        {
-            var tag = ReadTagSync();
-            if (tag > 0)
-            {
-                if (tag == tagToVerify)
-                {
-                    Trace.TraceInformation("Tag "+tag+" verified successfully.");
-                    return true;
-                }
-            }
-            Trace.TraceInformation("Tag " + tag + " verified unsuccessfully.");
-            return false;
-        }
-
-        bool _changingPower;
-        private string _singleReadResult;
-        private string _selectedRegion;
-
         private void SetReadPower()
         {
             try
             {
-                var power = Convert.ToInt32(1000 + 130*_readPower);
+                var power = Convert.ToInt32(1000 + 130 * _readPower);
                 Debug.WriteLine("Power to set = " + power);
                 if (_reader != null && !_changingPower)
                 {
@@ -393,6 +164,9 @@ namespace RfidEncoder.ViewModels
             }
         }
 
+        /// <summary>
+        /// Refreshes COM Port list
+        /// </summary>
         private void Refresh()
         {
             Task.Factory.StartNew(() =>
@@ -421,9 +195,6 @@ namespace RfidEncoder.ViewModels
                 OnPropertyChanged("ConnectButtonContent");
                 return;
             }
-            //Regions.AddRange(new[] {"LA", "NA", "BGG"});
-            //ConfigureAntennaBoxes(null);
-            //ConfigureProtocols(null);
             try
             {
                 // Creates a Reader Object for operations on the Reader.
@@ -437,100 +208,29 @@ namespace RfidEncoder.ViewModels
                     readerUri = m.ToString();
                 }
 
-                //_reader = Reader.Create(string.Concat("tmr:///", readerUri));
-                _reader = new ReaderMockup();
+                _reader = Reader.Create(string.Concat("tmr:///", readerUri));
+                //_reader = new ReaderMockup();
 
                 // Set the selected baud rate, so that api try's connecting to the 
                 // module with the selected baud rate first
                 SetBaudRate();
-
-                //Show the status
-                //lblshowStatus.Content = "Connecting..";                
+          
                 Mouse.SetCursor(Cursors.Wait);
                 _reader.Connect();
 
-               // Mouse.SetCursor(Cursors.Arrow);
-
-                //readerStatus.IsEnabled = true;
-               
                 // TODO: Initialize max and min read power for read power slider
                 //InitializeRdPwrSldrMaxNMinValue();
 
-                //Initialize settings received o
+                //Initialize settings
                 _optimalReaderSettings = null;
                 InitializeOptimalSettings();
 
-                //_reader.ParamSet("/reader/transportTimeout", int.Parse(txtRFOnTimeout.Text) + 5000);
-                //try setting a unique ID
-                //reader.ParamSet("/reader/hostname", "this reader");
-                //if (_reader is SerialReader)
-                //{
-                //    cbxBaudRate.IsEnabled = true;
-                //}
 
-                // Load Gen2 Settings 
-                //initialReaderSettingsLoaded = false;
-                //LoadGen2Settings();
-                //initialReaderSettingsLoaded = true;
-
-                ////Enable fast search on for mercury6, astra-ex, m6e. 
-                //if (model.Equals("Astra") || model.Equals("M5e") 
-                //    || model.Equals("M5e Compact") || model.Equals("M5e EU")
-                //    || model.Equals("M4e") || model.Equals("M5e PRC"))
-                //{
-                //    chkEnableFastSearch.IsEnabled = false;
-                //}
-
-                //btnRead.IsEnabled = true;
-                //advanceReaderSettings.IsEnabled = true;
-                //if (_reader is SerialReader)
-                //{
-                //    var br = _reader.ParamGet("/reader/baudRate").ToString();
-                //    SelectedBaudRate = br;
-
-                //    //initializeBaudRate();
-                //    if (!(model.Equals("M6e") || model.Equals("M6e Micro") || model.Equals("M6e Micro USB")
-                //        || model.Equals("M6e Micro USBPro") || model.Equals("M6e PRC") || model.Equals("M6e Nano")))
-                //    {
-                //        _reader.ParamSet("/reader/tagReadData/reportRssiInDbm", true);
-                //    }
-                //}
-                //ConfigureAntennaBoxes(_reader);
-                //supportedProtocols = (TagProtocol[])_reader.ParamGet("/reader/version/supportedProtocols");
-                //ConfigureProtocols(supportedProtocols);
-                //btnConnect.ToolTip = "Disconnect";
-                //btnConnect.Content = "Disconnect";
-                //btnConnectExpander.Content = btnConnect.Content+"...";
-
-                ////Enable save data, btnClearTagReads, read-once, readasyncread buttons
-                //saveData.IsEnabled = true;
-                //btnClearTagReads.IsEnabled = true;
-                //btnRead.IsEnabled = true;
-
-                ////startRead.IsEnabled = true;
-                //InitializeRdrDiagnostics();
-                //// Disabling equal time switching for both Nano and Micro USB modules.
-                //// Because these modules has only one antenna.
-                //if (model.Equals("M6e Nano") || model.Equals("M6e Micro USB") || model.Equals("M6e Micro USBPro"))
-                //{
-                //    rdBtnEqualSwitching.IsEnabled = false;
-                //    rdBtnEqualSwitching.IsChecked = false;
-                //    rdBtnAutoSwitching.IsChecked = true;
-                //}
-                //else
-                //{
-                //    rdBtnEqualSwitching.IsEnabled = true;
-                //    rdBtnEqualSwitching.IsChecked = true;
-                //    rdBtnAutoSwitching.IsChecked = false;
-                //}
                 Mouse.SetCursor(Cursors.Arrow);
                 IsConnected = true;
-
-                //CustomizedMessageBox = new URACustomMessageBoxWindow();
                 
+
                 Task.Factory.StartNew(SetDefaultRegion);
-                //// Clear firmware Update open file dialog status
-                //txtFirmwarePath.Text = "";
             }
             catch (Exception ex)
             {
@@ -592,6 +292,9 @@ namespace RfidEncoder.ViewModels
             }
         }
 
+        /// <summary>
+        /// Sets default region from config
+        /// </summary>
         private void SetDefaultRegion()
         {
             Thread.Sleep(300);
@@ -607,9 +310,9 @@ namespace RfidEncoder.ViewModels
                     var regionToSet = (Reader.Region)_reader.ParamGet("/reader/region/id");
                     Trace.TraceInformation("Region to set = " + regionToSet);
 
+                    // select region from app.config
                     var region = ConfigurationManager.AppSettings["DefaultRegion"];
                     if (Regions.Contains(region))
-                    //(regionToSet != Reader.Region.UNSPEC)
                     {
                         //set the region on module
                         SelectedRegion = Regions[Regions.IndexOf(region)];
@@ -784,8 +487,244 @@ namespace RfidEncoder.ViewModels
             }
         }
 
+        #endregion
+
+        #region Public properties
+        public bool IsWaitingForTagRead
+        {
+            get { return _isWaitingForTagRead; }
+            set
+            {
+                _isWaitingForTagRead = value; 
+                OnPropertyChanged("IsWaitingForTagRead");
+                OnPropertyChanged("ReadMultipleTagsButtonContent");
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
+        
+        public string ReadMultipleTagsButtonContent
+        {
+            get { return IsWaitingForTagRead ? "Stop reading" : "Read continuously"; }
+        }
+        public ComPortInfo SelectedComPort { get; set; }
+        public List<string> Regions { get; set; }
+
+        public double ReadPower
+        {
+            get { return _readPower; }
+            set
+            {
+                _readPower = value;
+                Task.Factory.StartNew(SetReadPower);
+                OnPropertyChanged("ReadPower");
+            }
+        }
+
+        public IList<ComPortInfo> ComPorts { get; set; }
+
+        public string SelectedRegion
+        {
+            get { return _selectedRegion; }
+            set
+            {
+                _selectedRegion = value;
+                OnPropertyChanged("SelectedRegion");
+            }
+        }
+
+        public string SingleReadResult
+        {
+            get { return _singleReadResult; }
+            set
+            {
+                _singleReadResult = value;
+                OnPropertyChanged("SingleReadResult");
+            }
+        }
+
+        public string TagToWrite { get; set; }
+        public IList<string> BaudRates
+        {
+            get
+            {
+                return new List<string>
+                {
+                    "Select","9600", "19200", "38400", "115200", "230400", "460800","921600"
+                };
+            }
+        }
+
+        public string ConnectButtonContent
+        {
+            get
+            {
+                return _isConnected ? "Disconnect" : "Connect";
+            }
+        }
+
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged("IsRefreshing");
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
+
+        public string SelectedBaudRate { get; set; }
+        public ICommand ConnectCommand { get; set; }
+        public ICommand RefreshCommand { get; set; }
+
+        public ICommand ReadTagCommand { get; set; }
+        public ICommand ReadMultipleTagsCommand { get; set; }
+
+        public ICommand WriteTagCommand { get; set; }
+        public bool IsConnected
+        {
+            get
+            {
+                return _isConnected;
+            }
+            set
+            {
+                _isConnected = value;
+                OnPropertyChanged("IsConnected");
+                OnPropertyChanged("ConnectButtonContent");
+            }
+        }
+
+        #endregion
+
+
+        // seems like the wrong method
+        //private uint? ReadTag(int timeout)
+        //{
+        //    try
+        //    {
+        //        CheckParams();
+        //        var data = _reader.Read(timeout);
+        //        if (data.Length > 0)
+        //        {
+        //            var tag = ByteConv.ToU32(data[0].Epc, 0);
+        //            Trace.TraceInformation("Tag " + tag + " has been read.");
+        //            return tag;
+        //        }
+        //        return null;
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        var error = "Error reading tags. " + exception.Message;
+        //        MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        Trace.TraceError(error + exception.StackTrace);
+        //        return null;
+        //    }
+        //}
+
+
+        #region Public methods
+        public uint? ReadTagSync()
+        {
+            var action = new Action<Exception>(exception =>
+                {
+                    var error = "Error reading tags. " + exception.Message;
+                    MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Trace.TraceError(error + exception.StackTrace);
+                });
+
+            uint? tag = null;
+
+            var readAction = new EventHandler<TagReadDataEventArgs>((sender, e) =>
+            {
+                var data = e.TagReadData;
+
+                tag = ByteConv.ToU32(data.Epc, 0);
+                LogReadInfo(tag);
+            });
+
+            var exceptionAction = new EventHandler<ReaderExceptionEventArgs>((sender, reea) =>
+            {
+                if (reea.ReaderException != null)
+                    action(reea.ReaderException);
+            });
+
+            try
+            {
+                CheckParams();
+
+                // Create a simplereadplan which uses the antenna list created above
+                SimpleReadPlan plan = new SimpleReadPlan(new[] {1}, TagProtocol.GEN2, null, null, 1000);
+                // Set the created readplan
+                _reader.ParamSet("/reader/read/plan", plan);
+
+                // Create and add tag listener
+                _reader.TagRead += readAction;
+
+                // Create and add read exception listener
+                _reader.ReadException += exceptionAction;
+
+                // Search for tags in the background
+                _reader.StartReading();
+
+                do
+                {
+                    Thread.Sleep(200);
+
+                    // do events
+                    Application.Current.Dispatcher.Invoke(() => { });
+                    
+                } while (!tag.HasValue);
+
+                _reader.StopReading();
+            }
+            catch (Exception exception)
+            {
+                action(exception);
+            }
+            _reader.TagRead -= readAction;
+            _reader.ReadException -= exceptionAction;
+            return tag;
+        }
+
+        public bool WriteTag(uint tag)
+        {
+            try
+            {
+                CheckParams();
+
+                var data = ByteConv.EncodeU32(tag);
+                //_reader.WriteTag(null, new TagData(epcTag));
+                _reader.ExecuteTagOp(new Gen2.WriteTag(new Gen2.TagData(data)), null);
+                Trace.TraceInformation("Tag " + tag + " has been written.");
+                return true;
+            }
+            catch (Exception exception)
+            {
+                var error = "Error encoding the tag " + tag + ". " + exception.Message;
+                MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Trace.TraceError(error + exception.StackTrace);
+                return false;
+            }
+        }
+
+        public bool VerifyTag(uint tagToVerify)
+        {
+            var tag = ReadTagSync();
+            if (tag > 0)
+            {
+                if (tag == tagToVerify)
+                {
+                    Trace.TraceInformation("Tag " + tag + " verified successfully.");
+                    return true;
+                }
+            }
+            Trace.TraceInformation("Tag " + tag + " verified unsuccessfully.");
+            return false;
+        }
+        
         /// <summary>
-        /// Write the access password in the reserved memory
+        /// Writes the access password in the reserved memory
         /// </summary>
         public bool WriteAccessPassword(string accessPassword)
         {
@@ -797,7 +736,7 @@ namespace RfidEncoder.ViewModels
                 dataToBeWritten = ByteConv.ToU16s(ByteFormat.FromHex(accessPassword.Replace(" ", "")));
                 _reader.ExecuteTagOp(new Gen2.WriteData(Gen2.Bank.RESERVED, 2, dataToBeWritten), null);
                 
-                Trace.TraceInformation("Access Password has successfully been set to " + accessPassword);
+                Trace.TraceInformation("Access Password has been successfully set to " + accessPassword);
                 return true;
             }
             catch (Exception ex)
@@ -810,7 +749,7 @@ namespace RfidEncoder.ViewModels
         }
 
         /// <summary>
-        /// Write the kill password in the reserved memory
+        /// Writes the kill password in the reserved memory
         /// </summary>
         public void WriteKillPassword(string killPassword)
         {
@@ -822,7 +761,7 @@ namespace RfidEncoder.ViewModels
                 dataToBeWritten = ByteConv.ToU16s(ByteFormat.FromHex(killPassword.Replace(" ", "")));
                 _reader.ExecuteTagOp(new Gen2.WriteData(Gen2.Bank.RESERVED, 0, dataToBeWritten), null);
                 
-                Trace.TraceInformation("Kill Password has successfully been set to " + killPassword);
+                Trace.TraceInformation("Kill Password has been successfully set to " + killPassword);
             }
             catch (Exception ex)
             {
@@ -857,6 +796,11 @@ namespace RfidEncoder.ViewModels
             }
         }
 
+        /// <summary>
+        /// Apply Permalock action for R6 Impinj chips
+        /// </summary>
+        /// <param name="accessPassword"></param>
+        /// <returns></returns>
         public bool ApplyPermalockAction(string accessPassword)
         {
             try
@@ -935,5 +879,7 @@ namespace RfidEncoder.ViewModels
                 return false;
             }
         }
+
+        #endregion
     }
 }

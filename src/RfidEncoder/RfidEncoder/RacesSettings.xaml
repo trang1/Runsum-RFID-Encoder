@@ -78,7 +78,7 @@
                 <TextBox Text="{Binding KillPassword}" Grid.Row="4" Grid.Column="3" Margin="3" />
 
                 <CheckBox Grid.Row="5" Content="Set access password to " Name="SetApCheckBox" Margin="3" 
-                          VerticalAlignment="Center" IsChecked="{Binding SetAccessPassword}"/>
+                          VerticalAlignment="Center" IsChecked="{Binding SetNewAccessPassword}"/>
                 <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding NewAccessPassword}" Margin="3" 
                              IsEnabled="{Binding ElementName=SetApCheckBox, Path=IsChecked}" />
                
