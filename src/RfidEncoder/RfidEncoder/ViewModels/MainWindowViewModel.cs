@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls.Primitives;
+﻿using System.Windows;
 using System.Windows.Input;
-using Microsoft.Win32;
-using ThingMagic;
-using System.Diagnostics;
 
 namespace RfidEncoder.ViewModels
 {
@@ -24,10 +11,11 @@ namespace RfidEncoder.ViewModels
         #region private members
 
         private static readonly MainWindowViewModel _mainWindowViewModel = new MainWindowViewModel();
-        
+
         #endregion
 
         #region Constructor
+
         public MainWindowViewModel()
         {
             ExitCommand = new DelegateCommand(() => Application.Current.Shutdown());
@@ -37,7 +25,6 @@ namespace RfidEncoder.ViewModels
 
         #endregion
 
-
         #region public members
 
         public static MainWindowViewModel Instance
@@ -46,8 +33,9 @@ namespace RfidEncoder.ViewModels
         }
 
         public RacesViewModel RacesViewModel { get; set; }
-        
+
         public ICommand ExitCommand { get; set; }
+
         #endregion
     }
 }

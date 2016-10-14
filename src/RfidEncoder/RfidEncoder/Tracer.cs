@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RfidEncoder
 {
     public static class Tracer
     {
-        //Инициализация лога
+        //Init logging
         public static void StartTracing()
         {
-            Assembly assembly = Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
+            var assembly = Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
 
-            string traceDirName = Path.Combine(Path.GetDirectoryName(assembly.CodeBase).Replace("file:\\", ""), "Log");
+            var traceDirName = Path.Combine(Path.GetDirectoryName(assembly.CodeBase).Replace("file:\\", ""), "Log");
             Directory.CreateDirectory(traceDirName);
 
-            string traceFileName = Path.Combine(traceDirName,
+            var traceFileName = Path.Combine(traceDirName,
                 Path.GetFileNameWithoutExtension(assembly.Location) + ".log");
             if (!File.Exists(traceFileName))
                 File.CreateText(traceFileName).Close();
@@ -39,7 +35,7 @@ namespace RfidEncoder
 
         public override void WriteLine(string message)
         {
-            string newmsg = "Time: " + DateTime.Now + ". " + message;
+            var newmsg = "Time: " + DateTime.Now + ". " + message;
             base.WriteLine(newmsg);
         }
     }

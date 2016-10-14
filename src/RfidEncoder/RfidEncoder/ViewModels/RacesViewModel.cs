@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Speech.Synthesis;
@@ -17,18 +13,33 @@ using ThingMagic;
 
 namespace RfidEncoder.ViewModels
 {
+    /// <summary>
+    ///     Viewmodel which encodes chips for races
+    /// </summary>
     public class RacesViewModel : ViewModelBase
     {
+        private bool _isEncoding;
         private int _nextRaceNumber;
         private uint _nextTagNumber;
-        private TotalRaceInfo _totalRaceInfo;
-        private RaceInfo _selectedRace;
-        private bool _isEncoding;
-        private string _statusBarText;
-        private Brush _statusBarBackground;
         private bool _overrideTags;
+        private RaceInfo _selectedRace;
+        private Brush _statusBarBackground;
+        private string _statusBarText;
+        private TotalRaceInfo _totalRaceInfo;
 
-        #region Public
+        public RacesViewModel()
+        {
+            TagOperationsViewModel = new TagOperationsViewModel();
+
+            StartEncodingCommand = new DelegateCommand(StartEncoding, () => TagOperationsViewModel.IsConnected &&
+                                                                            !TagOperationsViewModel.IsWaitingForTagRead);
+            NewProjectCommand = new DelegateCommand(NewProject);
+            SelectedRaceChangedCommand = new DelegateCommand(SelectedRaceChanged);
+            SelectedTagChangedCommand = new DelegateCommand(SelectedTagChanged);
+        }
+
+        #region Public properties
+
         public TotalRaceInfo TotalRaceInfo
         {
             get { return _totalRaceInfo; }
@@ -53,6 +64,7 @@ namespace RfidEncoder.ViewModels
         {
             get { return IsEncoding ? "Stop encoding" : "Start encoding"; }
         }
+
         public TagOperationsViewModel TagOperationsViewModel { get; set; }
         public ICommand StartEncodingCommand { get; set; }
         public ICommand NewProjectCommand { get; set; }
@@ -127,16 +139,7 @@ namespace RfidEncoder.ViewModels
 
         #endregion
 
-        public RacesViewModel()
-        {
-            TagOperationsViewModel = new TagOperationsViewModel();
-
-            StartEncodingCommand = new DelegateCommand(StartEncoding, ()=> TagOperationsViewModel.IsConnected &&
-                !TagOperationsViewModel.IsWaitingForTagRead);
-            NewProjectCommand = new DelegateCommand(NewProject);
-            SelectedRaceChangedCommand = new DelegateCommand(SelectedRaceChanged);
-            SelectedTagChangedCommand = new DelegateCommand(SelectedTagChanged);
-        }
+        #region private methods
 
         private void SelectedTagChanged()
         {
@@ -199,6 +202,7 @@ namespace RfidEncoder.ViewModels
             }
         }
 
+        // main algorythm realization
         private void StartEncoding()
         {
             if (IsEncoding)
@@ -219,7 +223,7 @@ namespace RfidEncoder.ViewModels
 
             Task.Factory.StartNew(() =>
             {
-                string newAccessPassword = "";
+                var newAccessPassword = "";
                 do
                 {
                     //1. Wait for Tag
@@ -261,7 +265,7 @@ namespace RfidEncoder.ViewModels
                                 : newAccessPassword))
                         {
                             //open dialog
-                            bool dialogResult = false;
+                            var dialogResult = false;
 
                             Application.Current.Dispatcher.Invoke(() =>
                             {
@@ -272,7 +276,6 @@ namespace RfidEncoder.ViewModels
                             });
                             if (dialogResult)
                             {
-
                                 if (!TagOperationsViewModel.ApplyLockAction
                                     (new Gen2.LockAction(Gen2.LockAction.ACCESS_UNLOCK), newAccessPassword))
                                 {
@@ -288,21 +291,18 @@ namespace RfidEncoder.ViewModels
                                         Thread.Sleep(300);
                                         continue;
                                     }
-                                    //if not locked ask for continue without locking
+                                        //if not locked ask for continue without locking
+                                    if (MessageBox.Show("EPC is not locked. Continue without locking?", "Question",
+                                        MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                                    {
+                                        //if yes
+                                        apLocked = true;
+                                    }
+                                    //if no -> continue
                                     else
                                     {
-                                        if (MessageBox.Show("EPC is not locked. Continue without locking?", "Question",
-                                                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                                        {
-                                            //if yes
-                                            apLocked = true;    
-                                        }
-                                        //if no -> continue
-                                        else
-                                        {
-                                            Thread.Sleep(300);
-                                            continue;
-                                        }
+                                        Thread.Sleep(300);
+                                        continue;
                                     }
                                 }
                             }
@@ -326,13 +326,13 @@ namespace RfidEncoder.ViewModels
 
                     //var isLockingNeeded = _totalRaceInfo.AccessPassword != "00000000";
                     if (!IsEncoding) return;
-                    string currentAP = _totalRaceInfo.AccessPassword;
+                    var currentAP = _totalRaceInfo.AccessPassword;
                     //4b. if access password is not locked, encode access password = 
                     //#8 digits from access password dialogue needed in 'new project' screen# .
                     // we can write a new access password to the chip here
-                    if (!apLocked && _totalRaceInfo.SetNewAccessPassword)// && isLockingNeeded)
+                    if (!apLocked && _totalRaceInfo.SetNewAccessPassword) // && isLockingNeeded)
                     {
-                        if(TagOperationsViewModel.WriteAccessPassword(_totalRaceInfo.NewAccessPassword))
+                        if (TagOperationsViewModel.WriteAccessPassword(_totalRaceInfo.NewAccessPassword))
                             currentAP = _totalRaceInfo.NewAccessPassword;
                         //our current access password has changed
                     }
@@ -343,12 +343,12 @@ namespace RfidEncoder.ViewModels
 
                     var encoded = TagOperationsViewModel.WriteTag(NextTagNumber);
 
-                    if (encoded && !apLocked)// && isLockingNeeded)
+                    if (encoded && !apLocked) // && isLockingNeeded)
                     {
                         //6. lock epc memory (tag) with write lock. Gen2.LockAction.EPC_LOCK
                         TagOperationsViewModel.ApplyLockAction(
                             new Gen2.LockAction(Gen2.LockAction.EPC_LOCK), currentAP);
-                        
+
                         //7. lock access password with read/write lock. Gen2.LockAction.ACCESS_LOCK 
                         TagOperationsViewModel.ApplyLockAction(
                             new Gen2.LockAction(Gen2.LockAction.ACCESS_LOCK), currentAP);
@@ -383,7 +383,7 @@ namespace RfidEncoder.ViewModels
                         {
                             StatusBarText = "Encoding error, trying again...";
                             StatusBarBackground = Brushes.Red;
-                        }   
+                        }
                     });
 
                     if (encoded)
@@ -432,15 +432,15 @@ namespace RfidEncoder.ViewModels
         private void SayNumber(uint nextTagNumber)
         {
             var digits = nextTagNumber.ToString().Reverse().Take(2).Reverse();
-            string s1 = digits.First() + " " + digits.Last();
-			Speak(s1);
+            var s1 = digits.First() + " " + digits.Last();
+            Speak(s1);
 //			Speak(digits.First().ToString());
 //            Speak(digits.Last().ToString());
         }
 
-        private void Speak(String str)
+        private void Speak(string str)
         {
-            using (var ss= new SpeechSynthesizer{Rate = 5})
+            using (var ss = new SpeechSynthesizer {Rate = 5})
             {
                 ss.SpeakAsync(str);
             }
@@ -465,231 +465,7 @@ namespace RfidEncoder.ViewModels
 
             return uint.Parse(sb.Append(NextRaceNumber.ToString().PadLeft(TotalRaceInfo.CodeLength, '0')).ToString());
         }
-    }
-
-    public class RaceInfo
-    {
-        public int RaceNumber { get; set; }
-
-        public ObservableCollection<uint?> TagList { get; set; }
-    }
-
-    public class TotalRaceInfo : ObservableCollection<RaceInfo>, INotifyPropertyChanged
-    {
-        private int _startNumber;
-        private int _endNumber;
-        private int _tagsPerRaceCount;
-        private bool _isDigitInserting;
-        private string _fileName;
-        private bool _addPrefix;
-        private string _prefix;
-        private int _codeLength;
-        private string _killPassword;
-        private string _accessPassword;
-        private bool _permalock;
-        private bool _setNewAccessPassword;
-        private string _newAccessPassword;
-
-        public int StartNumber
-        {
-            get { return _startNumber; }
-            set
-            {
-                _startNumber = value;
-                OnPropertyChanged("StartNumber");
-            }
-        }
-
-        public int EndNumber
-        {
-            get { return _endNumber; }
-            set
-            {
-                _endNumber = value;
-                OnPropertyChanged("EndNumber");
-            }
-        }
-
-        public int TagsPerRaceCount
-        {
-            get { return _tagsPerRaceCount; }
-            set
-            {
-                _tagsPerRaceCount = value;
-                OnPropertyChanged("TagsPerRaceCount");
-            }
-        }
-
-        public bool IsDigitInserting
-        {
-            get { return _isDigitInserting; }
-            set
-            {
-                _isDigitInserting = value;
-                OnPropertyChanged("IsDigitInserting");
-            }
-        }
-
-        public bool AddPrefix
-        {
-            get { return _addPrefix; }
-            set
-            {
-                _addPrefix = value;
-                OnPropertyChanged("AddPrefix");
-            }
-        }
-
-        public string Prefix
-        {
-            get { return _prefix; }
-            set
-            {
-                _prefix = value;
-                OnPropertyChanged("Prefix");
-            }
-        }
-
-        public int CodeLength
-        {
-            get { return _codeLength; }
-            set
-            {
-                _codeLength = value;
-                OnPropertyChanged("CodeLength");
-            }
-        }
-
-        public string FileName
-        {
-            get { return _fileName; }
-            set
-            {
-                _fileName = value;
-                OnPropertyChanged("FileName");
-            }
-        }
-
-        public string AccessPassword
-        {
-            get { return _accessPassword; }
-            set
-            {
-                _accessPassword = value;
-                OnPropertyChanged("AccessPassword");
-            }
-        }
-
-        public string KillPassword
-        {
-            get { return _killPassword; }
-            set
-            {
-                _killPassword = value;
-                OnPropertyChanged("KillPassword");
-            }
-        }
-
-        public bool Permalock
-        {
-            get { return _permalock; }
-            set
-            {
-                _permalock = value;
-                OnPropertyChanged("Permalock");
-            }
-        }
-
-        public bool SetNewAccessPassword
-        {
-            get { return _setNewAccessPassword; }
-            set
-            {
-                _setNewAccessPassword = value;
-                OnPropertyChanged("SetNewAccessPassword");
-            }
-        }
-
-        public string NewAccessPassword
-        {
-            get { return _newAccessPassword; }
-            set
-            {
-                _newAccessPassword = value; 
-                OnPropertyChanged("NewAccessPassword");
-            }
-        }
-
-        public TotalRaceInfo(TotalRaceInfo totalRaceInfo)
-        {
-            if(totalRaceInfo == null) return;
-
-            _startNumber = totalRaceInfo.StartNumber;
-            _endNumber = totalRaceInfo.EndNumber;
-            _tagsPerRaceCount = totalRaceInfo.TagsPerRaceCount;
-            _isDigitInserting = totalRaceInfo.IsDigitInserting;
-            _fileName = totalRaceInfo.FileName;
-            _addPrefix = totalRaceInfo.AddPrefix;
-            _prefix = totalRaceInfo.Prefix;
-            _codeLength = totalRaceInfo.CodeLength;
-            _accessPassword = totalRaceInfo.AccessPassword;
-            _killPassword = totalRaceInfo.KillPassword;
-            _permalock = totalRaceInfo.Permalock;
-            _setNewAccessPassword = totalRaceInfo.SetNewAccessPassword;
-            _newAccessPassword = totalRaceInfo.NewAccessPassword;
-        }
-
-        #region INotifyPropertyChanged
-
-        public new event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         #endregion
-
-        public event TagEventHandler NextTag = (sender, args) => {};
-        public event TagEventHandler SelectCell = (sender, args) => { };
-
-        public delegate void TagEventHandler (object sender, TagEventArgs tea);
-        public void FireNextTag(uint lastTag)
-        {
-            Task.Factory.StartNew(() =>
-            {
-                Thread.Sleep(100);
-                Application.Current.Dispatcher.Invoke(() => NextTag(this, new TagEventArgs(lastTag)));
-            });
-
-        }
-
-        public void FireSelectCell(int? nextRaceNumber, uint? nextTagNumber)
-        {
-            Task.Factory.StartNew(() =>
-            {
-                Thread.Sleep(100);
-                Application.Current.Dispatcher.Invoke(() => SelectCell(this, new TagEventArgs(nextTagNumber, nextRaceNumber)));
-            });
-        }
-    }
-
-    public class TagEventArgs : EventArgs
-    {
-        public uint EncodedTag { get; set; }
-        public uint? NextTag { get; set; }
-        public int? NextRace { get; set; }
-        
-        public TagEventArgs(uint encodedTag)
-        {
-            EncodedTag = encodedTag;
-        }
-
-        public TagEventArgs(uint? nextTag, int? nextRace)
-        {
-            NextTag = nextTag;
-            NextRace = nextRace;
-        }
     }
 }

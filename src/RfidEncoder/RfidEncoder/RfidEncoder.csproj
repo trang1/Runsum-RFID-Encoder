@@ -73,7 +73,6 @@
       <DependentUpon>RacesSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReaderMockup.cs" />
-    <Compile Include="TagMemoryHelper.cs" />
     <Compile Include="Tracer.cs" />
     <Compile Include="ViewModels\BooleanToVisibilityConverter.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
@@ -84,6 +83,7 @@
     <Compile Include="ViewModels\RacesViewModel.cs" />
     <Compile Include="ViewModels\ReadPowerConverter.cs" />
     <Compile Include="ViewModels\TagOperationsViewModel.cs" />
+    <Compile Include="ViewModels\TotalRaceInfo.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

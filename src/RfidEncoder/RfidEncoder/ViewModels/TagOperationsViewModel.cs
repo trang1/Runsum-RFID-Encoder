@@ -4,7 +4,6 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,37 +14,41 @@ using ThingMagic;
 namespace RfidEncoder.ViewModels
 {
     /// <summary>
-    /// Operations with reader & tags
+    ///     Operations with reader & tags
     /// </summary>
     public class TagOperationsViewModel : ViewModelBase
     {
-        private Reader _reader;
+        private readonly List<uint?> _readInfoTags = new List<uint?>();
+        private volatile bool _cancelReading;
+        private bool _changingPower;
         private bool _isConnected;
-        private Dictionary<string, string> _optimalReaderSettings;
         private bool _isRefreshing;
         private bool _isWaitingForTagRead;
-        private volatile bool _cancelReading;
+        private Dictionary<string, string> _optimalReaderSettings;
+        private Reader _reader;
         private double _readPower;
-        private readonly List<uint?> _readInfoTags = new List<uint?>();
-        private bool _changingPower;
-        private string _singleReadResult;
         private string _selectedRegion;
+        private string _singleReadResult;
 
 
         public TagOperationsViewModel()
         {
             ConnectCommand = new DelegateCommand(Connect,
-                   () => IsConnected ? !MainWindowViewModel.Instance.RacesViewModel.IsEncoding :
-                   SelectedComPort != null && !IsRefreshing);
+                () => IsConnected
+                    ? !MainWindowViewModel.Instance.RacesViewModel.IsEncoding
+                    : SelectedComPort != null && !IsRefreshing);
             RefreshCommand = new DelegateCommand(Refresh, () => !IsRefreshing);
 
-            ReadTagCommand = new DelegateCommand(ReadTag, () => IsConnected && !IsRefreshing && 
-                !MainWindowViewModel.Instance.RacesViewModel.IsEncoding && !IsWaitingForTagRead);
+            ReadTagCommand = new DelegateCommand(ReadTag, () => IsConnected && !IsRefreshing &&
+                                                                !MainWindowViewModel.Instance.RacesViewModel.IsEncoding &&
+                                                                !IsWaitingForTagRead);
             ReadMultipleTagsCommand = new DelegateCommand(ReadMultipleTags, () => IsConnected && !IsRefreshing &&
-                !MainWindowViewModel.Instance.RacesViewModel.IsEncoding);
+                                                                                  !MainWindowViewModel.Instance
+                                                                                      .RacesViewModel.IsEncoding);
 
             WriteTagCommand = new DelegateCommand(WriteTag, () => IsConnected && !IsRefreshing &&
-                !MainWindowViewModel.Instance.RacesViewModel.IsEncoding && !IsWaitingForTagRead);
+                                                                  !MainWindowViewModel.Instance.RacesViewModel
+                                                                      .IsEncoding && !IsWaitingForTagRead);
 
             Regions = new List<string>();
 
@@ -54,10 +57,11 @@ namespace RfidEncoder.ViewModels
             if (BaudRates.Contains(baudRate))
                 SelectedBaudRate = baudRate;
 
-            Refresh();          
+            Refresh();
         }
 
         #region Private methods
+
         private void ReadMultipleTags()
         {
             if (IsWaitingForTagRead)
@@ -72,12 +76,8 @@ namespace RfidEncoder.ViewModels
             {
                 do
                 {
-
                     var tag = ReadTagSync();
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        SingleReadResult = tag.ToString();
-                    });
+                    Application.Current.Dispatcher.Invoke(() => { SingleReadResult = tag.ToString(); });
                 } while (!_cancelReading);
 
                 _cancelReading = false;
@@ -97,6 +97,7 @@ namespace RfidEncoder.ViewModels
                 });
             });
         }
+
         private void WriteTag()
         {
             uint tag;
@@ -107,7 +108,8 @@ namespace RfidEncoder.ViewModels
             }
             else
             {
-                MessageBox.Show("The string " + TagToWrite + " couldn't be recognized as a valid unsigned integer.", "Error");
+                MessageBox.Show("The string " + TagToWrite + " couldn't be recognized as a valid unsigned integer.",
+                    "Error");
             }
         }
 
@@ -131,10 +133,11 @@ namespace RfidEncoder.ViewModels
                 }
             });
         }
+
         private void CheckParams()
         {
             if (_reader.ParamGet("/reader/region/id").ToString() != SelectedRegion)
-                _reader.ParamSet("/reader/region/id", Enum.Parse(typeof(Reader.Region), SelectedRegion));
+                _reader.ParamSet("/reader/region/id", Enum.Parse(typeof (Reader.Region), SelectedRegion));
 
             if (_reader.ParamGet("/reader/tagop/antenna").ToString() != "1")
                 _reader.ParamSet("/reader/tagop/antenna", 1);
@@ -144,7 +147,7 @@ namespace RfidEncoder.ViewModels
         {
             try
             {
-                var power = Convert.ToInt32(1000 + 130 * _readPower);
+                var power = Convert.ToInt32(1000 + 130*_readPower);
                 Debug.WriteLine("Power to set = " + power);
                 if (_reader != null && !_changingPower)
                 {
@@ -165,7 +168,7 @@ namespace RfidEncoder.ViewModels
         }
 
         /// <summary>
-        /// Refreshes COM Port list
+        ///     Refreshes COM Port list
         /// </summary>
         private void Refresh()
         {
@@ -184,6 +187,7 @@ namespace RfidEncoder.ViewModels
                 });
             });
         }
+
         private void Connect()
         {
             if (_reader != null || _isConnected)
@@ -198,11 +202,11 @@ namespace RfidEncoder.ViewModels
             try
             {
                 // Creates a Reader Object for operations on the Reader.
-                string readerUri = SelectedComPort.Name;
+                var readerUri = SelectedComPort.Name;
                 //Regular Expression to get the com port number from comport name .
                 //for Ex: If The Comport name is "USB Serial Port (COM19)" by using this 
                 // regular expression will get com port number as "COM19".
-                MatchCollection mc = Regex.Matches(readerUri, @"(?<=\().+?(?=\))");
+                var mc = Regex.Matches(readerUri, @"(?<=\().+?(?=\))");
                 foreach (Match m in mc)
                 {
                     readerUri = m.ToString();
@@ -214,7 +218,7 @@ namespace RfidEncoder.ViewModels
                 // Set the selected baud rate, so that api try's connecting to the 
                 // module with the selected baud rate first
                 SetBaudRate();
-          
+
                 Mouse.SetCursor(Cursors.Wait);
                 _reader.Connect();
 
@@ -228,7 +232,7 @@ namespace RfidEncoder.ViewModels
 
                 Mouse.SetCursor(Cursors.Arrow);
                 IsConnected = true;
-                
+
 
                 Task.Factory.StartNew(SetDefaultRegion);
             }
@@ -246,7 +250,6 @@ namespace RfidEncoder.ViewModels
                     }
                     else
                     {
-
                         MessageBox.Show("Reader not connected on " + SelectedComPort.Name, "Error",
                             MessageBoxButton.OK, MessageBoxImage.Error);
                     }
@@ -255,14 +258,15 @@ namespace RfidEncoder.ViewModels
                 {
                     if (ex.Message.IndexOf("target machine actively refused") != -1)
                     {
-
                         MessageBox.Show("Error connecting to reader: " + "Connection attempt failed...",
                             "Reader Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else if (ex is FAULT_BL_INVALID_IMAGE_CRC_Exception || ex is FAULT_BL_INVALID_APP_END_ADDR_Exception)
                     {
-                        MessageBox.Show("Error connecting to reader: " + ex.Message + ". Please update the module firmware.", "Reader Error",
-                                MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(
+                            "Error connecting to reader: " + ex.Message + ". Please update the module firmware.",
+                            "Reader Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else
                     {
@@ -273,7 +277,7 @@ namespace RfidEncoder.ViewModels
                 else if (ex is UnauthorizedAccessException)
                 {
                     MessageBox.Show("Access to " + SelectedComPort.Name + " denied. Please check if another "
-                        + "program is accessing this port", "Error!", MessageBoxButton.OK,
+                                    + "program is accessing this port", "Error!", MessageBoxButton.OK,
                         MessageBoxImage.Error);
                 }
                 else
@@ -293,7 +297,7 @@ namespace RfidEncoder.ViewModels
         }
 
         /// <summary>
-        /// Sets default region from config
+        ///     Sets default region from config
         /// </summary>
         private void SetDefaultRegion()
         {
@@ -305,9 +309,9 @@ namespace RfidEncoder.ViewModels
                 {
                     Regions.Add("Select");
                     Regions.AddRange(
-                        ((Reader.Region[])_reader.ParamGet("/reader/region/supportedRegions")).Select(r => r.ToString()));
+                        ((Reader.Region[]) _reader.ParamGet("/reader/region/supportedRegions")).Select(r => r.ToString()));
 
-                    var regionToSet = (Reader.Region)_reader.ParamGet("/reader/region/id");
+                    var regionToSet = (Reader.Region) _reader.ParamGet("/reader/region/id");
                     Trace.TraceInformation("Region to set = " + regionToSet);
 
                     // select region from app.config
@@ -332,7 +336,7 @@ namespace RfidEncoder.ViewModels
         }
 
         /// <summary>
-        /// Set the selected baud rate
+        ///     Set the selected baud rate
         /// </summary>
         private void SetBaudRate()
         {
@@ -344,29 +348,34 @@ namespace RfidEncoder.ViewModels
         }
 
         /// <summary>
-        /// Populate optimal settings based on reader
+        ///     Populate optimal settings based on reader
         /// </summary>
         private void InitializeOptimalSettings()
         {
             _optimalReaderSettings = new Dictionary<string, string>();
             try
             {
-                Gen2.LinkFrequency blf = (Gen2.LinkFrequency)_reader.ParamGet("/reader/gen2/BLF");
+                var blf = (Gen2.LinkFrequency) _reader.ParamGet("/reader/gen2/BLF");
                 switch (blf)
                 {
                     case Gen2.LinkFrequency.LINK250KHZ:
-                        _optimalReaderSettings["/reader/gen2/BLF"] = "LINK250KHZ"; break;
+                        _optimalReaderSettings["/reader/gen2/BLF"] = "LINK250KHZ";
+                        break;
                     case Gen2.LinkFrequency.LINK640KHZ:
-                        _optimalReaderSettings["/reader/gen2/BLF"] = "LINK640KHZ"; ; break;
+                        _optimalReaderSettings["/reader/gen2/BLF"] = "LINK640KHZ";
+                        ;
+                        break;
                     default:
-                        _optimalReaderSettings.Add("/reader/gen2/BLF", ""); break;
+                        _optimalReaderSettings.Add("/reader/gen2/BLF", "");
+                        break;
                 }
             }
             catch (ArgumentException ex)
             {
                 if (ex.Message.Contains("Unknown Link Frequency"))
                 {
-                    MessageBox.Show("Unknown Link Frequency found, Reverting to defaults.", "Universal Reader Assistant", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Unknown Link Frequency found, Reverting to defaults.", "Universal Reader Assistant",
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
                     _optimalReaderSettings["/reader/gen2/BLF"] = "LINK250KHZ";
                 }
                 else
@@ -377,18 +386,21 @@ namespace RfidEncoder.ViewModels
 
             try
             {
-
-                Gen2.Tari tariVal = (Gen2.Tari)_reader.ParamGet("/reader/gen2/Tari");
+                var tariVal = (Gen2.Tari) _reader.ParamGet("/reader/gen2/Tari");
                 switch (tariVal)
                 {
                     case Gen2.Tari.TARI_6_25US:
-                        _optimalReaderSettings["/reader/gen2/tari"] = "TARI_6_25US"; break;
+                        _optimalReaderSettings["/reader/gen2/tari"] = "TARI_6_25US";
+                        break;
                     case Gen2.Tari.TARI_12_5US:
-                        _optimalReaderSettings["/reader/gen2/tari"] = "TARI_12_5US"; break;
+                        _optimalReaderSettings["/reader/gen2/tari"] = "TARI_12_5US";
+                        break;
                     case Gen2.Tari.TARI_25US:
-                        _optimalReaderSettings["/reader/gen2/tari"] = "TARI_25US"; break;
+                        _optimalReaderSettings["/reader/gen2/tari"] = "TARI_25US";
+                        break;
                     default:
-                        _optimalReaderSettings.Add("/reader/gen2/tari", ""); break;
+                        _optimalReaderSettings.Add("/reader/gen2/tari", "");
+                        break;
                 }
             }
             catch (ArgumentException)
@@ -401,19 +413,24 @@ namespace RfidEncoder.ViewModels
 
             try
             {
-                Gen2.TagEncoding tagencoding = (Gen2.TagEncoding)_reader.ParamGet("/reader/gen2/tagEncoding");
+                var tagencoding = (Gen2.TagEncoding) _reader.ParamGet("/reader/gen2/tagEncoding");
                 switch (tagencoding)
                 {
                     case Gen2.TagEncoding.FM0:
-                        _optimalReaderSettings["/reader/gen2/tagEncoding"] = "FM0"; break;
+                        _optimalReaderSettings["/reader/gen2/tagEncoding"] = "FM0";
+                        break;
                     case Gen2.TagEncoding.M2:
-                        _optimalReaderSettings["/reader/gen2/tagEncoding"] = "M2"; break;
+                        _optimalReaderSettings["/reader/gen2/tagEncoding"] = "M2";
+                        break;
                     case Gen2.TagEncoding.M4:
-                        _optimalReaderSettings["/reader/gen2/tagEncoding"] = "M4"; break;
+                        _optimalReaderSettings["/reader/gen2/tagEncoding"] = "M4";
+                        break;
                     case Gen2.TagEncoding.M8:
-                        _optimalReaderSettings["/reader/gen2/tagEncoding"] = "M8"; break;
+                        _optimalReaderSettings["/reader/gen2/tagEncoding"] = "M8";
+                        break;
                     default:
-                        _optimalReaderSettings.Add("/reader/gen2/tagEncoding", ""); break;
+                        _optimalReaderSettings.Add("/reader/gen2/tagEncoding", "");
+                        break;
                 }
             }
             catch (ArgumentException)
@@ -422,19 +439,24 @@ namespace RfidEncoder.ViewModels
             }
             try
             {
-                Gen2.Session session = (Gen2.Session)_reader.ParamGet("/reader/gen2/session");
+                var session = (Gen2.Session) _reader.ParamGet("/reader/gen2/session");
                 switch (session)
                 {
                     case Gen2.Session.S0:
-                        _optimalReaderSettings["/reader/gen2/session"] = "S0"; break;
+                        _optimalReaderSettings["/reader/gen2/session"] = "S0";
+                        break;
                     case Gen2.Session.S1:
-                        _optimalReaderSettings["/reader/gen2/session"] = "S1"; break;
+                        _optimalReaderSettings["/reader/gen2/session"] = "S1";
+                        break;
                     case Gen2.Session.S2:
-                        _optimalReaderSettings["/reader/gen2/session"] = "S2"; break;
+                        _optimalReaderSettings["/reader/gen2/session"] = "S2";
+                        break;
                     case Gen2.Session.S3:
-                        _optimalReaderSettings["/reader/gen2/session"] = "S3"; break;
+                        _optimalReaderSettings["/reader/gen2/session"] = "S3";
+                        break;
                     default:
-                        _optimalReaderSettings.Add("/reader/gen2/session", ""); break;
+                        _optimalReaderSettings.Add("/reader/gen2/session", "");
+                        break;
                 }
             }
             catch (ArgumentException)
@@ -443,18 +465,24 @@ namespace RfidEncoder.ViewModels
             }
             try
             {
-                Gen2.Target target = (Gen2.Target)_reader.ParamGet("/reader/gen2/Target");
+                var target = (Gen2.Target) _reader.ParamGet("/reader/gen2/Target");
                 switch (target)
                 {
                     case Gen2.Target.A:
-                        _optimalReaderSettings["/reader/gen2/target"] = "A"; break;
+                        _optimalReaderSettings["/reader/gen2/target"] = "A";
+                        break;
                     case Gen2.Target.B:
-                        _optimalReaderSettings["/reader/gen2/target"] = "B"; break;
+                        _optimalReaderSettings["/reader/gen2/target"] = "B";
+                        break;
                     case Gen2.Target.AB:
-                        _optimalReaderSettings["/reader/gen2/target"] = "AB"; break;
+                        _optimalReaderSettings["/reader/gen2/target"] = "AB";
+                        break;
                     case Gen2.Target.BA:
-                        _optimalReaderSettings["/reader/gen2/target"] = "BA"; break;
-                    default: _optimalReaderSettings.Add("Target", ""); break;
+                        _optimalReaderSettings["/reader/gen2/target"] = "BA";
+                        break;
+                    default:
+                        _optimalReaderSettings.Add("Target", "");
+                        break;
                 }
             }
             catch (FeatureNotSupportedException)
@@ -463,17 +491,17 @@ namespace RfidEncoder.ViewModels
             }
             try
             {
-                Gen2.Q qval = (Gen2.Q)_reader.ParamGet("/reader/gen2/q");
+                var qval = (Gen2.Q) _reader.ParamGet("/reader/gen2/q");
 
-                if (qval.GetType() == typeof(Gen2.DynamicQ))
+                if (qval.GetType() == typeof (Gen2.DynamicQ))
                 {
                     _optimalReaderSettings["/reader/gen2/q"] = "DynamicQ";
                 }
-                else if (qval.GetType() == typeof(Gen2.StaticQ))
+                else if (qval.GetType() == typeof (Gen2.StaticQ))
                 {
-                    Gen2.StaticQ stqval = (Gen2.StaticQ)qval;
+                    var stqval = (Gen2.StaticQ) qval;
                     _optimalReaderSettings["/reader/gen2/q"] = "StaticQ";
-                    int countQ = Convert.ToInt32(((Gen2.StaticQ)qval).InitialQ);
+                    var countQ = Convert.ToInt32(((Gen2.StaticQ) qval).InitialQ);
                     _optimalReaderSettings["/application/performanceTuning/staticQValue"] = countQ.ToString();
                 }
                 else
@@ -490,22 +518,24 @@ namespace RfidEncoder.ViewModels
         #endregion
 
         #region Public properties
+
         public bool IsWaitingForTagRead
         {
             get { return _isWaitingForTagRead; }
             set
             {
-                _isWaitingForTagRead = value; 
+                _isWaitingForTagRead = value;
                 OnPropertyChanged("IsWaitingForTagRead");
                 OnPropertyChanged("ReadMultipleTagsButtonContent");
                 CommandManager.InvalidateRequerySuggested();
             }
         }
-        
+
         public string ReadMultipleTagsButtonContent
         {
             get { return IsWaitingForTagRead ? "Stop reading" : "Read continuously"; }
         }
+
         public ComPortInfo SelectedComPort { get; set; }
         public List<string> Regions { get; set; }
 
@@ -543,23 +573,28 @@ namespace RfidEncoder.ViewModels
         }
 
         public string TagToWrite { get; set; }
+
         public IList<string> BaudRates
         {
             get
             {
                 return new List<string>
                 {
-                    "Select","9600", "19200", "38400", "115200", "230400", "460800","921600"
+                    "Select",
+                    "9600",
+                    "19200",
+                    "38400",
+                    "115200",
+                    "230400",
+                    "460800",
+                    "921600"
                 };
             }
         }
 
         public string ConnectButtonContent
         {
-            get
-            {
-                return _isConnected ? "Disconnect" : "Connect";
-            }
+            get { return _isConnected ? "Disconnect" : "Connect"; }
         }
 
         public bool IsRefreshing
@@ -581,12 +616,10 @@ namespace RfidEncoder.ViewModels
         public ICommand ReadMultipleTagsCommand { get; set; }
 
         public ICommand WriteTagCommand { get; set; }
+
         public bool IsConnected
         {
-            get
-            {
-                return _isConnected;
-            }
+            get { return _isConnected; }
             set
             {
                 _isConnected = value;
@@ -596,7 +629,6 @@ namespace RfidEncoder.ViewModels
         }
 
         #endregion
-
 
         // seems like the wrong method
         //private uint? ReadTag(int timeout)
@@ -622,16 +654,16 @@ namespace RfidEncoder.ViewModels
         //    }
         //}
 
-
         #region Public methods
+
         public uint? ReadTagSync()
         {
             var action = new Action<Exception>(exception =>
-                {
-                    var error = "Error reading tags. " + exception.Message;
-                    MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    Trace.TraceError(error + exception.StackTrace);
-                });
+            {
+                var error = "Error reading tags. " + exception.Message;
+                MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Trace.TraceError(error + exception.StackTrace);
+            });
 
             uint? tag = null;
 
@@ -654,7 +686,7 @@ namespace RfidEncoder.ViewModels
                 CheckParams();
 
                 // Create a simplereadplan which uses the antenna list created above
-                SimpleReadPlan plan = new SimpleReadPlan(new[] {1}, TagProtocol.GEN2, null, null, 1000);
+                var plan = new SimpleReadPlan(new[] {1}, TagProtocol.GEN2, null, null, 1000);
                 // Set the created readplan
                 _reader.ParamSet("/reader/read/plan", plan);
 
@@ -673,7 +705,6 @@ namespace RfidEncoder.ViewModels
 
                     // do events
                     Application.Current.Dispatcher.Invoke(() => { });
-                    
                 } while (!tag.HasValue);
 
                 _reader.StopReading();
@@ -722,9 +753,9 @@ namespace RfidEncoder.ViewModels
             Trace.TraceInformation("Tag " + tag + " verified unsuccessfully.");
             return false;
         }
-        
+
         /// <summary>
-        /// Writes the access password in the reserved memory
+        ///     Writes the access password in the reserved memory
         /// </summary>
         public bool WriteAccessPassword(string accessPassword)
         {
@@ -735,7 +766,7 @@ namespace RfidEncoder.ViewModels
                 ushort[] dataToBeWritten = null;
                 dataToBeWritten = ByteConv.ToU16s(ByteFormat.FromHex(accessPassword.Replace(" ", "")));
                 _reader.ExecuteTagOp(new Gen2.WriteData(Gen2.Bank.RESERVED, 2, dataToBeWritten), null);
-                
+
                 Trace.TraceInformation("Access Password has been successfully set to " + accessPassword);
                 return true;
             }
@@ -749,7 +780,7 @@ namespace RfidEncoder.ViewModels
         }
 
         /// <summary>
-        /// Writes the kill password in the reserved memory
+        ///     Writes the kill password in the reserved memory
         /// </summary>
         public void WriteKillPassword(string killPassword)
         {
@@ -760,7 +791,7 @@ namespace RfidEncoder.ViewModels
                 ushort[] dataToBeWritten = null;
                 dataToBeWritten = ByteConv.ToU16s(ByteFormat.FromHex(killPassword.Replace(" ", "")));
                 _reader.ExecuteTagOp(new Gen2.WriteData(Gen2.Bank.RESERVED, 0, dataToBeWritten), null);
-                
+
                 Trace.TraceInformation("Kill Password has been successfully set to " + killPassword);
             }
             catch (Exception ex)
@@ -770,8 +801,9 @@ namespace RfidEncoder.ViewModels
                 Trace.TraceError(error + ex.StackTrace);
             }
         }
+
         /// <summary>
-        /// Apply lock action on the tag
+        ///     Apply lock action on the tag
         /// </summary>
         public bool ApplyLockAction(Gen2.LockAction action, string accessPassword)
         {
@@ -797,7 +829,7 @@ namespace RfidEncoder.ViewModels
         }
 
         /// <summary>
-        /// Apply Permalock action for R6 Impinj chips
+        ///     Apply Permalock action for R6 Impinj chips
         /// </summary>
         /// <param name="accessPassword"></param>
         /// <returns></returns>
@@ -832,10 +864,10 @@ namespace RfidEncoder.ViewModels
         {
             try
             {
-                string reservedBankData = string.Empty;
+                var reservedBankData = string.Empty;
                 //Read access password
                 var op = new Gen2.ReadData(Gen2.Bank.RESERVED, 2, 2);
-                var reservedData = (ushort[])_reader.ExecuteTagOp(op, null);
+                var reservedData = (ushort[]) _reader.ExecuteTagOp(op, null);
 
                 if (null != reservedData)
                     reservedBankData = ByteFormat.ToHex(ByteConv.ConvertFromUshortArray(reservedData), "", " ");
@@ -863,7 +895,8 @@ namespace RfidEncoder.ViewModels
                 _reader.ParamSet("/reader/tagop/protocol", TagProtocol.GEN2);
 
                 _reader.ExecuteTagOp(new Gen2.Lock(ByteConv.ToU32(
-                    ByteFormat.FromHex(accessPassword.Replace(" ", "")), 0), new Gen2.LockAction(Gen2.LockAction.EPC_UNLOCK)), null);
+                    ByteFormat.FromHex(accessPassword.Replace(" ", "")), 0),
+                    new Gen2.LockAction(Gen2.LockAction.EPC_UNLOCK)), null);
 
                 Trace.TraceInformation("EPC successfully unlocked.");
                 return false;
